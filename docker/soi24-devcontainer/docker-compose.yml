@@ -1,0 +1,31 @@
+services:
+
+  devcontainer:
+    image: localhost/soi24/debian-dev:1
+    volumes:
+      - ../../..:/workspaces:cached
+    command: sleep infinity
+
+  redis:
+    image: redis:7.2
+    restart: always
+    #ports:
+    #  - "6379:6379"
+    volumes:
+      - redis-data:/data
+
+  stomp-relay:
+    image: rabbitmq:3.12
+    restart: always
+    #ports:
+    #  - "61613:61613"
+    command: [
+      "/bin/sh", "-c",
+      "rabbitmq-plugins enable --offline rabbitmq_stomp && exec rabbitmq-server"
+    ]
+    volumes:
+      - stomp-relay-data:/var/lib/rabbitmq
+
+volumes:
+  redis-data:
+  stomp-relay-data:

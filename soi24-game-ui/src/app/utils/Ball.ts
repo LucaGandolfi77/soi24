@@ -25,7 +25,7 @@ export default class Ball {
     constructor(
         position: BallPosition,
         direction: number,
-        private onChange: (ballAnimation: BallAnimation) => void
+        private onChange: (ballAnimation: BallAnimation | null) => void
     ) {
         this.animation = this.retrieveNewAnimation(position, direction)
     }
@@ -120,16 +120,15 @@ export default class Ball {
             })
         
             if (!isHit) {
-                const missedPlayerTeam = endX === MIN_X ? "LEFT (Player 1)" : "RIGHT (Player 2)";
-                console.log(`❌ GOAL! Ball reached ${missedPlayerTeam} side but no collision - ball passed through!`);
-                
-                // Reset ball to center and move towards the player who just lost
-                const newDirection = endX === MIN_X ? Math.PI : 0; // If LEFT missed, ball goes left. If RIGHT missed, ball goes right
+                // Signal goal and prepare next round
+                this.onChange(null);
                 this.animation = this.retrieveNewAnimation(
                     { x: PLAYFIELD_WIDTH / 2, y: PLAYFIELD_HEIGHT / 2 },
-                    newDirection
+                    endX <= MIN_X ? Math.PI : 0  // Ball moves towards losing side
                 );
-                this.onChange(this.animation);
+                
+                // Minimal delay to ensure goal is processed
+                requestAnimationFrame(() => this.onChange(this.animation));
                 return;
             }
         }
@@ -215,7 +214,12 @@ export default class Ball {
 
         // Override temporaneo dell'animazione con quella di goal
         const originalOnChange = this.onChange;
-        this.onChange = (ballAnimation: BallAnimation) => {
+        this.onChange = (ballAnimation: BallAnimation | null) => {
+            if (ballAnimation === null) {
+                originalOnChange(null);
+                return;
+            }
+            
             const goalBallAnimation = {
                 ...ballAnimation,
                 // Usa proprietà CSS custom per l'animazione goal

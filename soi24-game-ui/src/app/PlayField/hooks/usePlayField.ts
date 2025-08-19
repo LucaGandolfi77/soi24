@@ -18,7 +18,13 @@ import {
     INITIAL_BALL_DIRECTION,
     INITIAL_BALL_POS,
     INITIAL_PLAYER_POS_Y,
+    LEFT_TEAM_X,
+    RIGHT_TEAM_X,
+    BALL_RADIUS,
 } from '../../utils/const'
+
+const MIN_X = LEFT_TEAM_X + BALL_RADIUS
+const MAX_X = RIGHT_TEAM_X - BALL_RADIUS
 import Arena from '../../utils/Arena'
 import Ball from '../../utils/Ball'
 import Player from '../../utils/Player'
@@ -34,8 +40,23 @@ export default function usePlayField() {
     const [ballAnimation, setBallAnimation] = useState<BallAnimation | null>(null)
     const [score, setScore] = useState<GameScore>({ left: 0, right: 0 })
 
+    // Handle scoring when a goal is detected
+    const handleGoal = useCallback((endX: number) => {
+        setScore(prevScore => ({
+            ...prevScore,
+            // If ball hits left side (endX <= MIN_X), right team scores, otherwise left team scores
+            [endX <= MIN_X ? 'right' : 'left']: prevScore[endX <= MIN_X ? 'right' : 'left'] + 1
+        }));
+    }, []);
+
     const arenaRef = useRef<Arena>(new Arena(
-        new Ball(INITIAL_BALL_POS, INITIAL_BALL_DIRECTION, setBallAnimation),
+        new Ball(INITIAL_BALL_POS, INITIAL_BALL_DIRECTION, (animation) => {
+            // Null animation signals a goal
+            if (!animation && arenaRef.current) {
+                handleGoal(arenaRef.current.getBall().getAnimation().endX);
+            }
+            setBallAnimation(animation);
+        }),
         [
             new Player({ team: PlayerTeam.LEFT, y: INITIAL_PLAYER_POS_Y }, setPlayerLeftPosY),
             new Player({ team: PlayerTeam.RIGHT, y: INITIAL_PLAYER_POS_Y }, setPlayerRightPosY),

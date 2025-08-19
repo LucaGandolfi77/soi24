@@ -123,8 +123,13 @@ export default class Ball {
                 const missedPlayerTeam = endX === MIN_X ? "LEFT (Player 1)" : "RIGHT (Player 2)";
                 console.log(`❌ GOAL! Ball reached ${missedPlayerTeam} side but no collision - ball passed through!`);
                 
-                // 🎯 ANIMAZIONE GOAL - Crea un'animazione spettacolare
-                this.createGoalAnimation(endX, endY);
+                // Reset ball to center and move towards the player who just lost
+                const newDirection = endX === MIN_X ? Math.PI : 0; // If LEFT missed, ball goes left. If RIGHT missed, ball goes right
+                this.animation = this.retrieveNewAnimation(
+                    { x: PLAYFIELD_WIDTH / 2, y: PLAYFIELD_HEIGHT / 2 },
+                    newDirection
+                );
+                this.onChange(this.animation);
                 return;
             }
         }

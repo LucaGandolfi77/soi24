@@ -1,7 +1,7 @@
-/home/user/soi/soi24-student-step0-classSolution/soi24-game-web-server/src/main/java/it/unipr/soi/game_web_server/config/WebSocketConfig.java
-/home/user/soi/soi24-student-step0-classSolution/soi24-game-web-server/src/main/java/it/unipr/soi/game_web_server/config/SecurityConfig.java
-/home/user/soi/soi24-student-step0-classSolution/soi24-game-web-server/src/main/java/it/unipr/soi/game_web_server/config/WebFiltersConfig.java
-/home/user/soi/soi24-student-step0-classSolution/soi24-game-web-server/src/main/java/it/unipr/soi/game_web_server/props/SoiGameWebServerProperties.java
-/home/user/soi/soi24-student-step0-classSolution/soi24-game-web-server/src/main/java/it/unipr/soi/game_web_server/config/WebSecurityConfig.java
-/home/user/soi/soi24-student-step0-classSolution/soi24-game-web-server/src/main/java/it/unipr/soi/game_web_server/SoiGameWebServerEnvironmentPostProcessor.java
-/home/user/soi/soi24-student-step0-classSolution/soi24-game-web-server/src/main/java/it/unipr/soi/game_web_server/SoiGameWebServerApplication.java
+/Users/lgandolfi/Desktop/SOAI24/Gitlab/Pelle/soi24/soi24-game-web-server/src/main/java/it/unipr/soi/game_web_server/config/WebSecurityConfig.java
+/Users/lgandolfi/Desktop/SOAI24/Gitlab/Pelle/soi24/soi24-game-web-server/src/main/java/it/unipr/soi/game_web_server/props/SoiGameWebServerProperties.java
+/Users/lgandolfi/Desktop/SOAI24/Gitlab/Pelle/soi24/soi24-game-web-server/src/main/java/it/unipr/soi/game_web_server/config/SecurityConfig.java
+/Users/lgandolfi/Desktop/SOAI24/Gitlab/Pelle/soi24/soi24-game-web-server/src/main/java/it/unipr/soi/game_web_server/config/WebFiltersConfig.java
+/Users/lgandolfi/Desktop/SOAI24/Gitlab/Pelle/soi24/soi24-game-web-server/src/main/java/it/unipr/soi/game_web_server/SoiGameWebServerApplication.java
+/Users/lgandolfi/Desktop/SOAI24/Gitlab/Pelle/soi24/soi24-game-web-server/src/main/java/it/unipr/soi/game_web_server/config/WebSocketConfig.java
+/Users/lgandolfi/Desktop/SOAI24/Gitlab/Pelle/soi24/soi24-game-web-server/src/main/java/it/unipr/soi/game_web_server/SoiGameWebServerEnvironmentPostProcessor.java

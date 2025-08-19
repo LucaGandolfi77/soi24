@@ -15,7 +15,6 @@ export const MS_PER_FRAME = 1000 / FPS
 export const BALL_DIAMETER = 20
 export const BALL_RADIUS = BALL_DIAMETER / 2
 // unit per sec
-//export const BALL_SPEED = PLAYFIELD_WIDTH / 8
 export const BALL_SPEED = PLAYFIELD_WIDTH / 4
 
 export const PLAYER_WIDTH = 10

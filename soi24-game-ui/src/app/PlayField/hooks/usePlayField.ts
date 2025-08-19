@@ -11,7 +11,6 @@ import {
     PlayerDirection,
     PlayerPosition,
     PlayerTeam,
-    GameScore, // Aggiungi questa importazione
 } from '../../utils/interfaces'
 import {
     BALL_BASE_SVG_PROPS,
@@ -27,7 +26,7 @@ interface BallProps extends React.SVGProps<SVGCircleElement> {
     style: React.CSSProperties,
 }
 
-export default function usePlayField(onScoreChange?: (score: GameScore) => void) {
+export default function usePlayField() {
     const [isPlaying, setIsPlaying] = useState(false)
     const [playerLeftPosY, setPlayerLeftPosY] = useState(INITIAL_PLAYER_POS_Y)
     const [playerRightPosY, setPlayerRightPosY] = useState(INITIAL_PLAYER_POS_Y)
@@ -38,8 +37,8 @@ export default function usePlayField(onScoreChange?: (score: GameScore) => void)
         [
             new Player({ team: PlayerTeam.LEFT, y: INITIAL_PLAYER_POS_Y }, setPlayerLeftPosY),
             new Player({ team: PlayerTeam.RIGHT, y: INITIAL_PLAYER_POS_Y }, setPlayerRightPosY),
-        ],
-        onScoreChange // Passa il callback del punteggio
+            // You can add as many players as you want
+        ]
     ))
 
     const ballProps: BallProps = useMemo(() => {
@@ -71,15 +70,14 @@ export default function usePlayField(onScoreChange?: (score: GameScore) => void)
     ]), [playerLeftPosY, playerRightPosY])
 
     const handleKeyDown = useCallback(({ key }: KeyboardEvent) => {
+        /* TODO - Step 0
+        Map the key so that you can:
+            - set the moving direction of every player
+            - start/stop the game
+        */
         switch (key) {
             case 'Enter':
                 setIsPlaying((wasPlaying) => !wasPlaying)
-                break
-            case 'r': // Aggiungi reset del punteggio con 'r'
-                arenaRef.current.resetScore()
-                break
-            case 'R':
-                arenaRef.current.resetScore()
                 break
             case 'ArrowUp':
                 arenaRef.current.getPlayer(1)?.setDirection(PlayerDirection.Up)
@@ -88,17 +86,21 @@ export default function usePlayField(onScoreChange?: (score: GameScore) => void)
                 arenaRef.current.getPlayer(1)?.setDirection(PlayerDirection.Down)
                 break
             case 'w':
-            case 'W':
                 arenaRef.current.getPlayer(0)?.setDirection(PlayerDirection.Up)
                 break
             case 's':
-            case 'S':
                 arenaRef.current.getPlayer(0)?.setDirection(PlayerDirection.Down)
                 break
         }
     }, [])
 
     const handleKeyUp = useCallback(({ key }: KeyboardEvent) => {
+        /* TODO - Step 0
+        Map the key so that you can reset the moving direction
+        of the corresponding player.
+        Be aware that the user could have already pressed the key
+        corresponding to the opposite player direction
+        */
         switch (key) {
             case 'ArrowUp':
                 if (arenaRef.current.getPlayer(1)?.getDirection() === PlayerDirection.Up) {
@@ -111,13 +113,11 @@ export default function usePlayField(onScoreChange?: (score: GameScore) => void)
                 }
                 break
             case 'w':
-            case 'W':
                 if (arenaRef.current.getPlayer(0)?.getDirection() === PlayerDirection.Up) {
                     arenaRef.current.getPlayer(0)?.setDirection(PlayerDirection.Hold)
                 }
                 break
             case 's':
-            case 'S':
                 if (arenaRef.current.getPlayer(0)?.getDirection() === PlayerDirection.Down) {
                     arenaRef.current.getPlayer(0)?.setDirection(PlayerDirection.Hold)
                 }

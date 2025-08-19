@@ -4,22 +4,18 @@ import {
     PLAYFIELD_SVG_WIDTH,
     PLAYFIELD_SVG_HEIGHT,
 } from '../utils/const'
-import { GameScore } from '../utils/interfaces'
 import usePlayField from './hooks/usePlayField'
 import PlayFieldPlayer from './PlayFieldPlayer'
 
-export default function PlayField({ 
-    onScoreChange 
-}: { 
-    onScoreChange?: (score: GameScore) => void 
-}) {
+export default function PlayField() {
+
     const {
         ballProps,
         playerPositions,
         handleKeyDown,
         handleKeyUp,
         handleAnimationEnd,
-    } = usePlayField(onScoreChange)
+    } = usePlayField()
 
     return (
         <div style={PLAYFIELD_STYLE}>

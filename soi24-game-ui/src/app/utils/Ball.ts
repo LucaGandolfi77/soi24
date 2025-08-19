@@ -61,6 +61,7 @@ export default class Ball {
         }
 
         // Collision detection with players
+        /*
         if (endX === MIN_X || endX === MAX_X) {
             console.log(`Ball: Potential player collision zone. endX=${endX.toFixed(2)}`);
             let originalDirectionBeforePlayerCheck = direction; // Store for comparison
@@ -127,11 +128,88 @@ export default class Ball {
 
             if (!isHit) {
                 console.log("Ball: Side reached (MIN_X or MAX_X) but NO player was hit there (goal or ball passed through). Original direction: " + (originalDirectionBeforePlayerCheck * 180 / Math.PI).toFixed(2) + " deg");
+                console.log("GOAL!!!!!");
                 // This is where a goal would typically be handled. The original code had 'return;'
                 // which would stop the ball by not calculating a new animation.
                 return; // Keeping original goal behavior (ball stops/disappears until reset)
             }
         }
+        */
+
+        // Nel metodo animate() della classe Ball, modifica la sezione di collision detection:
+
+        // Collision detection with players
+        if (endX === MIN_X || endX === MAX_X) {
+            console.log(`Ball: Potential player collision zone. endX=${endX.toFixed(2)}`);
+            let originalDirectionBeforePlayerCheck = direction;
+        
+            const isHit = players.some((player, playerIndex) => { // Aggiungi playerIndex
+                const playerPosition = player.getPosition()
+                const playerPosX = playerPosition.team === PlayerTeam.LEFT
+                    ? LEFT_TEAM_X
+                    : RIGHT_TEAM_X
+                const playerPosY = playerPosition.y
+        
+                // Identifica quale player stiamo controllando
+                const playerTeamName = playerPosition.team === PlayerTeam.LEFT ? "LEFT (Player 1)" : "RIGHT (Player 2)";
+                console.log(`Ball: Checking ${playerTeamName} at X=${playerPosX.toFixed(2)}, Y=${playerPosY.toFixed(2)}`);
+        
+                // Verifica se è il player corretto per questa collisione
+                const isCorrectPlayer = (endX === MIN_X && playerPosition.team === PlayerTeam.LEFT) ||
+                                       (endX === MAX_X && playerPosition.team === PlayerTeam.RIGHT);
+                
+                if (!isCorrectPlayer) {
+                    console.log(`Ball: Skipping ${playerTeamName} - not the target for this collision`);
+                    return false;
+                }
+        
+                const deltaV = Math.abs(endY - playerPosY)
+                const overlapV = deltaV <= (PLAYER_HEIGHT / 2 + BALL_RADIUS)
+                console.log(`Ball: ${playerTeamName} check: deltaV=${deltaV.toFixed(2)}, overlapThreshold=${(PLAYER_HEIGHT / 2 + BALL_RADIUS).toFixed(2)}, overlapV=${overlapV}`);
+        
+                if (!overlapV) {
+                    console.log(`Ball: No vertical overlap with ${playerTeamName}.`);
+                    return false
+                }
+        
+                // *** LOGGING DELLA COLLISIONE ***
+                console.log(`🏓 COLLISION DETECTED! ${playerTeamName} hit the ball!`);
+                console.log(`   Player position: X=${playerPosX.toFixed(2)}, Y=${playerPosY.toFixed(2)}`);
+                console.log(`   Ball position: X=${endX.toFixed(2)}, Y=${endY.toFixed(2)}`);
+                console.log(`   Player index: ${playerIndex}`);
+                
+                // Resto della logica di rimbalzo...
+                let relativeIntersectY = (endY - playerPosY) / (PLAYER_HEIGHT / 2);
+                relativeIntersectY = Math.max(-1, Math.min(1, relativeIntersectY));
+                
+                const maxBounceAngleEffect = Math.PI / 3;
+                const bounceAngle = relativeIntersectY * maxBounceAngleEffect;
+                
+                let newDxComponent;
+                const newDyComponent = Math.sin(bounceAngle);
+        
+                if (endX === MIN_X) {
+                    newDxComponent = Math.cos(bounceAngle);
+                    console.log(`🏓 ${playerTeamName} bounced ball to the RIGHT`);
+                } else {
+                    newDxComponent = -Math.cos(bounceAngle);
+                    console.log(`🏓 ${playerTeamName} bounced ball to the LEFT`);
+                }
+        
+                direction = Math.atan2(newDyComponent, newDxComponent);
+                console.log(`🏓 New ball direction: ${(direction * 180 / Math.PI).toFixed(2)} degrees`);
+                
+                return true
+            })
+        
+            if (!isHit) {
+                const missedPlayerTeam = endX === MIN_X ? "LEFT (Player 1)" : "RIGHT (Player 2)";
+                console.log(`❌ GOAL! Ball reached ${missedPlayerTeam} side but no collision - ball passed through!`);
+                return;
+            }
+        }
+        
+        
 
         if (isNaN(direction)) {
             console.error("Ball: Direction became NaN! Halting ball animation for safety.");

@@ -48,18 +48,41 @@ export const PLAYFIELD_STYLE: CSSProperties = Object.freeze({
     backgroundColor: '#E0E0E0'
 })
 
-// BALL STYLE
+// TEAM COLORS
+export const LEFT_TEAM_COLOR = '#4169E1'  // Royal Blue
+export const RIGHT_TEAM_COLOR = '#32CD32' // Lime Green
 
+// BALL STYLE
 export const BALL_BASE_SVG_PROPS: React.SVGProps<SVGCircleElement> = Object.freeze({
     fill: '#FF2C07',
     r: BALL_RADIUS,
 })
 
 // PLAYER STYLE
-
-export const PLAYER_BASE_SVG_PROPS: React.SVGProps<SVGRectElement> = Object.freeze({
+export const LEFT_PLAYER_SVG_PROPS: React.SVGProps<SVGRectElement> = Object.freeze({
     rx: PLAYER_RADIUS,
     width: PLAYER_WIDTH,
     height: PLAYER_HEIGHT,
-    fill: '#7C4DFF',
+    fill: LEFT_TEAM_COLOR,
+})
+
+export const RIGHT_PLAYER_SVG_PROPS: React.SVGProps<SVGRectElement> = Object.freeze({
+    rx: PLAYER_RADIUS,
+    width: PLAYER_WIDTH,
+    height: PLAYER_HEIGHT,
+    fill: RIGHT_TEAM_COLOR,
+})
+
+// SCOREBOARD STYLE
+export const SCOREBOARD_STYLE: CSSProperties = Object.freeze({
+    position: 'absolute',
+    top: '20px',
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'space-between',
+    padding: '0 50px',
+    boxSizing: 'border-box',
+    fontFamily: 'Arial, sans-serif',
+    fontSize: '24px',
+    fontWeight: 'bold',
 })

@@ -11,6 +11,7 @@ import {
     PlayerDirection,
     PlayerPosition,
     PlayerTeam,
+    GameScore,
 } from '../../utils/interfaces'
 import {
     BALL_BASE_SVG_PROPS,
@@ -31,6 +32,7 @@ export default function usePlayField() {
     const [playerLeftPosY, setPlayerLeftPosY] = useState(INITIAL_PLAYER_POS_Y)
     const [playerRightPosY, setPlayerRightPosY] = useState(INITIAL_PLAYER_POS_Y)
     const [ballAnimation, setBallAnimation] = useState<BallAnimation | null>(null)
+    const [score, setScore] = useState<GameScore>({ left: 0, right: 0 })
 
     const arenaRef = useRef<Arena>(new Arena(
         new Ball(INITIAL_BALL_POS, INITIAL_BALL_DIRECTION, setBallAnimation),
@@ -154,5 +156,6 @@ export default function usePlayField() {
         handleKeyDown,
         handleKeyUp,
         handleAnimationEnd,
+        score,
     }
 }

@@ -26,3 +26,8 @@ export enum PlayerDirection {
     Up,
     Down,
 }
+
+export interface GameScore {
+    left: number;
+    right: number;
+}

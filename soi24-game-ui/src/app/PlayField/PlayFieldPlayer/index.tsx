@@ -1,7 +1,8 @@
 import { useMemo } from 'react'
 import {
     LEFT_TEAM_X,
-    PLAYER_BASE_SVG_PROPS,
+    LEFT_PLAYER_SVG_PROPS,
+    RIGHT_PLAYER_SVG_PROPS,
     PLAYER_HEIGHT,
     PLAYER_WIDTH,
     RIGHT_TEAM_X,
@@ -23,8 +24,12 @@ export default function PlayFieldPlayer({
             ? LEFT_TEAM_X
             : RIGHT_TEAM_X
 
+        const baseProps = team === PlayerTeam.LEFT
+            ? LEFT_PLAYER_SVG_PROPS
+            : RIGHT_PLAYER_SVG_PROPS
+
         return {
-            ...PLAYER_BASE_SVG_PROPS,
+            ...baseProps,
             x: posX - PLAYER_WIDTH / 2,
             y: posY - PLAYER_HEIGHT / 2,
         }

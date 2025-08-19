@@ -22,7 +22,7 @@ export default function PlayField() {
     } = usePlayField()
 
     return (
-        <div style={PLAYFIELD_STYLE}>
+        <div className="game-playfield" style={PLAYFIELD_STYLE}>
             <div style={SCOREBOARD_STYLE}>
                 <div style={{ color: LEFT_TEAM_COLOR }}>Score: {score.left}</div>
                 <div style={{ color: RIGHT_TEAM_COLOR }}>Score: {score.right}</div>

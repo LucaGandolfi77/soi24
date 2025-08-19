@@ -7,6 +7,7 @@ import {
     PLAYER_HEIGHT,
     RIGHT_TEAM_X,
     PLAYFIELD_WIDTH,
+    PLAYFIELD_STYLE,
 } from './const'
 import {
     BallAnimation,
@@ -120,6 +121,9 @@ export default class Ball {
             })
         
             if (!isHit) {
+                // Create confetti animation
+                this.createConfettiAnimation(endX <= MIN_X ? RIGHT_TEAM_X : LEFT_TEAM_X);
+                
                 // Signal goal and prepare next round
                 this.onChange(null);
                 this.animation = this.retrieveNewAnimation(
@@ -261,6 +265,83 @@ export default class Ball {
         `);
 
         this.onChange(this.animation);
+    }
+
+    private createConfettiAnimation(scoringX: number) {
+        const confettiCount = 150;  // Number of confetti particles
+        const colors = ['#f94144', '#f3722c', '#f8961e', '#f9c74f', '#90be6d', '#43aa8b', '#577590']; // Rainbow colors
+        const glitterColors = ['#FFD700', '#FFF', '#F0F8FF']; // Gold, White, and Alice Blue for glitter
+
+        const confettiKeyframes = Array.from({ length: confettiCount }).map((_, i) => {
+            const color = i % 3 === 0 ? 
+                glitterColors[Math.floor(Math.random() * glitterColors.length)] : 
+                colors[Math.floor(Math.random() * colors.length)];
+            const size = Math.random() * 10 + 5;
+            const startX = scoringX + (Math.random() - 0.5) * PLAYFIELD_WIDTH / 4;
+            const endX = startX + (Math.random() - 0.5) * PLAYFIELD_WIDTH / 2;
+            const rotateStart = Math.random() * 360;
+            const rotateEnd = rotateStart + Math.random() * 720 - 360;
+            const delay = Math.random() * 3;
+            const duration = Math.random() + 2;
+
+            return `
+                @keyframes confetti-${i} {
+                    0% {
+                        transform: translate(${startX}px, -20px) rotate(${rotateStart}deg);
+                        opacity: 1;
+                    }
+                    100% {
+                        transform: translate(${endX}px, ${PLAYFIELD_HEIGHT + 20}px) rotate(${rotateEnd}deg);
+                        opacity: 0;
+                    }
+                }
+            `;
+        }).join('\n');
+
+        // Create and add confetti elements
+        const confettiContainer = document.createElement('div');
+        confettiContainer.style.position = 'absolute';
+        confettiContainer.style.top = '0';
+        confettiContainer.style.left = '0';
+        confettiContainer.style.width = '100%';
+        confettiContainer.style.height = '100%';
+        confettiContainer.style.pointerEvents = 'none';
+
+        // Add confetti style
+        const styleElement = document.createElement('style');
+        styleElement.textContent = confettiKeyframes;
+        document.head.appendChild(styleElement);
+
+        Array.from({ length: confettiCount }).forEach((_, i) => {
+            const confetti = document.createElement('div');
+            const color = i % 3 === 0 ? 
+                glitterColors[Math.floor(Math.random() * glitterColors.length)] : 
+                colors[Math.floor(Math.random() * colors.length)];
+            const size = Math.random() * 10 + 5;
+            const delay = Math.random() * 3;
+            const duration = Math.random() * 2 + 2;
+
+            Object.assign(confetti.style, {
+                position: 'absolute',
+                width: size + 'px',
+                height: size + 'px',
+                backgroundColor: color,
+                borderRadius: i % 3 === 0 ? '50%' : '2px',
+                animation: `confetti-${i} ${duration}s ease-in ${delay}s forwards`,
+                boxShadow: i % 3 === 0 ? '0 0 10px 2px ' + color : 'none',
+                opacity: '0'
+            });
+
+            confettiContainer.appendChild(confetti);
+        });
+
+        document.querySelector('.game-playfield')?.appendChild(confettiContainer);
+
+        // Remove confetti after animation
+        setTimeout(() => {
+            confettiContainer.remove();
+            styleElement.remove();
+        }, 6000);
     }
 
     private retrieveNewAnimation(position: BallPosition, direction: number): BallAnimation {

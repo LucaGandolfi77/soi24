@@ -121,18 +121,22 @@ export default class Ball {
             })
         
             if (!isHit) {
-                // Create confetti animation
-                this.createConfettiAnimation(endX <= MIN_X ? RIGHT_TEAM_X : LEFT_TEAM_X);
+                // Create confetti animation immediately
+                this.createConfettiAnimation(endX <= MIN_X);
                 
                 // Signal goal and prepare next round
                 this.onChange(null);
-                this.animation = this.retrieveNewAnimation(
-                    { x: PLAYFIELD_WIDTH / 2, y: PLAYFIELD_HEIGHT / 2 },
-                    endX <= MIN_X ? Math.PI : 0  // Ball moves towards losing side
-                );
                 
-                // Minimal delay to ensure goal is processed
-                requestAnimationFrame(() => this.onChange(this.animation));
+                // Short delay before resetting ball position
+                setTimeout(() => {
+                    this.animation = this.retrieveNewAnimation(
+                        { x: PLAYFIELD_WIDTH / 2, y: PLAYFIELD_HEIGHT / 2 },
+                        endX <= MIN_X ? Math.PI : 0  // Ball moves towards losing side
+                    );
+                    this.onChange(this.animation);
+                }, 500);
+                
+                return;
                 return;
             }
         }
@@ -267,7 +271,9 @@ export default class Ball {
         this.onChange(this.animation);
     }
 
-    private createConfettiAnimation(scoringX: number) {
+    private createConfettiAnimation(isLeftGoal = false) {
+        // Determine scoring team's color
+        const scoringTeamColor = isLeftGoal ? '#32CD32' : '#4169E1'; // Green for right team, Blue for left team
         const confettiCount = 150;  // Number of confetti particles
         const colors = ['#f94144', '#f3722c', '#f8961e', '#f9c74f', '#90be6d', '#43aa8b', '#577590']; // Rainbow colors
         const glitterColors = ['#FFD700', '#FFF', '#F0F8FF']; // Gold, White, and Alice Blue for glitter
@@ -277,22 +283,27 @@ export default class Ball {
                 glitterColors[Math.floor(Math.random() * glitterColors.length)] : 
                 colors[Math.floor(Math.random() * colors.length)];
             const size = Math.random() * 10 + 5;
-            const startX = scoringX + (Math.random() - 0.5) * PLAYFIELD_WIDTH / 4;
-            const endX = startX + (Math.random() - 0.5) * PLAYFIELD_WIDTH / 2;
+            const startX = PLAYFIELD_WIDTH / 2; // Start from center
+            const endX = startX + (Math.random() - 0.5) * PLAYFIELD_WIDTH; // Spread across full width
             const rotateStart = Math.random() * 360;
             const rotateEnd = rotateStart + Math.random() * 720 - 360;
-            const delay = Math.random() * 3;
-            const duration = Math.random() + 2;
+            const delay = 0; // No delay, start immediately
+            const duration = 1.0; // Match GOAL text duration (1 second)
 
             return `
                 @keyframes confetti-${i} {
                     0% {
-                        transform: translate(${startX}px, -20px) rotate(${rotateStart}deg);
+                        transform: translate(-50%, -50%) rotate(${rotateStart}deg);
                         opacity: 1;
+                        scale: 0;
                     }
                     100% {
-                        transform: translate(${endX}px, ${PLAYFIELD_HEIGHT + 20}px) rotate(${rotateEnd}deg);
+                        transform: translate(
+                            ${(Math.random() - 0.5) * PLAYFIELD_WIDTH}px,
+                            ${(Math.random() - 0.5) * PLAYFIELD_HEIGHT}px
+                        ) rotate(${rotateEnd}deg);
                         opacity: 0;
+                        scale: 1;
                     }
                 }
             `;
@@ -301,10 +312,10 @@ export default class Ball {
         // Create and add confetti elements
         const confettiContainer = document.createElement('div');
         confettiContainer.style.position = 'absolute';
-        confettiContainer.style.top = '0';
-        confettiContainer.style.left = '0';
-        confettiContainer.style.width = '100%';
-        confettiContainer.style.height = '100%';
+        confettiContainer.style.top = '50%';
+        confettiContainer.style.left = '50%';
+        confettiContainer.style.width = '0';
+        confettiContainer.style.height = '0';
         confettiContainer.style.pointerEvents = 'none';
 
         // Add confetti style
@@ -318,8 +329,8 @@ export default class Ball {
                 glitterColors[Math.floor(Math.random() * glitterColors.length)] : 
                 colors[Math.floor(Math.random() * colors.length)];
             const size = Math.random() * 10 + 5;
-            const delay = Math.random() * 3;
-            const duration = Math.random() * 2 + 2;
+            const delay = 0; // No delay, start immediately
+            const duration = 1.0; // Match GOAL text duration (1 second)
 
             Object.assign(confetti.style, {
                 position: 'absolute',
@@ -335,13 +346,58 @@ export default class Ball {
             confettiContainer.appendChild(confetti);
         });
 
-        document.querySelector('.game-playfield')?.appendChild(confettiContainer);
+        // Create GOAL text animation
+        const goalText = document.createElement('div');
+        Object.assign(goalText.style, {
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            color: scoringTeamColor,
+            fontSize: '0px',
+            fontFamily: 'Arial Black, sans-serif',
+            fontWeight: 'bold',
+            textShadow: `0 0 20px ${scoringTeamColor}cc`,
+            animation: 'goalText 1s ease-out forwards',
+            pointerEvents: 'none',
+            zIndex: '1000'
+        });
+        goalText.textContent = 'GOAL!';
 
-        // Remove confetti after animation
+        // Add GOAL text animation keyframes
+        const goalTextKeyframes = `
+            @keyframes goalText {
+                0% {
+                    font-size: 0px;
+                    opacity: 1;
+                    transform: translate(-50%, -50%) scale(0);
+                    text-shadow: 0 0 0px ${scoringTeamColor}00;
+                }
+                50% {
+                    font-size: 120px;
+                    opacity: 1;
+                    transform: translate(-50%, -50%) scale(1.2);
+                    text-shadow: 0 0 30px ${scoringTeamColor}cc;
+                }
+                100% {
+                    font-size: 100px;
+                    opacity: 0;
+                    transform: translate(-50%, -50%) scale(1);
+                    text-shadow: 0 0 50px ${scoringTeamColor}00;
+                }
+            }
+        `;
+        styleElement.textContent = confettiKeyframes + goalTextKeyframes;
+
+        document.querySelector('.game-playfield')?.appendChild(confettiContainer);
+        document.querySelector('.game-playfield')?.appendChild(goalText);
+
+        // Remove animations after they complete
         setTimeout(() => {
             confettiContainer.remove();
+            goalText.remove();
             styleElement.remove();
-        }, 6000);
+        }, 2000); // 2 second cleanup time
     }
 
     private retrieveNewAnimation(position: BallPosition, direction: number): BallAnimation {

@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1a1a1a">
+    <title>Web Apps - Riassunto</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="icon-192.png">
+    <style>
+        .summary-page {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background-color: var(--secondary-bg);
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+        
+        .back-button:hover {
+            background-color: var(--hover-bg);
+            transform: translateX(-5px);
+        }
+        
+        .page-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .page-header h1 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .page-header .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+        }
+        
+        .summary-section {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border-left: 4px solid #667eea;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .summary-section:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateX(5px);
+        }
+        
+        .summary-section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .summary-section h3 {
+            color: var(--text-primary);
+            margin-top: 20px;
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+        }
+        
+        .summary-section p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .summary-section ul, .summary-section ol {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .summary-section li {
+            margin-bottom: 8px;
+        }
+        
+        .code-block {
+            background-color: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        
+        .code-block code {
+            color: #667eea;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+        }
+        
+        .highlight-box {
+            background-color: var(--secondary-bg);
+            border-left: 4px solid var(--warning-color);
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .highlight-box p {
+            margin: 0;
+            color: var(--text-primary);
+        }
+        
+        .key-points {
+            background-color: rgba(102, 126, 234, 0.1);
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .key-points h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .toc {
+            background-color: var(--secondary-bg);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .toc h3 {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+        }
+        
+        .toc ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .toc li {
+            margin-bottom: 10px;
+        }
+        
+        .toc a {
+            color: #667eea;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .toc a:hover {
+            color: #764ba2;
+            transform: translateX(5px);
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid var(--border-color);
+        }
+        
+        .comparison-table th {
+            background-color: var(--secondary-bg);
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        
+        .comparison-table td {
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <div class="container summary-page">
+        <a href="index.html" class="back-button">
+            ← Torna alla Home
+        </a>
+        
+        <div class="page-header">
+            <h1>🌐 Web Applications</h1>
+            <p class="subtitle">SOI25-02-webapps.pdf - Riassunto Completo</p>
+        </div>
+        
+        <!-- Indice -->
+        <nav class="toc">
+            <h3>📋 Indice dei Contenuti</h3>
+            <ul>
+                <li><a href="#introduzione">1. Introduzione alle Web Apps</a></li>
+                <li><a href="#architetture">2. Architetture Web</a></li>
+                <li><a href="#frontend">3. Frontend Development</a></li>
+                <li><a href="#backend">4. Backend Development</a></li>
+                <li><a href="#database">5. Database e Persistenza</a></li>
+                <li><a href="#api">6. API REST e GraphQL</a></li>
+                <li><a href="#sicurezza">7. Sicurezza Web</a></li>
+                <li><a href="#deployment">8. Deploy e Scalabilità</a></li>
+            </ul>
+        </nav>
+        
+        <!-- Sezione 1: Introduzione -->
+        <section id="introduzione" class="summary-section">
+            <h2>🎯 1. Introduzione alle Web Apps</h2>
+            
+            <h3>Cosa sono le Web Applications?</h3>
+            <p>
+                Le web application sono applicazioni software accessibili tramite un web browser, 
+                che funzionano su server remoti e forniscono un'interfaccia interattiva agli utenti 
+                attraverso il protocollo HTTP/HTTPS.
+            </p>
+            
+            <div class="key-points">
+                <h4>🔑 Caratteristiche Principali</h4>
+                <ul>
+                    <li><strong>Accessibilità</strong>: Disponibili ovunque ci sia una connessione internet</li>
+                    <li><strong>Cross-platform</strong>: Funzionano su qualsiasi dispositivo con un browser</li>
+                    <li><strong>Aggiornamenti centralizzati</strong>: Non richiedono installazione sui dispositivi degli utenti</li>
+                    <li><strong>Scalabilità</strong>: Possono gestire un numero variabile di utenti</li>
+                    <li><strong>Manutenzione semplificata</strong>: Un'unica codebase da mantenere</li>
+                </ul>
+            </div>
+            
+            <h3>Tipi di Web Applications</h3>
+            
+            <p><strong>1. Static Web Apps</strong></p>
+            <ul>
+                <li>Contenuto fisso, uguale per tutti gli utenti</li>
+                <li>HTML, CSS, JavaScript statico</li>
+                <li>Hosting semplice e economico</li>
+                <li>Esempi: siti vetrina, landing pages</li>
+            </ul>
+            
+            <p><strong>2. Dynamic Web Apps</strong></p>
+            <ul>
+                <li>Contenuto generato dinamicamente</li>
+                <li>Interazione con database</li>
+                <li>Personalizzazione per utente</li>
+                <li>Esempi: e-commerce, social networks</li>
+            </ul>
+            
+            <p><strong>3. Single Page Applications (SPA)</strong></p>
+            <ul>
+                <li>Caricamento iniziale unico</li>
+                <li>Aggiornamenti dinamici via JavaScript</li>
+                <li>Esperienza fluida simile alle app native</li>
+                <li>Esempi: Gmail, Facebook, Twitter</li>
+            </ul>
+            
+            <p><strong>4. Progressive Web Apps (PWA)</strong></p>
+            <ul>
+                <li>Funzionalità offline</li>
+                <li>Installabili come app native</li>
+                <li>Push notifications</li>
+                <li>Performance ottimizzate</li>
+            </ul>
+        </section>
+        
+        <!-- Sezione 2: Architetture -->
+        <section id="architetture" class="summary-section">
+            <h2>🏗️ 2. Architetture Web</h2>
+            
+            <h3>Client-Server Architecture</h3>
+            <p>
+                L'architettura fondamentale delle web app si basa sul modello client-server, 
+                dove il client (browser) effettua richieste e il server risponde con i dati richiesti.
+            </p>
+            
+            <div class="code-block">
+                <code>
+Client (Browser) ←→ HTTP/HTTPS ←→ Web Server ←→ Application Server ←→ Database
+                </code>
+            </div>
+            
+            <h3>Modelli Architetturali</h3>
+            
+            <p><strong>1. Monolithic Architecture</strong></p>
+            <ul>
+                <li>Applicazione in un singolo blocco</li>
+                <li>Tutti i componenti strettamente accoppiati</li>
+                <li>Deployment unitario</li>
+                <li><strong>Pro:</strong> Semplice da sviluppare e deployare inizialmente</li>
+                <li><strong>Contro:</strong> Difficile da scalare e mantenere nel lungo termine</li>
+            </ul>
+            
+            <p><strong>2. Microservices Architecture</strong></p>
+            <ul>
+                <li>Applicazione divisa in servizi indipendenti</li>
+                <li>Ogni servizio ha un proprio database</li>
+                <li>Comunicazione via API</li>
+                <li><strong>Pro:</strong> Scalabilità, manutenibilità, tecnologie diverse per servizio</li>
+                <li><strong>Contro:</strong> Complessità operativa, debugging distribuito</li>
+            </ul>
+            
+            <p><strong>3. Serverless Architecture</strong></p>
+            <ul>
+                <li>Esecuzione event-driven</li>
+                <li>Nessuna gestione di server</li>
+                <li>Pagamento per esecuzione</li>
+                <li><strong>Pro:</strong> Costi ottimizzati, auto-scaling</li>
+                <li><strong>Contro:</strong> Cold start, vendor lock-in</li>
+            </ul>
+            
+            <h3>Three-Tier Architecture</h3>
+            <div class="key-points">
+                <h4>📊 I Tre Livelli</h4>
+                <ul>
+                    <li><strong>Presentation Tier</strong>: Frontend - interfaccia utente (HTML, CSS, JS)</li>
+                    <li><strong>Application Tier</strong>: Backend - logica di business (Node.js, Python, Java)</li>
+                    <li><strong>Data Tier</strong>: Database - persistenza dati (PostgreSQL, MongoDB)</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- Sezione 3: Frontend -->
+        <section id="frontend" class="summary-section">
+            <h2>🎨 3. Frontend Development</h2>
+            
+            <h3>Tecnologie Base</h3>
+            
+            <p><strong>HTML5</strong></p>
+            <ul>
+                <li>Struttura semantica del documento</li>
+                <li>Nuovi elementi: &lt;header&gt;, &lt;nav&gt;, &lt;section&gt;, &lt;article&gt;</li>
+                <li>API native: Canvas, Storage, Geolocation</li>
+                <li>Form validation e input types avanzati</li>
+            </ul>
+            
+            <p><strong>CSS3</strong></p>
+            <ul>
+                <li>Layout moderni: Flexbox, Grid</li>
+                <li>Animazioni e transizioni</li>
+                <li>Responsive design con media queries</li>
+                <li>Variabili CSS (Custom Properties)</li>
+            </ul>
+            
+            <div class="code-block">
+                <code>
+/* CSS Grid Layout Example */<br>
+.container {<br>
+&nbsp;&nbsp;display: grid;<br>
+&nbsp;&nbsp;grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));<br>
+&nbsp;&nbsp;gap: 20px;<br>
+}<br><br>
+
+/* CSS Variables */<br>
+:root {<br>
+&nbsp;&nbsp;--primary-color: #667eea;<br>
+&nbsp;&nbsp;--spacing: 16px;<br>
+}
+                </code>
+            </div>
+            
+            <p><strong>JavaScript (ES6+)</strong></p>
+            <ul>
+                <li>Arrow functions, destructuring, spread operator</li>
+                <li>Promises e async/await</li>
+                <li>Modules (import/export)</li>
+                <li>Classes e OOP</li>
+                <li>DOM manipulation e Event handling</li>
+            </ul>
+            
+            <h3>Framework e Librerie Frontend</h3>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Framework</th>
+                        <th>Caratteristiche</th>
+                        <th>Utilizzo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>React</strong></td>
+                        <td>Libreria component-based, Virtual DOM, JSX</td>
+                        <td>SPA, dashboard, app complesse</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Vue.js</strong></td>
+                        <td>Framework progressivo, template-based, reattivo</td>
+                        <td>SPA, progetti di media complessità</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Angular</strong></td>
+                        <td>Framework completo, TypeScript, dependency injection</td>
+                        <td>Enterprise applications</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Svelte</strong></td>
+                        <td>Compilatore, no virtual DOM, performance elevate</td>
+                        <td>App performanti, progetti moderni</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>State Management</h3>
+            <p>
+                La gestione dello stato è fondamentale nelle applicazioni complesse:
+            </p>
+            <ul>
+                <li><strong>Redux</strong>: Store centralizzato, azioni e reducers</li>
+                <li><strong>MobX</strong>: Reactive state management</li>
+                <li><strong>Context API</strong>: Soluzione nativa di React</li>
+                <li><strong>Vuex</strong>: State management per Vue.js</li>
+            </ul>
+            
+            <div class="highlight-box">
+                <p><strong>💡 Best Practice:</strong> Scegli la soluzione di state management in base alla complessità dell'app. 
+                Per app semplici, lo stato locale può essere sufficiente.</p>
+            </div>
+        </section>
+        
+        <!-- Sezione 4: Backend -->
+        <section id="backend" class="summary-section">
+            <h2>⚙️ 4. Backend Development</h2>
+            
+            <h3>Linguaggi e Runtime</h3>
+            
+            <p><strong>Node.js (JavaScript)</strong></p>
+            <ul>
+                <li>Runtime JavaScript lato server</li>
+                <li>Event-driven, non-blocking I/O</li>
+                <li>NPM ecosystem ricchissimo</li>
+                <li>Ideale per API REST, microservizi, real-time apps</li>
+            </ul>
+            
+            <div class="code-block">
+                <code>
+// Express.js Server Example<br>
+const express = require('express');<br>
+const app = express();<br><br>
+
+app.use(express.json());<br><br>
+
+app.get('/api/users', async (req, res) => {<br>
+&nbsp;&nbsp;const users = await User.find();<br>
+&nbsp;&nbsp;res.json(users);<br>
+});<br><br>
+
+app.listen(3000, () => {<br>
+&nbsp;&nbsp;console.log('Server running on port 3000');<br>
+});
+                </code>
+            </div>
+            
+            <p><strong>Python</strong></p>
+            <ul>
+                <li>Sintassi pulita e leggibile</li>
+                <li>Framework: Django, Flask, FastAPI</li>
+                <li>Ottimo per data science e ML integration</li>
+                <li>Grande community e librerie</li>
+            </ul>
+            
+            <p><strong>Java</strong></p>
+            <ul>
+                <li>Robusto e maturo</li>
+                <li>Framework: Spring Boot, Jakarta EE</li>
+                <li>Fortemente tipizzato</li>
+                <li>Ideale per enterprise applications</li>
+            </ul>
+            
+            <p><strong>Go</strong></p>
+            <ul>
+                <li>Performance elevate</li>
+                <li>Concurrency nativa</li>
+                <li>Compilato, binari singoli</li>
+                <li>Ideale per microservizi e API</li>
+            </ul>
+            
+            <h3>Framework Backend Popolari</h3>
+            
+            <div class="key-points">
+                <h4>🚀 Framework da Conoscere</h4>
+                <ul>
+                    <li><strong>Express.js</strong> (Node.js): Minimale, flessibile, molto usato</li>
+                    <li><strong>NestJS</strong> (Node.js): TypeScript, architettura modulare, enterprise-ready</li>
+                    <li><strong>Django</strong> (Python): Batteries-included, ORM potente, admin panel</li>
+                    <li><strong>Flask</strong> (Python): Micro-framework, flessibile, estensibile</li>
+                    <li><strong>FastAPI</strong> (Python): Moderno, veloce, automatic API docs</li>
+                    <li><strong>Spring Boot</strong> (Java): Configurazione automatica, production-ready</li>
+                </ul>
+            </div>
+            
+            <h3>Middleware e Autenticazione</h3>
+            <p>
+                Il middleware elabora le richieste prima che raggiungano le route handlers:
+            </p>
+            <ul>
+                <li>Logging delle richieste</li>
+                <li>Parsing del body (JSON, form data)</li>
+                <li>Gestione CORS</li>
+                <li>Autenticazione e autorizzazione</li>
+                <li>Rate limiting</li>
+            </ul>
+            
+            <div class="code-block">
+                <code>
+// Middleware di autenticazione JWT<br>
+const jwt = require('jsonwebtoken');<br><br>
+
+function authenticateToken(req, res, next) {<br>
+&nbsp;&nbsp;const token = req.headers['authorization']?.split(' ')[1];<br>
+&nbsp;&nbsp;if (!token) return res.sendStatus(401);<br><br>
+
+&nbsp;&nbsp;jwt.verify(token, process.env.SECRET_KEY, (err, user) => {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if (err) return res.sendStatus(403);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;req.user = user;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;next();<br>
+&nbsp;&nbsp;});<br>
+}
+                </code>
+            </div>
+        </section>
+        
+        <!-- Sezione 5: Database -->
+        <section id="database" class="summary-section">
+            <h2>💾 5. Database e Persistenza</h2>
+            
+            <h3>Database Relazionali (SQL)</h3>
+            <p>
+                Database strutturati con schema rigido, relazioni tra tabelle, ACID compliance.
+            </p>
+            
+            <p><strong>PostgreSQL</strong></p>
+            <ul>
+                <li>Open source, features avanzate</li>
+                <li>Supporto JSON, full-text search</li>
+                <li>Estensioni potenti (PostGIS per dati geografici)</li>
+                <li>ACID compliant, transazioni robuste</li>
+            </ul>
+            
+            <p><strong>MySQL/MariaDB</strong></p>
+            <ul>
+                <li>Popolare, veloce per letture</li>
+                <li>Ampia compatibilità</li>
+                <li>Ottimo per applicazioni web</li>
+            </ul>
+            
+            <div class="code-block">
+                <code>
+-- SQL Query Example<br>
+SELECT u.name, COUNT(o.id) as order_count<br>
+FROM users u<br>
+LEFT JOIN orders o ON u.id = o.user_id<br>
+WHERE u.created_at > '2023-01-01'<br>
+GROUP BY u.id, u.name<br>
+HAVING COUNT(o.id) > 5<br>
+ORDER BY order_count DESC;
+                </code>
+            </div>
+            
+            <h3>Database NoSQL</h3>
+            <p>
+                Database non relazionali, schema flessibile, scalabilità orizzontale.
+            </p>
+            
+            <p><strong>MongoDB</strong></p>
+            <ul>
+                <li>Document-oriented (JSON/BSON)</li>
+                <li>Schema flessibile</li>
+                <li>Query potenti, aggregation pipeline</li>
+                <li>Sharding nativo per scalabilità</li>
+            </ul>
+            
+            <p><strong>Redis</strong></p>
+            <ul>
+                <li>In-memory key-value store</li>
+                <li>Velocissimo per cache e session storage</li>
+                <li>Pub/Sub, stream, sets, lists</li>
+                <li>Persistenza opzionale</li>
+            </ul>
+            
+            <div class="code-block">
+                <code>
+// MongoDB Query Example<br>
+db.users.aggregate([<br>
+&nbsp;&nbsp;{ $match: { status: "active" } },<br>
+&nbsp;&nbsp;{ $group: {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;_id: "$country",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;count: { $sum: 1 },<br>
+&nbsp;&nbsp;&nbsp;&nbsp;avgAge: { $avg: "$age" }<br>
+&nbsp;&nbsp;}},<br>
+&nbsp;&nbsp;{ $sort: { count: -1 } }<br>
+]);
+                </code>
+            </div>
+            
+            <h3>ORM e Query Builders</h3>
+            <p>
+                Gli ORM (Object-Relational Mapping) semplificano l'interazione con i database:
+            </p>
+            <ul>
+                <li><strong>Sequelize</strong> (Node.js): ORM per SQL databases</li>
+                <li><strong>TypeORM</strong> (Node.js/TypeScript): ORM moderno, decorators</li>
+                <li><strong>Prisma</strong> (Node.js): Modern ORM, type-safe, auto-generated client</li>
+                <li><strong>Mongoose</strong> (Node.js): ODM per MongoDB</li>
+                <li><strong>SQLAlchemy</strong> (Python): ORM potente e flessibile</li>
+            </ul>
+            
+            <div class="highlight-box">
+                <p><strong>⚠️ Attenzione:</strong> Gli ORM possono generare query inefficienti. 
+                Monitora le query generate e ottimizza quando necessario.</p>
+            </div>
+        </section>
+        
+        <!-- Sezione 6: API -->
+        <section id="api" class="summary-section">
+            <h2>🔌 6. API REST e GraphQL</h2>
+            
+            <h3>REST API</h3>
+            <p>
+                REpresentational State Transfer - architettura per API web basata su HTTP.
+            </p>
+            
+            <div class="key-points">
+                <h4>📐 Principi REST</h4>
+                <ul>
+                    <li><strong>Stateless</strong>: Ogni richiesta contiene tutte le informazioni necessarie</li>
+                    <li><strong>Resource-based</strong>: Le risorse sono identificate da URI</li>
+                    <li><strong>HTTP Methods</strong>: GET, POST, PUT, PATCH, DELETE</li>
+                    <li><strong>Status Codes</strong>: 200 OK, 201 Created, 404 Not Found, 500 Error</li>
+                </ul>
+            </div>
+            
+            <h3>Struttura REST Endpoint</h3>
+            <div class="code-block">
+                <code>
+GET    /api/users          → Lista tutti gli utenti<br>
+GET    /api/users/:id      → Ottieni utente specifico<br>
+POST   /api/users          → Crea nuovo utente<br>
+PUT    /api/users/:id      → Aggiorna utente completo<br>
+PATCH  /api/users/:id      → Aggiorna parzialmente utente<br>
+DELETE /api/users/:id      → Elimina utente
+                </code>
+            </div>
+            
+            <h3>Best Practices REST</h3>
+            <ul>
+                <li>Usa nomi sostantivi per le risorse (non verbi)</li>
+                <li>Versiona le API (/api/v1/users)</li>
+                <li>Implementa paginazione per liste grandi</li>
+                <li>Usa HTTPS sempre</li>
+                <li>Documenta con OpenAPI/Swagger</li>
+                <li>Implementa rate limiting</li>
+                <li>Gestisci correttamente gli errori</li>
+            </ul>
+            
+            <h3>GraphQL</h3>
+            <p>
+                Linguaggio di query per API, sviluppato da Facebook, alternativa a REST.
+            </p>
+            
+            <div class="key-points">
+                <h4>✨ Vantaggi di GraphQL</h4>
+                <ul>
+                    <li><strong>Query precise</strong>: Il client richiede esattamente i dati necessari</li>
+                    <li><strong>Un solo endpoint</strong>: /graphql per tutte le operazioni</li>
+                    <li><strong>Strongly typed</strong>: Schema definisce i tipi disponibili</li>
+                    <li><strong>No over-fetching</strong>: Evita il download di dati inutili</li>
+                    <li><strong>Introspection</strong>: Auto-documentazione e IDE support</li>
+                </ul>
+            </div>
+            
+            <div class="code-block">
+                <code>
+# GraphQL Query Example<br>
+query {<br>
+&nbsp;&nbsp;user(id: "123") {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name<br>
+&nbsp;&nbsp;&nbsp;&nbsp;email<br>
+&nbsp;&nbsp;&nbsp;&nbsp;posts {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;createdAt<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;}<br>
+}<br><br>
+
+# GraphQL Mutation<br>
+mutation {<br>
+&nbsp;&nbsp;createUser(input: {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name: "John"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;email: "john@example.com"<br>
+&nbsp;&nbsp;}) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;id<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name<br>
+&nbsp;&nbsp;}<br>
+}
+                </code>
+            </div>
+            
+            <h3>REST vs GraphQL</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Aspetto</th>
+                        <th>REST</th>
+                        <th>GraphQL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Endpoint</strong></td>
+                        <td>Multipli (/users, /posts)</td>
+                        <td>Singolo (/graphql)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Over-fetching</strong></td>
+                        <td>Possibile</td>
+                        <td>Evitato</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Versioning</strong></td>
+                        <td>Necessario (v1, v2)</td>
+                        <td>Evoluzione schema</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Caching</strong></td>
+                        <td>HTTP caching nativo</td>
+                        <td>Più complesso</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Curva apprendimento</strong></td>
+                        <td>Più semplice</td>
+                        <td>Più ripida</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        <!-- Sezione 7: Sicurezza -->
+        <section id="sicurezza" class="summary-section">
+            <h2>🔒 7. Sicurezza Web</h2>
+            
+            <h3>Vulnerabilità Comuni (OWASP Top 10)</h3>
+            
+            <p><strong>1. Injection (SQL, NoSQL, Command)</strong></p>
+            <ul>
+                <li>Attacco: Inserimento di codice malevolo nelle query</li>
+                <li>Prevenzione: Prepared statements, input validation, ORM</li>
+            </ul>
+            
+            <div class="code-block">
+                <code>
+// ❌ VULNERABILE<br>
+const query = `SELECT * FROM users WHERE id = ${req.params.id}`;<br><br>
+
+// ✅ SICURO (Prepared Statement)<br>
+const query = 'SELECT * FROM users WHERE id = ?';<br>
+db.execute(query, [req.params.id]);
+                </code>
+            </div>
+            
+            <p><strong>2. Cross-Site Scripting (XSS)</strong></p>
+            <ul>
+                <li>Attacco: Iniezione di script nel browser dell'utente</li>
+                <li>Prevenzione: Sanitize input, escape output, Content Security Policy</li>
+            </ul>
+            
+            <p><strong>3. Cross-Site Request Forgery (CSRF)</strong></p>
+            <ul>
+                <li>Attacco: Esecuzione non autorizzata di azioni per conto dell'utente</li>
+                <li>Prevenzione: CSRF tokens, SameSite cookies</li>
+            </ul>
+            
+            <p><strong>4. Broken Authentication</strong></p>
+            <ul>
+                <li>Problemi: Session hijacking, password deboli, mancanza di MFA</li>
+                <li>Prevenzione: Password hashing (bcrypt), JWT, OAuth 2.0, MFA</li>
+            </ul>
+            
+            <h3>Autenticazione e Autorizzazione</h3>
+            
+            <div class="key-points">
+                <h4>🔐 Strategie di Autenticazione</h4>
+                <ul>
+                    <li><strong>Session-based</strong>: Cookie con session ID, server mantiene sessione</li>
+                    <li><strong>Token-based (JWT)</strong>: Token self-contained, stateless</li>
+                    <li><strong>OAuth 2.0</strong>: Delegazione autorizzazione (Google, Facebook login)</li>
+                    <li><strong>API Keys</strong>: Per integrazioni machine-to-machine</li>
+                </ul>
+            </div>
+            
+            <div class="code-block">
+                <code>
+// Password Hashing con bcrypt<br>
+const bcrypt = require('bcrypt');<br>
+const saltRounds = 10;<br><br>
+
+// Hash password<br>
+const hashedPassword = await bcrypt.hash(password, saltRounds);<br><br>
+
+// Verifica password<br>
+const match = await bcrypt.compare(password, hashedPassword);
+                </code>
+            </div>
+            
+            <h3>HTTPS e Certificati</h3>
+            <ul>
+                <li>Sempre usa HTTPS in produzione</li>
+                <li>Certificati gratuiti con Let's Encrypt</li>
+                <li>HSTS (HTTP Strict Transport Security)</li>
+                <li>TLS 1.3 per performance e sicurezza</li>
+            </ul>
+            
+            <h3>Headers di Sicurezza</h3>
+            <div class="code-block">
+                <code>
+// Security Headers (Helmet.js)<br>
+const helmet = require('helmet');<br>
+app.use(helmet());<br><br>
+
+// Headers importanti:<br>
+// - Content-Security-Policy<br>
+// - X-Content-Type-Options: nosniff<br>
+// - X-Frame-Options: DENY<br>
+// - Strict-Transport-Security
+                </code>
+            </div>
+            
+            <div class="highlight-box">
+                <p><strong>⚠️ Importante:</strong> La sicurezza è un processo continuo. Mantieni sempre aggiornate le dipendenze 
+                e monitora le vulnerabilità con strumenti come npm audit o Snyk.</p>
+            </div>
+        </section>
+        
+        <!-- Sezione 8: Deployment -->
+        <section id="deployment" class="summary-section">
+            <h2>🚀 8. Deploy e Scalabilità</h2>
+            
+            <h3>Ambienti di Deployment</h3>
+            
+            <p><strong>Development</strong></p>
+            <ul>
+                <li>Ambiente locale degli sviluppatori</li>
+                <li>Hot reload, debug attivo</li>
+                <li>Database locale o di test</li>
+            </ul>
+            
+            <p><strong>Staging</strong></p>
+            <ul>
+                <li>Ambiente pre-produzione</li>
+                <li>Replica della produzione</li>
+                <li>Testing finale prima del deploy</li>
+            </ul>
+            
+            <p><strong>Production</strong></p>
+            <ul>
+                <li>Ambiente live per gli utenti</li>
+                <li>Monitoring e logging attivi</li>
+                <li>Backup automatici</li>
+            </ul>
+            
+            <h3>Piattaforme di Hosting</h3>
+            
+            <div class="key-points">
+                <h4>☁️ Cloud Providers</h4>
+                <ul>
+                    <li><strong>AWS</strong>: EC2, S3, RDS, Lambda, ECS - Completo ma complesso</li>
+                    <li><strong>Google Cloud</strong>: Compute Engine, Cloud Run, Firebase - ML e data analytics</li>
+                    <li><strong>Azure</strong>: VMs, App Service, Functions - Integrazione Microsoft</li>
+                    <li><strong>DigitalOcean</strong>: Droplets, App Platform - Semplice e developer-friendly</li>
+                </ul>
+            </div>
+            
+            <div class="key-points">
+                <h4>🎯 Platform as a Service (PaaS)</h4>
+                <ul>
+                    <li><strong>Vercel</strong>: Ottimo per Next.js e frontend</li>
+                    <li><strong>Netlify</strong>: Static sites e JAMstack</li>
+                    <li><strong>Heroku</strong>: Deploy semplice, add-ons</li>
+                    <li><strong>Railway</strong>: Moderno, GitHub integration</li>
+                    <li><strong>Render</strong>: Alternative a Heroku</li>
+                </ul>
+            </div>
+            
+            <h3>Containerizzazione e Orchestrazione</h3>
+            <p>
+                Docker e Kubernetes sono fondamentali per deployment moderni:
+            </p>
+            <ul>
+                <li>Immagini Docker per consistenza tra ambienti</li>
+                <li>Docker Compose per sviluppo locale</li>
+                <li>Kubernetes per orchestrazione in produzione</li>
+                <li>Managed Kubernetes: EKS (AWS), GKE (Google), AKS (Azure)</li>
+            </ul>
+            
+            <h3>CI/CD Pipeline</h3>
+            <p>
+                Continuous Integration e Continuous Deployment automatizzano il processo di release:
+            </p>
+            
+            <div class="code-block">
+                <code>
+# GitHub Actions Example<br>
+name: Deploy<br>
+on:<br>
+&nbsp;&nbsp;push:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;branches: [main]<br><br>
+
+jobs:<br>
+&nbsp;&nbsp;deploy:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;runs-on: ubuntu-latest<br>
+&nbsp;&nbsp;&nbsp;&nbsp;steps:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- uses: actions/checkout@v2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- name: Run tests<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;run: npm test<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- name: Build<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;run: npm run build<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- name: Deploy<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;run: npm run deploy
+                </code>
+            </div>
+            
+            <h3>Scalabilità</h3>
+            
+            <p><strong>Scalabilità Verticale (Scale Up)</strong></p>
+            <ul>
+                <li>Aumentare risorse del server (CPU, RAM)</li>
+                <li>Limiti fisici</li>
+                <li>Più costoso</li>
+            </ul>
+            
+            <p><strong>Scalabilità Orizzontale (Scale Out)</strong></p>
+            <ul>
+                <li>Aggiungere più server</li>
+                <li>Load balancer per distribuire il traffico</li>
+                <li>Richiede architettura stateless</li>
+                <li>Più flessibile e cost-effective</li>
+            </ul>
+            
+            <h3>Monitoring e Logging</h3>
+            <div class="key-points">
+                <h4>📊 Strumenti Essenziali</h4>
+                <ul>
+                    <li><strong>Monitoring</strong>: Prometheus, Grafana, Datadog, New Relic</li>
+                    <li><strong>Logging</strong>: ELK Stack (Elasticsearch, Logstash, Kibana), Loki</li>
+                    <li><strong>Error Tracking</strong>: Sentry, Rollbar</li>
+                    <li><strong>APM</strong>: Application Performance Monitoring</li>
+                    <li><strong>Uptime</strong>: Pingdom, UptimeRobot</li>
+                </ul>
+            </div>
+            
+            <h3>Performance Optimization</h3>
+            <ul>
+                <li><strong>Caching</strong>: Redis, CDN, browser caching</li>
+                <li><strong>Compression</strong>: Gzip, Brotli</li>
+                <li><strong>Database</strong>: Indexing, query optimization</li>
+                <li><strong>Frontend</strong>: Code splitting, lazy loading, minification</li>
+                <li><strong>Images</strong>: WebP, responsive images, lazy loading</li>
+            </ul>
+            
+            <div class="highlight-box">
+                <p><strong>💡 Best Practice:</strong> Implementa monitoring dal giorno 1. 
+                Non puoi ottimizzare ciò che non puoi misurare.</p>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="footer" style="margin-top: 60px;">
+            <p>🌐 SOI25-02-webapps.pdf - Riassunto generato automaticamente</p>
+            <p style="margin-top: 10px;">
+                <a href="index.html" style="color: #667eea; text-decoration: none;">← Torna alla Home</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

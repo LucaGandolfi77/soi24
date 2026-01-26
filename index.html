@@ -21,32 +21,14 @@
             </button>
         </header>
 
-        <!-- Sezione Upload PDF -->
-        <section class="upload-section">
-            <div class="upload-card">
-                <h2>📄 Carica PDF</h2>
-                <div class="upload-area" id="uploadArea">
-                    <input type="file" id="pdfInput" accept=".pdf" multiple style="display: none;">
-                    <label for="pdfInput" class="upload-label">
-                        <span class="upload-icon">⬆️</span>
-                        <span>Clicca per caricare PDF</span>
-                        <span class="upload-hint">oppure trascina i file qui</span>
-                    </label>
-                </div>
-                <div id="uploadedFiles" class="uploaded-files"></div>
-            </div>
-        </section>
-
-        <!-- Sezioni Dinamiche -->
+        <!-- Sezioni dai PDF -->
         <section class="sections-container">
             <div class="sections-header">
-                <h2>📑 Sezioni</h2>
-                <button id="addSectionBtn" class="btn-primary">
-                    ➕ Aggiungi Sezione
-                </button>
+                <h2>📑 Documenti PDF</h2>
+                <p style="color: var(--text-secondary); margin-top: 10px;">Sezioni create automaticamente dai PDF disponibili</p>
             </div>
             <div id="sectionsContent" class="sections-content">
-                <!-- Le sezioni verranno aggiunte dinamicamente qui -->
+                <!-- Le sezioni verranno aggiunte automaticamente per ogni PDF -->
             </div>
         </section>
 
@@ -65,12 +47,7 @@
                             <option value="image">Immagine</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="pdfSource">Scegli PDF Sorgente:</label>
-                        <select id="pdfSource" class="form-control">
-                            <!-- Popolato dinamicamente -->
-                        </select>
-                    </div>
+                    <input type="hidden" id="pdfSource">
                     <div class="form-group" id="textGroup">
                         <label for="contentText">Testo da Aggiungere:</label>
                         <textarea id="contentText" class="form-control" rows="5" placeholder="Inserisci o incolla il testo estratto dal PDF"></textarea>
@@ -88,33 +65,12 @@
             </div>
         </div>
 
-        <!-- Modal per creare nuova sezione -->
-        <div id="sectionModal" class="modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3>Crea Nuova Sezione</h3>
-                    <button class="close-modal" id="closeSectionModal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="sectionTitle">Titolo Sezione:</label>
-                        <input type="text" id="sectionTitle" class="form-control" placeholder="Es: Capitolo 1, Appunti, Riassunto...">
-                    </div>
-                    <div class="form-group">
-                        <label for="sectionDescription">Descrizione (opzionale):</label>
-                        <textarea id="sectionDescription" class="form-control" rows="3" placeholder="Breve descrizione della sezione"></textarea>
-                    </div>
-                    <div class="modal-footer">
-                        <button id="createSectionBtn" class="btn-primary">Crea Sezione</button>
-                        <button id="cancelSectionBtn" class="btn-secondary">Annulla</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+
 
         <!-- Footer -->
         <footer class="footer">
-            <p>💾 I dati sono salvati localmente nel tuo browser</p>
+            <p>💾 I tuoi contenuti sono salvati localmente nel browser</p>
+            <p style="font-size: 0.85rem; margin-top: 5px;">📚 Sezioni create automaticamente dai PDF in /pdf</p>
         </footer>
     </div>
 

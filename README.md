@@ -4,12 +4,12 @@ Una Progressive Web App moderna e intuitiva per gestire documenti PDF con sezion
 
 ## ✨ Caratteristiche
 
-- 📄 **Caricamento PDF**: Carica uno o più file PDF tramite click o drag & drop
-- 📑 **Sezioni Personalizzate**: Crea sezioni per organizzare i tuoi contenuti
-- 📝 **Estrazione Testo**: Aggiungi testo estratto dai PDF alle tue sezioni
+- � **Caricamento Automatico PDF**: Le sezioni vengono create automaticamente per ogni PDF presente nella cartella `/pdf`
+- 📑 **Sezioni per PDF**: Ogni PDF ha la sua sezione dedicata
+- 📝 **Estrazione Testo**: Aggiungi testo estratto dai PDF alle rispettive sezioni
 - 🖼️ **Gestione Immagini**: Inserisci immagini dai PDF nelle sezioni
 - 🌙 **Tema Scuro**: Interfaccia elegante con tema scuro per proteggere gli occhi
-- 💾 **Salvataggio Automatico**: Tutti i dati sono salvati localmente nel browser
+- 💾 **Salvataggio Automatico**: Tutti i contenuti sono salvati localmente nel browser
 - 📱 **Progressive Web App**: Installabile su dispositivi mobili e desktop
 - 🔌 **Funzionalità Offline**: Continua a lavorare anche senza connessione internet
 - 🇮🇹 **Lingua Italiana**: Interfaccia completamente in italiano
@@ -41,37 +41,37 @@ Una Progressive Web App moderna e intuitiva per gestire documenti PDF con sezion
 
 ## 📖 Come Usare
 
-### 1. Caricare PDF
+### 1. Preparare i PDF
 
-- Clicca sull'area di upload o trascina i file PDF
-- Supporta il caricamento di più file contemporaneamente
-- I file vengono salvati localmente nel browser
+- Posiziona i tuoi file PDF nella cartella `/pdf`
+- L'applicazione creerà automaticamente una sezione per ogni PDF
 
-### 2. Creare Sezioni
+### 2. Visualizzare le Sezioni
 
-- Clicca su "➕ Aggiungi Sezione"
-- Inserisci un titolo e una descrizione opzionale
-- Le sezioni aiutano a organizzare i contenuti estratti dai PDF
+- Ogni PDF nella cartella `/pdf` avrà automaticamente una sezione dedicata
+- Le sezioni mostrano il nome del file PDF come riferimento
 
 ### 3. Aggiungere Contenuto
 
 - All'interno di ogni sezione, clicca "➕ Aggiungi Contenuto"
 - Scegli il tipo di contenuto (Testo o Immagine)
-- Seleziona il PDF sorgente
 - Inserisci il contenuto:
   - **Testo**: Copia e incolla il testo estratto dal PDF
-  - **Immagine**: Carica un'immagine salvata dal PDF
+  - **Immagine**: Carica un'immagine salvata dal PDF (screenshot o estrazione)
 
 ### 4. Gestire i Contenuti
 
 - Elimina contenuti passando il mouse sopra e cliccando "✕"
-- Elimina sezioni intere usando il pulsante 🗑️
-- Elimina PDF caricati dalla sezione upload
+- Tutti i contenuti sono tracciati con la fonte (nome del PDF)
 
 ## 🛠️ Struttura del Progetto
 
 ```
 soi24/
+├── pdf/                # Cartella contenente i file PDF
+│   ├── SOI25-01-containers.pdf
+│   ├── SOI25-02-webapps.pdf
+│   └── SOI25-03-cloud.pdf
 ├── index.html          # Pagina principale dell'applicazione
 ├── styles.css          # Stili con tema scuro
 ├── app.js             # Logica JavaScript principale
@@ -95,19 +95,21 @@ soi24/
 ## 💡 Funzionalità Future
 
 - [ ] Estrazione automatica del testo dai PDF con OCR
-- [ ] Esportazione delle sezioni in formato PDF
+- [ ] Visualizzazione dei PDF direttamente nell'app
+- [ ] Esportazione delle sezioni in formato PDF o Markdown
 - [ ] Ricerca full-text nei contenuti
-- [ ] Sincronizzazione cloud (opzionale)
 - [ ] Annotazioni e evidenziazioni
 - [ ] Condivisione sezioni
 - [ ] Import/Export dei dati
+- [ ] Supporto per più cartelle di PDF
 
 ## 🔒 Privacy
 
-- Tutti i dati sono salvati **localmente** nel tuo browser
+- Tutti i contenuti sono salvati **localmente** nel tuo browser
 - Nessun dato viene inviato a server esterni
-- I PDF rimangono sul tuo dispositivo
-- Puoi cancellare tutti i dati in qualsiasi momento tramite le impostazioni del browser
+- I PDF rimangono nella cartella `/pdf` sul tuo dispositivo
+- Puoi cancellare i contenuti salvati in qualsiasi momento tramite le impostazioni del browser
+- I file PDF non vengono caricati nel browser, solo i contenuti che aggiungi manualmente
 
 ## 📱 Compatibilità
 

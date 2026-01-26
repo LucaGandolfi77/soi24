@@ -100,116 +100,11 @@ body {
     50% { opacity: 0.8; }
 }
 
-/* Sezione Upload */
-.upload-section {
+/* Sezioni */
+.sections-container {
     margin-bottom: 40px;
 }
 
-.upload-card {
-    background-color: var(--card-bg);
-    border-radius: 12px;
-    padding: 30px;
-    box-shadow: var(--shadow);
-}
-
-.upload-card h2 {
-    margin-bottom: 20px;
-    color: var(--text-primary);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.upload-area {
-    border: 3px dashed var(--border-color);
-    border-radius: 12px;
-    padding: 40px;
-    text-align: center;
-    background-color: var(--secondary-bg);
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-.upload-area:hover, .upload-area.drag-over {
-    border-color: var(--accent-color);
-    background-color: var(--hover-bg);
-}
-
-.upload-label {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-}
-
-.upload-icon {
-    font-size: 3rem;
-}
-
-.upload-hint {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-}
-
-/* File caricati */
-.uploaded-files {
-    margin-top: 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 15px;
-}
-
-.file-item {
-    background-color: var(--secondary-bg);
-    padding: 15px;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    transition: all 0.3s ease;
-}
-
-.file-item:hover {
-    border-color: var(--accent-color);
-    transform: translateX(5px);
-}
-
-.file-info {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex: 1;
-}
-
-.file-name {
-    font-weight: 600;
-    color: var(--text-primary);
-    word-break: break-word;
-}
-
-.file-size {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-}
-
-.btn-delete {
-    background-color: var(--danger-color);
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-}
-
-.btn-delete:hover {
-    background-color: #d32f2f;
-}
-
-/* Sezioni */
 .sections-header {
     display: flex;
     justify-content: space-between;

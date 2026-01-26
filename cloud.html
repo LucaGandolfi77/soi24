@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1a1a1a">
+    <title>Cloud Computing - Riassunto</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="icon-192.png">
+    <style>
+        .summary-page {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background-color: var(--secondary-bg);
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+        
+        .back-button:hover {
+            background-color: var(--hover-bg);
+            transform: translateX(-5px);
+        }
+        
+        .page-header {
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .page-header h1 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .page-header .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+        }
+        
+        .summary-section {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border-left: 4px solid #0072ff;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .summary-section:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateX(5px);
+        }
+        
+        .summary-section h2 {
+            color: #00c6ff;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .summary-section h3 {
+            color: var(--text-primary);
+            margin-top: 20px;
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+        }
+        
+        .summary-section p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .summary-section ul, .summary-section ol {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .summary-section li {
+            margin-bottom: 8px;
+        }
+        
+        .code-block {
+            background-color: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        
+        .code-block code {
+            color: #00c6ff;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+        }
+        
+        .highlight-box {
+            background-color: var(--secondary-bg);
+            border-left: 4px solid var(--warning-color);
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .highlight-box p {
+            margin: 0;
+            color: var(--text-primary);
+        }
+        
+        .key-points {
+            background-color: rgba(0, 198, 255, 0.1);
+            border: 2px solid #00c6ff;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .key-points h4 {
+            color: #00c6ff;
+            margin-bottom: 15px;
+        }
+        
+        .toc {
+            background-color: var(--secondary-bg);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .toc h3 {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+        }
+        
+        .toc ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .toc li {
+            margin-bottom: 10px;
+        }
+        
+        .toc a {
+            color: #00c6ff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .toc a:hover {
+            color: #0072ff;
+            transform: translateX(5px);
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid var(--border-color);
+        }
+        
+        .comparison-table th {
+            background-color: var(--secondary-bg);
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        
+        .comparison-table td {
+            color: var(--text-secondary);
+        }
+        
+        .provider-card {
+            background-color: var(--secondary-bg);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 2px solid var(--border-color);
+        }
+        
+        .provider-card h4 {
+            color: #00c6ff;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container summary-page">
+        <a href="index.html" class="back-button">
+            ← Torna alla Home
+        </a>
+        
+        <div class="page-header">
+            <h1>☁️ Cloud Computing</h1>
+            <p class="subtitle">SOI25-03-cloud.pdf - Riassunto Completo</p>
+        </div>
+        
+        <!-- Indice -->
+        <nav class="toc">
+            <h3>📋 Indice dei Contenuti</h3>
+            <ul>
+                <li><a href="#introduzione">1. Introduzione al Cloud Computing</a></li>
+                <li><a href="#modelli-servizio">2. Modelli di Servizio</a></li>
+                <li><a href="#modelli-deployment">3. Modelli di Deployment</a></li>
+                <li><a href="#provider">4. Cloud Provider Principali</a></li>
+                <li><a href="#storage">5. Cloud Storage</a></li>
+                <li><a href="#compute">6. Cloud Compute</a></li>
+                <li><a href="#networking">7. Cloud Networking</a></li>
+                <li><a href="#sicurezza">8. Sicurezza nel Cloud</a></li>
+                <li><a href="#costi">9. Gestione dei Costi</a></li>
+                <li><a href="#best-practices">10. Best Practices</a></li>
+            </ul>
+        </nav>
+        
+        <!-- Sezione 1: Introduzione -->
+        <section id="introduzione" class="summary-section">
+            <h2>🎯 1. Introduzione al Cloud Computing</h2>
+            
+            <h3>Cos'è il Cloud Computing?</h3>
+            <p>
+                Il cloud computing è la fornitura on-demand di risorse IT tramite Internet con prezzi pay-as-you-go. 
+                Invece di acquistare, possedere e mantenere data center e server fisici, è possibile accedere 
+                a servizi tecnologici come potenza di calcolo, storage e database su base necessaria.
+            </p>
+            
+            <div class="key-points">
+                <h4>🔑 Caratteristiche Essenziali del Cloud</h4>
+                <ul>
+                    <li><strong>On-demand self-service</strong>: Provisioning automatico senza intervento umano</li>
+                    <li><strong>Broad network access</strong>: Accesso da qualsiasi dispositivo connesso</li>
+                    <li><strong>Resource pooling</strong>: Risorse condivise tra più clienti</li>
+                    <li><strong>Rapid elasticity</strong>: Scalabilità automatica in base alla domanda</li>
+                    <li><strong>Measured service</strong>: Pagamento basato sull'utilizzo effettivo</li>
+                </ul>
+            </div>
+            
+            <h3>Vantaggi del Cloud Computing</h3>
+            
+            <p><strong>💰 Risparmio sui Costi</strong></p>
+            <ul>
+                <li>Eliminazione dei costi di capitale per hardware</li>
+                <li>Riduzione dei costi operativi (energia, raffreddamento, manutenzione)</li>
+                <li>Modello pay-as-you-go</li>
+                <li>Nessun sovra-provisioning di risorse</li>
+            </ul>
+            
+            <p><strong>⚡ Velocità e Agilità</strong></p>
+            <ul>
+                <li>Provisioning di risorse in minuti invece che settimane</li>
+                <li>Sperimentazione rapida e innovazione</li>
+                <li>Time-to-market ridotto</li>
+            </ul>
+            
+            <p><strong>🌍 Portata Globale</strong></p>
+            <ul>
+                <li>Deploy in più regioni geografiche</li>
+                <li>Latenza ridotta per utenti globali</li>
+                <li>Conformità con normative locali</li>
+            </ul>
+            
+            <p><strong>📈 Scalabilità</strong></p>
+            <ul>
+                <li>Scale up/down in base alla domanda</li>
+                <li>Auto-scaling automatico</li>
+                <li>Gestione dei picchi di traffico</li>
+            </ul>
+            
+            <p><strong>🔒 Sicurezza</strong></p>
+            <ul>
+                <li>Certificazioni di sicurezza enterprise</li>
+                <li>Backup e disaster recovery automatici</li>
+                <li>Aggiornamenti di sicurezza gestiti dal provider</li>
+            </ul>
+        </section>
+        
+        <!-- Sezione 2: Modelli di Servizio -->
+        <section id="modelli-servizio" class="summary-section">
+            <h2>🏗️ 2. Modelli di Servizio Cloud</h2>
+            
+            <h3>IaaS - Infrastructure as a Service</h3>
+            <p>
+                Fornisce infrastruttura IT virtualizzata: server, storage, networking. 
+                Massimo controllo e flessibilità.
+            </p>
+            
+            <div class="key-points">
+                <h4>📦 Caratteristiche IaaS</h4>
+                <ul>
+                    <li><strong>Controllo completo</strong> del sistema operativo e applicazioni</li>
+                    <li><strong>Responsabilità</strong>: Gestione OS, runtime, applicazioni</li>
+                    <li><strong>Esempi</strong>: AWS EC2, Azure Virtual Machines, Google Compute Engine</li>
+                    <li><strong>Use cases</strong>: Hosting siti web, ambienti dev/test, big data</li>
+                </ul>
+            </div>
+            
+            <h3>PaaS - Platform as a Service</h3>
+            <p>
+                Fornisce una piattaforma per sviluppare, testare e deployare applicazioni 
+                senza gestire l'infrastruttura sottostante.
+            </p>
+            
+            <div class="key-points">
+                <h4>🛠️ Caratteristiche PaaS</h4>
+                <ul>
+                    <li><strong>Focus</strong> sullo sviluppo dell'applicazione</li>
+                    <li><strong>Responsabilità</strong>: Solo codice e dati dell'applicazione</li>
+                    <li><strong>Esempi</strong>: AWS Elastic Beanstalk, Azure App Service, Google App Engine, Heroku</li>
+                    <li><strong>Use cases</strong>: Web apps, API, mobile backends</li>
+                </ul>
+            </div>
+            
+            <h3>SaaS - Software as a Service</h3>
+            <p>
+                Applicazioni complete accessibili via browser, gestite interamente dal provider.
+            </p>
+            
+            <div class="key-points">
+                <h4>💼 Caratteristiche SaaS</h4>
+                <ul>
+                    <li><strong>Nessuna gestione</strong> di infrastruttura o software</li>
+                    <li><strong>Responsabilità</strong>: Solo utilizzo e configurazione</li>
+                    <li><strong>Esempi</strong>: Gmail, Microsoft 365, Salesforce, Dropbox, Slack</li>
+                    <li><strong>Use cases</strong>: Email, CRM, collaboration tools</li>
+                </ul>
+            </div>
+            
+            <h3>Modelli Aggiuntivi</h3>
+            
+            <p><strong>FaaS - Function as a Service (Serverless)</strong></p>
+            <ul>
+                <li>Esecuzione di codice event-driven</li>
+                <li>Nessun server da gestire</li>
+                <li>Pagamento per esecuzione</li>
+                <li>Esempi: AWS Lambda, Azure Functions, Google Cloud Functions</li>
+            </ul>
+            
+            <p><strong>CaaS - Container as a Service</strong></p>
+            <ul>
+                <li>Orchestrazione di container gestita</li>
+                <li>Esempi: AWS ECS/EKS, Azure AKS, Google GKE</li>
+            </ul>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Aspetto</th>
+                        <th>IaaS</th>
+                        <th>PaaS</th>
+                        <th>SaaS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Controllo</strong></td>
+                        <td>Massimo</td>
+                        <td>Medio</td>
+                        <td>Minimo</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Gestione</strong></td>
+                        <td>OS, runtime, app</td>
+                        <td>Solo app</td>
+                        <td>Solo utilizzo</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Flessibilità</strong></td>
+                        <td>Alta</td>
+                        <td>Media</td>
+                        <td>Bassa</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Time-to-market</strong></td>
+                        <td>Più lungo</td>
+                        <td>Veloce</td>
+                        <td>Immediato</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        <!-- Sezione 3: Modelli di Deployment -->
+        <section id="modelli-deployment" class="summary-section">
+            <h2>🌐 3. Modelli di Deployment</h2>
+            
+            <h3>Public Cloud</h3>
+            <p>
+                Risorse possedute e operate da un provider cloud, condivise tra più organizzazioni.
+            </p>
+            <ul>
+                <li><strong>Vantaggi</strong>: Costi ridotti, scalabilità, manutenzione zero</li>
+                <li><strong>Svantaggi</strong>: Meno controllo, preoccupazioni sulla privacy</li>
+                <li><strong>Esempi</strong>: AWS, Azure, Google Cloud</li>
+                <li><strong>Ideale per</strong>: Startup, applicazioni web, carichi variabili</li>
+            </ul>
+            
+            <h3>Private Cloud</h3>
+            <p>
+                Infrastruttura cloud dedicata a una singola organizzazione, può essere on-premise o hosted.
+            </p>
+            <ul>
+                <li><strong>Vantaggi</strong>: Controllo completo, sicurezza, conformità</li>
+                <li><strong>Svantaggi</strong>: Costi elevati, complessità gestionale</li>
+                <li><strong>Esempi</strong>: VMware vSphere, OpenStack, Azure Stack</li>
+                <li><strong>Ideale per</strong>: Settore finanziario, sanitario, governativo</li>
+            </ul>
+            
+            <h3>Hybrid Cloud</h3>
+            <p>
+                Combinazione di cloud pubblico e privato, con orchestrazione tra i due ambienti.
+            </p>
+            <ul>
+                <li><strong>Vantaggi</strong>: Flessibilità, ottimizzazione costi, conformità</li>
+                <li><strong>Svantaggi</strong>: Complessità architetturale, gestione multi-cloud</li>
+                <li><strong>Use cases</strong>: 
+                    <ul>
+                        <li>Dati sensibili in private, elaborazione in public</li>
+                        <li>Cloud bursting per picchi di traffico</li>
+                        <li>Disaster recovery</li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <h3>Multi-Cloud</h3>
+            <p>
+                Utilizzo di servizi da più provider cloud pubblici.
+            </p>
+            <ul>
+                <li><strong>Vantaggi</strong>: Evita vendor lock-in, best-of-breed, ridondanza</li>
+                <li><strong>Svantaggi</strong>: Complessità gestionale, costi di integrazione</li>
+                <li><strong>Esempi</strong>: AWS + Azure, GCP + AWS</li>
+            </ul>
+            
+            <div class="highlight-box">
+                <p><strong>💡 Trend:</strong> Sempre più aziende adottano strategie hybrid e multi-cloud 
+                per massimizzare flessibilità e resilienza.</p>
+            </div>
+        </section>
+        
+        <!-- Sezione 4: Provider -->
+        <section id="provider" class="summary-section">
+            <h2>🏢 4. Cloud Provider Principali</h2>
+            
+            <div class="provider-card">
+                <h4>☁️ Amazon Web Services (AWS)</h4>
+                <p><strong>Leader di mercato</strong> (~32% market share)</p>
+                <ul>
+                    <li><strong>Punti di forza</strong>: Ecosistema più maturo, servizi più numerosi, community</li>
+                    <li><strong>Servizi chiave</strong>: EC2, S3, RDS, Lambda, CloudFront</li>
+                    <li><strong>Regioni</strong>: 30+ regioni, 96+ zone di disponibilità</li>
+                    <li><strong>Ideale per</strong>: Startup, enterprises, servizi variegati</li>
+                </ul>
+            </div>
+            
+            <div class="provider-card">
+                <h4>⊞ Microsoft Azure</h4>
+                <p><strong>Secondo per quota di mercato</strong> (~23% market share)</p>
+                <ul>
+                    <li><strong>Punti di forza</strong>: Integrazione Microsoft, hybrid cloud, enterprise</li>
+                    <li><strong>Servizi chiave</strong>: Virtual Machines, Blob Storage, SQL Database, Azure Functions</li>
+                    <li><strong>Regioni</strong>: 60+ regioni</li>
+                    <li><strong>Ideale per</strong>: Aziende con stack Microsoft, .NET applications</li>
+                </ul>
+            </div>
+            
+            <div class="provider-card">
+                <h4>🔷 Google Cloud Platform (GCP)</h4>
+                <p><strong>Terzo provider</strong> (~10% market share)</p>
+                <ul>
+                    <li><strong>Punti di forza</strong>: Machine Learning, data analytics, Kubernetes</li>
+                    <li><strong>Servizi chiave</strong>: Compute Engine, Cloud Storage, BigQuery, Cloud Run</li>
+                    <li><strong>Regioni</strong>: 35+ regioni</li>
+                    <li><strong>Ideale per</strong>: Data science, ML/AI, containerized apps</li>
+                </ul>
+            </div>
+            
+            <h3>Altri Provider</h3>
+            <ul>
+                <li><strong>IBM Cloud</strong>: Focus su enterprise e hybrid cloud</li>
+                <li><strong>Oracle Cloud</strong>: Database e applicazioni enterprise</li>
+                <li><strong>Alibaba Cloud</strong>: Leader in Asia</li>
+                <li><strong>DigitalOcean</strong>: Developer-friendly, più semplice</li>
+            </ul>
+            
+            <div class="key-points">
+                <h4>🎯 Come Scegliere un Provider</h4>
+                <ul>
+                    <li>Servizi specifici richiesti</li>
+                    <li>Costi e modello di pricing</li>
+                    <li>Presenza geografica</li>
+                    <li>Compliance e certificazioni</li>
+                    <li>Supporto tecnico</li>
+                    <li>Ecosistema e community</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- Sezione 5: Storage -->
+        <section id="storage" class="summary-section">
+            <h2>💾 5. Cloud Storage</h2>
+            
+            <h3>Tipi di Storage</h3>
+            
+            <p><strong>Object Storage</strong></p>
+            <ul>
+                <li>Storage scalabile per dati non strutturati</li>
+                <li>Accesso via HTTP/API</li>
+                <li>Metadati associati agli oggetti</li>
+                <li><strong>Servizi</strong>: AWS S3, Azure Blob Storage, Google Cloud Storage</li>
+                <li><strong>Use cases</strong>: Backup, media files, data lakes, static websites</li>
+            </ul>
+            
+            <div class="code-block">
+                <code>
+# AWS S3 CLI Examples<br>
+# Upload file<br>
+aws s3 cp myfile.txt s3://mybucket/<br><br>
+
+# Sync directory<br>
+aws s3 sync ./local-folder s3://mybucket/folder<br><br>
+
+# List objects<br>
+aws s3 ls s3://mybucket/
+                </code>
+            </div>
+            
+            <p><strong>Block Storage</strong></p>
+            <ul>
+                <li>Storage ad alte performance per VM</li>
+                <li>Accesso a livello di blocco</li>
+                <li>IOPS configurabili</li>
+                <li><strong>Servizi</strong>: AWS EBS, Azure Managed Disks, Google Persistent Disk</li>
+                <li><strong>Use cases</strong>: Database, VM boot volumes, high-performance apps</li>
+            </ul>
+            
+            <p><strong>File Storage</strong></p>
+            <ul>
+                <li>File system condiviso</li>
+                <li>Accesso da più istanze simultaneamente</li>
+                <li>Protocolli NFS/SMB</li>
+                <li><strong>Servizi</strong>: AWS EFS, Azure Files, Google Filestore</li>
+                <li><strong>Use cases</strong>: Shared storage, content management, home directories</li>
+            </ul>
+            
+            <h3>Storage Classes e Tiering</h3>
+            <p>
+                I provider offrono diverse classi di storage con costi/performance variabili:
+            </p>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Classe</th>
+                        <th>Accesso</th>
+                        <th>Costo</th>
+                        <th>Use Case</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Standard</strong></td>
+                        <td>Frequente</td>
+                        <td>Più alto</td>
+                        <td>Dati attivi</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Infrequent Access</strong></td>
+                        <td>Occasionale</td>
+                        <td>Medio</td>
+                        <td>Backup recenti</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Archive/Glacier</strong></td>
+                        <td>Raro</td>
+                        <td>Più basso</td>
+                        <td>Archiviazione long-term</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="key-points">
+                <h4>📊 Best Practices Storage</h4>
+                <ul>
+                    <li>Implementa lifecycle policies per tiering automatico</li>
+                    <li>Abilita versioning per dati critici</li>
+                    <li>Usa encryption at rest e in transit</li>
+                    <li>Implementa backup e replication cross-region</li>
+                    <li>Monitora costi e ottimizza storage classes</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- Sezione 6: Compute -->
+        <section id="compute" class="summary-section">
+            <h2>⚙️ 6. Cloud Compute</h2>
+            
+            <h3>Virtual Machines</h3>
+            <p>
+                Istanze di compute virtualizzate con controllo completo del sistema operativo.
+            </p>
+            
+            <ul>
+                <li><strong>AWS EC2</strong>: Elasticità, ampia scelta di instance types</li>
+                <li><strong>Azure VMs</strong>: Integrazione Active Directory, Windows Server</li>
+                <li><strong>GCP Compute Engine</strong>: Custom machine types, preemptible instances</li>
+            </ul>
+            
+            <h3>Tipi di Istanze</h3>
+            
+            <p><strong>General Purpose</strong></p>
+            <ul>
+                <li>Bilanciamento compute, memoria, networking</li>
+                <li>Web servers, small databases</li>
+            </ul>
+            
+            <p><strong>Compute Optimized</strong></p>
+            <ul>
+                <li>Alto rapporto CPU/memoria</li>
+                <li>Batch processing, gaming, scientific computing</li>
+            </ul>
+            
+            <p><strong>Memory Optimized</strong></p>
+            <ul>
+                <li>Alta memoria RAM</li>
+                <li>In-memory databases, big data analytics</li>
+            </ul>
+            
+            <p><strong>Storage Optimized</strong></p>
+            <ul>
+                <li>High I/O, storage locale</li>
+                <li>NoSQL databases, data warehousing</li>
+            </ul>
+            
+            <p><strong>GPU Instances</strong></p>
+            <ul>
+                <li>Accelerazione GPU</li>
+                <li>Machine learning, video rendering, mining</li>
+            </ul>
+            
+            <h3>Serverless Computing</h3>
+            <p>
+                Esecuzione di codice senza provisioning o gestione di server.
+            </p>
+            
+            <div class="key-points">
+                <h4>⚡ Caratteristiche Serverless</h4>
+                <ul>
+                    <li><strong>Event-driven</strong>: Esecuzione in risposta a eventi</li>
+                    <li><strong>Auto-scaling</strong>: Da zero a migliaia di esecuzioni</li>
+                    <li><strong>Pay-per-use</strong>: Paghi solo per il tempo di esecuzione</li>
+                    <li><strong>Stateless</strong>: Ogni invocazione è indipendente</li>
+                </ul>
+            </div>
+            
+            <div class="code-block">
+                <code>
+// AWS Lambda Function Example (Node.js)<br>
+exports.handler = async (event) => {<br>
+&nbsp;&nbsp;console.log('Event:', JSON.stringify(event));<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;// Logica della funzione<br>
+&nbsp;&nbsp;const response = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;statusCode: 200,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;body: JSON.stringify('Hello from Lambda!')<br>
+&nbsp;&nbsp;};<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;return response;<br>
+};
+                </code>
+            </div>
+            
+            <h3>Container Services</h3>
+            <ul>
+                <li><strong>Managed Kubernetes</strong>: EKS, AKS, GKE</li>
+                <li><strong>Container Orchestration</strong>: AWS ECS, Azure Container Instances</li>
+                <li><strong>Serverless Containers</strong>: AWS Fargate, Cloud Run, Azure Container Apps</li>
+            </ul>
+            
+            <div class="highlight-box">
+                <p><strong>💡 Scelta del Compute:</strong> VM per controllo completo, Containers per portabilità, 
+                Serverless per event-driven e costi ottimizzati.</p>
+            </div>
+        </section>
+        
+        <!-- Sezione 7: Networking -->
+        <section id="networking" class="summary-section">
+            <h2>🌐 7. Cloud Networking</h2>
+            
+            <h3>Virtual Private Cloud (VPC)</h3>
+            <p>
+                Rete virtuale isolata nel cloud, controllata completamente dall'utente.
+            </p>
+            
+            <div class="key-points">
+                <h4>🔌 Componenti VPC</h4>
+                <ul>
+                    <li><strong>Subnets</strong>: Segmentazione della rete (public/private)</li>
+                    <li><strong>Route Tables</strong>: Definiscono il routing del traffico</li>
+                    <li><strong>Internet Gateway</strong>: Connessione a Internet</li>
+                    <li><strong>NAT Gateway</strong>: Consente subnet private di accedere a Internet</li>
+                    <li><strong>Security Groups</strong>: Firewall a livello di istanza</li>
+                    <li><strong>Network ACLs</strong>: Firewall a livello di subnet</li>
+                </ul>
+            </div>
+            
+            <h3>Load Balancing</h3>
+            <p>
+                Distribuzione del traffico tra più risorse per alta disponibilità e scalabilità.
+            </p>
+            
+            <ul>
+                <li><strong>Application Load Balancer</strong>: Layer 7 (HTTP/HTTPS), routing avanzato</li>
+                <li><strong>Network Load Balancer</strong>: Layer 4 (TCP/UDP), ultra performance</li>
+                <li><strong>Global Load Balancer</strong>: Distribuzione geografica del traffico</li>
+            </ul>
+            
+            <h3>Content Delivery Network (CDN)</h3>
+            <p>
+                Rete distribuita di server per delivery veloce di contenuti statici.
+            </p>
+            
+            <ul>
+                <li><strong>AWS CloudFront</strong>: 450+ edge locations</li>
+                <li><strong>Azure CDN</strong>: Integrazione con Azure services</li>
+                <li><strong>Google Cloud CDN</strong>: Rete globale Google</li>
+            </ul>
+            
+            <div class="key-points">
+                <h4>🚀 Vantaggi CDN</h4>
+                <ul>
+                    <li>Riduzione latenza per utenti geograficamente distribuiti</li>
+                    <li>Offload del traffico dai server origin</li>
+                    <li>Protezione DDoS</li>
+                    <li>SSL/TLS terminazione</li>
+                </ul>
+            </div>
+            
+            <h3>DNS e Domain Management</h3>
+            <ul>
+                <li><strong>AWS Route 53</strong>: DNS altamente disponibile, health checks</li>
+                <li><strong>Azure DNS</strong>: Integrazione con Azure AD</li>
+                <li><strong>Google Cloud DNS</strong>: SLA 100%</li>
+            </ul>
+            
+            <h3>Connettività Hybrid</h3>
+            
+            <p><strong>VPN</strong></p>
+            <ul>
+                <li>Connessione crittografata su Internet</li>
+                <li>Economica ma con performance variabili</li>
+                <li>Site-to-Site VPN per connettere data center</li>
+            </ul>
+            
+            <p><strong>Direct Connect / ExpressRoute</strong></p>
+            <ul>
+                <li>Connessione dedicata fisica</li>
+                <li>Banda garantita, bassa latenza</li>
+                <li>Più costosa ma più affidabile</li>
+            </ul>
+        </section>
+        
+        <!-- Sezione 8: Sicurezza -->
+        <section id="sicurezza" class="summary-section">
+            <h2>🔒 8. Sicurezza nel Cloud</h2>
+            
+            <h3>Modello di Responsabilità Condivisa</h3>
+            <p>
+                La sicurezza nel cloud è una responsabilità condivisa tra provider e cliente.
+            </p>
+            
+            <div class="key-points">
+                <h4>🛡️ Responsabilità del Provider</h4>
+                <ul>
+                    <li>Sicurezza fisica dei data center</li>
+                    <li>Infrastruttura hardware e networking</li>
+                    <li>Hypervisor e virtualizzazione</li>
+                    <li>Sicurezza dei servizi gestiti</li>
+                </ul>
+            </div>
+            
+            <div class="key-points">
+                <h4>👤 Responsabilità del Cliente</h4>
+                <ul>
+                    <li>Dati e contenuti</li>
+                    <li>Gestione identità e accessi (IAM)</li>
+                    <li>Configurazione sistema operativo e applicazioni</li>
+                    <li>Encryption dei dati</li>
+                    <li>Network e firewall configuration</li>
+                </ul>
+            </div>
+            
+            <h3>Identity and Access Management (IAM)</h3>
+            <p>
+                Controllo granulare su chi può accedere a cosa.
+            </p>
+            
+            <div class="code-block">
+                <code>
+# AWS IAM Policy Example (JSON)<br>
+{<br>
+&nbsp;&nbsp;"Version": "2012-10-17",<br>
+&nbsp;&nbsp;"Statement": [<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Effect": "Allow",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Action": [<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"s3:GetObject",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"s3:PutObject"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;],<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Resource": "arn:aws:s3:::mybucket/*"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;]<br>
+}
+                </code>
+            </div>
+            
+            <h3>Principi di Sicurezza</h3>
+            
+            <p><strong>Principle of Least Privilege</strong></p>
+            <ul>
+                <li>Concedi solo i permessi minimi necessari</li>
+                <li>Usa ruoli invece di credenziali hardcoded</li>
+                <li>Rivedi periodicamente i permessi</li>
+            </ul>
+            
+            <p><strong>Defense in Depth</strong></p>
+            <ul>
+                <li>Molteplici livelli di sicurezza</li>
+                <li>Security groups + NACLs + WAF</li>
+                <li>Encryption at rest + in transit</li>
+            </ul>
+            
+            <h3>Encryption</h3>
+            
+            <p><strong>Encryption at Rest</strong></p>
+            <ul>
+                <li>AWS KMS, Azure Key Vault, Google Cloud KMS</li>
+                <li>Server-side encryption automatica</li>
+                <li>Customer-managed keys per controllo completo</li>
+            </ul>
+            
+            <p><strong>Encryption in Transit</strong></p>
+            <ul>
+                <li>TLS/SSL per tutte le comunicazioni</li>
+                <li>VPN per connessioni site-to-site</li>
+            </ul>
+            
+            <h3>Compliance e Certificazioni</h3>
+            <ul>
+                <li><strong>SOC 2</strong>: Security, availability, confidentiality</li>
+                <li><strong>ISO 27001</strong>: Information security management</li>
+                <li><strong>PCI DSS</strong>: Payment card industry</li>
+                <li><strong>HIPAA</strong>: Healthcare data (US)</li>
+                <li><strong>GDPR</strong>: Data privacy (EU)</li>
+            </ul>
+            
+            <h3>Monitoring e Logging</h3>
+            <ul>
+                <li><strong>AWS CloudTrail</strong>: API call logging</li>
+                <li><strong>Azure Monitor</strong>: Unified monitoring</li>
+                <li><strong>Google Cloud Logging</strong>: Centralized logs</li>
+                <li><strong>SIEM Integration</strong>: Security Information and Event Management</li>
+            </ul>
+            
+            <div class="highlight-box">
+                <p><strong>⚠️ Importante:</strong> La sicurezza è un processo continuo. 
+                Implementa security audits regolari, patch management, e incident response plans.</p>
+            </div>
+        </section>
+        
+        <!-- Sezione 9: Costi -->
+        <section id="costi" class="summary-section">
+            <h2>💰 9. Gestione dei Costi</h2>
+            
+            <h3>Modelli di Pricing</h3>
+            
+            <p><strong>On-Demand</strong></p>
+            <ul>
+                <li>Pay-as-you-go</li>
+                <li>Massima flessibilità</li>
+                <li>Prezzo più alto</li>
+                <li>Ideale per: sviluppo, test, carichi imprevedibili</li>
+            </ul>
+            
+            <p><strong>Reserved Instances</strong></p>
+            <ul>
+                <li>Impegno 1-3 anni</li>
+                <li>Sconto 30-75%</li>
+                <li>Ideale per: carichi stabili e prevedibili</li>
+            </ul>
+            
+            <p><strong>Spot/Preemptible Instances</strong></p>
+            <ul>
+                <li>Capacità inutilizzata del cloud</li>
+                <li>Sconto fino al 90%</li>
+                <li>Possono essere terminate con breve preavviso</li>
+                <li>Ideale per: batch processing, workload fault-tolerant</li>
+            </ul>
+            
+            <p><strong>Savings Plans</strong></p>
+            <ul>
+                <li>Impegno di spesa oraria</li>
+                <li>Flessibilità tra servizi</li>
+                <li>Sconto fino al 72%</li>
+            </ul>
+            
+            <h3>Ottimizzazione dei Costi</h3>
+            
+            <div class="key-points">
+                <h4>💡 Strategie di Risparmio</h4>
+                <ul>
+                    <li><strong>Right-sizing</strong>: Usa istanze adeguate al carico effettivo</li>
+                    <li><strong>Auto-scaling</strong>: Scale down quando non necessario</li>
+                    <li><strong>Scheduled scaling</strong>: Spegni risorse negli orari non lavorativi</li>
+                    <li><strong>Storage tiering</strong>: Sposta dati infrequenti in storage economico</li>
+                    <li><strong>Reserved capacity</strong>: Per carichi prevedibili</li>
+                    <li><strong>Delete unused resources</strong>: Snapshot, volumi, elastic IP non utilizzati</li>
+                </ul>
+            </div>
+            
+            <h3>Cost Monitoring e Budgeting</h3>
+            <ul>
+                <li><strong>AWS Cost Explorer</strong>: Analisi e previsioni</li>
+                <li><strong>Azure Cost Management</strong>: Budget e alerts</li>
+                <li><strong>Google Cloud Billing</strong>: Reports e recommendations</li>
+                <li><strong>Tags e Resource Groups</strong>: Tracciamento costi per progetto/team</li>
+            </ul>
+            
+            <div class="code-block">
+                <code>
+# AWS CLI: Get cost and usage<br>
+aws ce get-cost-and-usage \<br>
+&nbsp;&nbsp;--time-period Start=2024-01-01,End=2024-01-31 \<br>
+&nbsp;&nbsp;--granularity MONTHLY \<br>
+&nbsp;&nbsp;--metrics "BlendedCost" \<br>
+&nbsp;&nbsp;--group-by Type=DIMENSION,Key=SERVICE
+                </code>
+            </div>
+            
+            <h3>Costi Nascosti da Considerare</h3>
+            <ul>
+                <li><strong>Data transfer</strong>: Egress da cloud verso Internet</li>
+                <li><strong>Cross-region</strong>: Traffico tra regioni diverse</li>
+                <li><strong>API calls</strong>: Costi per milioni di richieste</li>
+                <li><strong>Backup e snapshot</strong>: Storage incrementale</li>
+                <li><strong>Load balancer</strong>: Costo orario + traffico</li>
+            </ul>
+            
+            <div class="highlight-box">
+                <p><strong>📊 Best Practice:</strong> Configura budget alerts e revisiona i costi settimanalmente. 
+                Un monitoraggio proattivo previene sorprese nella bolletta.</p>
+            </div>
+        </section>
+        
+        <!-- Sezione 10: Best Practices -->
+        <section id="best-practices" class="summary-section">
+            <h2>✅ 10. Best Practices Cloud</h2>
+            
+            <h3>Architecture Best Practices</h3>
+            
+            <div class="key-points">
+                <h4>🏗️ Design for Failure</h4>
+                <ul>
+                    <li>Assumi che i componenti falliranno</li>
+                    <li>Implementa redundancy e fault tolerance</li>
+                    <li>Deploy multi-AZ e multi-region per applicazioni critiche</li>
+                    <li>Health checks e auto-healing</li>
+                </ul>
+            </div>
+            
+            <div class="key-points">
+                <h4>📈 Scalabilità</h4>
+                <ul>
+                    <li>Design stateless applications quando possibile</li>
+                    <li>Usa caching (Redis, CDN) per ridurre carico</li>
+                    <li>Implementa queue per decoupling (SQS, Service Bus)</li>
+                    <li>Database read replicas per separare letture da scritture</li>
+                </ul>
+            </div>
+            
+            <div class="key-points">
+                <h4>🔐 Sicurezza</h4>
+                <ul>
+                    <li>Abilita MFA per tutti gli account</li>
+                    <li>Usa IAM roles invece di credenziali hardcoded</li>
+                    <li>Encrypt everything (at rest e in transit)</li>
+                    <li>Regular security audits e penetration testing</li>
+                    <li>Implementa logging e monitoring completi</li>
+                </ul>
+            </div>
+            
+            <h3>Operational Excellence</h3>
+            
+            <p><strong>Infrastructure as Code (IaC)</strong></p>
+            <ul>
+                <li>Terraform, CloudFormation, ARM Templates</li>
+                <li>Versioning dell'infrastruttura</li>
+                <li>Deployment ripetibili e consistenti</li>
+                <li>Disaster recovery semplificato</li>
+            </ul>
+            
+            <div class="code-block">
+                <code>
+# Terraform Example<br>
+resource "aws_instance" "web" {<br>
+&nbsp;&nbsp;ami           = "ami-0c55b159cbfafe1f0"<br>
+&nbsp;&nbsp;instance_type = "t3.micro"<br>
+&nbsp;&nbsp;<br>
+&nbsp;&nbsp;tags = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Name = "WebServer"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Environment = "Production"<br>
+&nbsp;&nbsp;}<br>
+}
+                </code>
+            </div>
+            
+            <p><strong>CI/CD</strong></p>
+            <ul>
+                <li>Automated testing prima del deploy</li>
+                <li>Blue-green o canary deployments</li>
+                <li>Rollback automatico in caso di errori</li>
+                <li>Feature flags per rilasci graduali</li>
+            </ul>
+            
+            <h3>Performance Optimization</h3>
+            <ul>
+                <li>Usa CDN per contenuti statici</li>
+                <li>Implement caching layers</li>
+                <li>Database indexing e query optimization</li>
+                <li>Async processing per task lunghe</li>
+                <li>Connection pooling per database</li>
+            </ul>
+            
+            <h3>Disaster Recovery</h3>
+            
+            <div class="key-points">
+                <h4>🚨 Strategie DR</h4>
+                <ul>
+                    <li><strong>Backup and Restore</strong>: RTO alto, costo basso</li>
+                    <li><strong>Pilot Light</strong>: Core minimale sempre attivo</li>
+                    <li><strong>Warm Standby</strong>: Sistema ridotto ma funzionante</li>
+                    <li><strong>Multi-Site Active/Active</strong>: RTO minimo, costo alto</li>
+                </ul>
+            </div>
+            
+            <h3>Well-Architected Framework</h3>
+            <p>
+                I cloud provider forniscono framework per progettare architetture ottimali:
+            </p>
+            
+            <ul>
+                <li><strong>Operational Excellence</strong>: Operazioni efficaci</li>
+                <li><strong>Security</strong>: Protezione dati e sistemi</li>
+                <li><strong>Reliability</strong>: Recupero da fallimenti</li>
+                <li><strong>Performance Efficiency</strong>: Uso efficiente delle risorse</li>
+                <li><strong>Cost Optimization</strong>: Costi ottimali</li>
+                <li><strong>Sustainability</strong>: Impatto ambientale ridotto</li>
+            </ul>
+            
+            <div class="highlight-box">
+                <p><strong>🎯 Takeaway:</strong> Il cloud computing non è solo tecnologia, ma un cambio di paradigma. 
+                Richiede nuove competenze, processi e mindset. Investi in formazione continua e rimani aggiornato 
+                sulle novità dei provider.</p>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="footer" style="margin-top: 60px;">
+            <p>☁️ SOI25-03-cloud.pdf - Riassunto generato automaticamente</p>
+            <p style="margin-top: 10px;">
+                <a href="index.html" style="color: #00c6ff; text-decoration: none;">← Torna alla Home</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

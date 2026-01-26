@@ -172,6 +172,29 @@
             color: var(--accent-hover);
             transform: translateX(5px);
         }
+        /* Diagrammi schematici */
+        .diagram {
+            display:flex;
+            gap:20px;
+            flex-wrap:wrap;
+            justify-content:space-around;
+            margin-top:20px;
+        }
+        .diagram svg {
+            width:260px;
+            height:160px;
+            border:1px solid var(--border-color);
+            border-radius:8px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+            padding:10px;
+            box-shadow: var(--shadow);
+        }
+        .diagram-caption {
+            text-align:center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top:8px;
+        }
     </style>
 </head>
 <body>
@@ -203,23 +226,23 @@
         <section id="introduzione" class="summary-section">
             <h2>🎯 1. Introduzione ai Container</h2>
             
-            <h3>Cos'è un Container?</h3>
+            <h3>Cos'è un <span class="glossary-term" onclick="showGlossary('Container', 'Unità standard di software che impacchetta codice e dipendenze in un ambiente isolato e portatile. I container condividono il kernel del sistema operativo host, risultando leggeri e veloci da avviare.')">Container</span>?</h3>
             <p>
-                Un container è un'unità standard di software che impacchetta il codice e tutte le sue dipendenze 
+                Un <span class="glossary-term" onclick="showGlossary('Container', 'Unità standard di software che impacchetta codice e dipendenze per garantire esecuzione consistente in diversi ambienti.')">container</span> è un'unità standard di software che impacchetta il codice e tutte le sue dipendenze 
                 in modo che l'applicazione funzioni in modo rapido e affidabile in diversi ambienti di computing.
             </p>
             
             <div class="key-points">
                 <h4>🔑 Punti Chiave</h4>
                 <ul>
-                    <li><strong>Isolamento</strong>: I container isolano le applicazioni l'una dall'altra e dall'infrastruttura sottostante</li>
+                    <li><strong>Isolamento</strong>: I container isolano le applicazioni l'una dall'altra e dall'infrastruttura sottostante usando <span class="glossary-term" onclick="showGlossary('Namespace', 'Funzionalità del kernel Linux che fornisce isolamento delle risorse di sistema. Ogni container ha i propri namespace per processi (PID), rete (NET), mount point (MNT), IPC e hostname (UTS).')">namespace</span> e <span class="glossary-term" onclick="showGlossary('Cgroups', 'Control Groups - Funzionalità del kernel Linux che limita e isola l\'uso delle risorse (CPU, memoria, I/O) dei container, garantendo che un container non consumi tutte le risorse del sistema.')">cgroups</span></li>
                     <li><strong>Portabilità</strong>: Funzionano consistentemente su qualsiasi infrastruttura</li>
                     <li><strong>Leggerezza</strong>: Condividono il kernel del sistema operativo, richiedendo meno risorse delle VM</li>
                     <li><strong>Velocità</strong>: Avvio e arresto in pochi secondi</li>
                 </ul>
             </div>
             
-            <h3>Container vs Virtual Machines</h3>
+            <h3>Container vs <span class="glossary-term" onclick="showGlossary('Virtual Machine', 'Macchina Virtuale - Emulazione software di un computer fisico completo, include sistema operativo, applicazioni e virtualizza l\'hardware. Più pesante dei container ma con isolamento maggiore.')">Virtual Machines</span></h3>
             <p><strong>Virtual Machines (VM):</strong></p>
             <ul>
                 <li>Include un sistema operativo completo</li>
@@ -239,7 +262,7 @@
         
         <!-- Sezione 2: Docker -->
         <section id="docker" class="summary-section">
-            <h2>🐳 2. Docker: Fondamenti</h2>
+            <h2>🐳 2. <span class="glossary-term" onclick="showGlossary('Docker', 'Piattaforma open-source per sviluppare, distribuire ed eseguire applicazioni in container. Include Docker Engine (runtime), Docker CLI (interfaccia a riga di comando) e Docker Hub (registro di immagini).')">Docker</span>: Fondamenti</h2>
             
             <h3>Architettura Docker</h3>
             <p>
@@ -250,9 +273,9 @@
             <h3>Componenti Principali</h3>
             <ul>
                 <li><strong>Docker Engine</strong>: Runtime che esegue i container</li>
-                <li><strong>Docker Images</strong>: Template read-only per creare container</li>
+                <li><strong><span class="glossary-term" onclick="showGlossary('Docker Image', 'Template read-only che contiene le istruzioni per creare un container. Include codice applicativo, runtime, librerie, variabili d\'ambiente e file di configurazione. Le immagini sono costruite da un Dockerfile.')">Docker Images</span></strong>: Template read-only per creare container</li>
                 <li><strong>Docker Containers</strong>: Istanze in esecuzione delle immagini</li>
-                <li><strong>Docker Registry</strong>: Repository per le immagini (es. Docker Hub)</li>
+                <li><strong><span class="glossary-term" onclick="showGlossary('Docker Registry', 'Repository centralizzato per archiviare e distribuire immagini Docker. Docker Hub è il registry pubblico più popolare, ma si possono creare registry privati per uso aziendale.')">Docker Registry</span></strong>: Repository per le immagini (es. Docker Hub)</li>
             </ul>
             
             <h3>Comandi Base</h3>
@@ -282,7 +305,7 @@ docker rm &lt;container_id&gt;
         
         <!-- Sezione 3: Immagini -->
         <section id="immagini" class="summary-section">
-            <h2>📦 3. Immagini e Dockerfile</h2>
+            <h2>📦 3. Immagini e <span class="glossary-term" onclick="showGlossary('Dockerfile', 'File di testo che contiene una serie di istruzioni per costruire un\'immagine Docker. Ogni istruzione crea un layer nell\'immagine. Include comandi come FROM, RUN, COPY, CMD.')">Dockerfile</span></h2>
             
             <h3>Cosa sono le Immagini Docker?</h3>
             <p>
@@ -324,7 +347,7 @@ CMD ["node", "server.js"]
                 <li><strong>CMD/ENTRYPOINT</strong>: Comando di default all'avvio</li>
             </ul>
             
-            <h3>Layer e Caching</h3>
+            <h3><span class="glossary-term" onclick="showGlossary('Layer', 'Strato immutabile di un\'immagine Docker. Ogni istruzione nel Dockerfile crea un nuovo layer. I layer sono cachati e riutilizzati per velocizzare i build successivi, riducendo dimensioni e tempi.')">Layer</span> e Caching</h3>
             <p>
                 Docker costruisce le immagini in layer. Ogni istruzione nel Dockerfile crea un nuovo layer. 
                 I layer sono cachati per velocizzare i build successivi.
@@ -347,7 +370,7 @@ CMD ["node", "server.js"]
             
             <h3>Tipi di Network</h3>
             
-            <p><strong>1. Bridge Network (default)</strong></p>
+            <p><strong>1. <span class="glossary-term" onclick="showGlossary('Bridge Network', 'Network driver di default in Docker che crea una rete privata virtuale sull\'host. I container sulla stessa bridge network possono comunicare, mentre sono isolati da altri network. Usa NAT per connettersi all\'esterno.')">Bridge Network</span> (default)</strong></p>
             <ul>
                 <li>Network privato su un singolo host</li>
                 <li>I container possono comunicare tra loro</li>
@@ -395,7 +418,7 @@ docker network ls
         
         <!-- Sezione 5: Volumi -->
         <section id="volumi" class="summary-section">
-            <h2>💾 5. Volumi e Persistenza</h2>
+            <h2>💾 5. <span class="glossary-term" onclick="showGlossary('Volume', 'Meccanismo per persistere i dati generati e utilizzati dai container Docker. I volumi sono gestiti da Docker e indipendenti dal ciclo di vita del container, permettendo di mantenere i dati anche dopo la rimozione del container.')">Volumi</span> e Persistenza</h2>
             
             <h3>Perché usare i Volumi?</h3>
             <p>
@@ -422,7 +445,7 @@ docker run -v my-data:/data nginx
                 </code>
             </div>
             
-            <p><strong>2. Bind Mounts</strong></p>
+            <p><strong>2. <span class="glossary-term" onclick="showGlossary('Bind Mount', 'Tecnica che mappa una directory o file specifico del filesystem host direttamente in un container. Permette modifiche in tempo reale, utile per sviluppo. Dipendente dalla struttura del filesystem host.')">Bind Mounts</span></strong></p>
             <ul>
                 <li>Mappa una directory dell'host nel container</li>
                 <li>Utile per lo sviluppo</li>
@@ -443,9 +466,9 @@ docker run -v /path/on/host:/path/in/container nginx
         
         <!-- Sezione 6: Orchestrazione -->
         <section id="orchestrazione" class="summary-section">
-            <h2>⚙️ 6. Orchestrazione</h2>
+            <h2>⚙️ 6. <span class="glossary-term" onclick="showGlossary('Orchestrazione', 'Gestione automatizzata del deployment, scalabilità, networking e disponibilità dei container. Gli orchestratori (Kubernetes, Docker Swarm) gestiscono cluster di container, auto-scaling, load balancing e self-healing.')">Orchestrazione</span></h2>
             
-            <h3>Docker Compose</h3>
+            <h3><span class="glossary-term" onclick="showGlossary('Docker Compose', 'Strumento per definire ed eseguire applicazioni Docker multi-container. Usa un file YAML per configurare servizi, reti e volumi dell\'applicazione. Permette di avviare l\'intera applicazione con un singolo comando.')">Docker Compose</span></h3>
             <p>
                 Docker Compose è uno strumento per definire ed eseguire applicazioni Docker multi-container.
             </p>
@@ -494,7 +517,7 @@ docker-compose up -d --scale web=3
                 </code>
             </div>
             
-            <h3>Kubernetes</h3>
+            <h3><span class="glossary-term" onclick="showGlossary('Kubernetes', 'Sistema open-source per l\'orchestrazione automatizzata di container. Gestisce deployment, scaling, networking e disponibilità di applicazioni containerizzate su cluster di macchine. Abbreviato K8s.')">Kubernetes</span></h3>
             <p>
                 Per deployment su larga scala, Kubernetes è il sistema di orchestrazione più utilizzato:
             </p>
@@ -542,7 +565,7 @@ docker-compose up -d --scale web=3
                 </ul>
             </div>
             
-            <h3>Multi-Stage Build Example</h3>
+            <h3><span class="glossary-term" onclick="showGlossary('Multi-Stage Build', 'Tecnica Dockerfile che usa più istruzioni FROM per creare build ottimizzati. Permette di compilare in uno stage e copiare solo gli artifact necessari nello stage finale, riducendo drasticamente la dimensione dell\'immagine.')">Multi-Stage Build</span> Example</h3>
             <div class="code-block">
                 <code>
 # Stage 1: Build<br>
@@ -568,6 +591,152 @@ CMD ["node", "dist/server.js"]
             </div>
         </section>
         
+        <!-- Sezione Schemi e Diagrammi -->
+        <section id="schemi" class="summary-section">
+            <h2>📊 Schemi e Diagrammi</h2>
+            <p>Diagrammi sintetici per comprendere le componenti dei container e i pattern di orchestrazione.</p>
+
+            <div class="diagram" aria-hidden="false">
+                <div>
+                    <svg viewBox="0 0 320 160" role="img" aria-label="Architettura container">
+                        <defs>
+                            <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+                                <path d="M0 0 L10 5 L0 10 z" fill="#667eea" />
+                            </marker>
+                        </defs>
+                        <rect x="10" y="10" width="120" height="40" rx="6" fill="#f5f7ff" stroke="#cbd5ff" />
+                        <text x="70" y="35" fill="#1a202c" font-size="12" text-anchor="middle">Host / OS</text>
+
+                        <rect x="10" y="70" width="120" height="40" rx="6" fill="#fff7ed" stroke="#ffd8a8" />
+                        <text x="70" y="95" fill="#1a202c" font-size="12" text-anchor="middle">Docker Engine</text>
+
+                        <rect x="150" y="20" width="150" height="90" rx="6" fill="#ecfdf5" stroke="#bbf7d0" />
+                        <text x="225" y="40" fill="#1a202c" font-size="12" text-anchor="middle">Container Runtime</text>
+                        <circle cx="185" cy="80" r="12" fill="#e6f2ff" stroke="#93c5fd" />
+                        <circle cx="225" cy="80" r="12" fill="#ffeef0" stroke="#ffb4c6" />
+                        <circle cx="265" cy="80" r="12" fill="#fff1f2" stroke="#fca5a5" />
+
+                        <line x1="130" y1="90" x2="150" y2="80" stroke="#667eea" stroke-width="2" marker-end="url(#arrow)" />
+
+                        <rect x="20" y="130" width="90" height="20" rx="4" fill="#eef2ff" stroke="#c7d2fe" />
+                        <text x="65" y="145" fill="#1a202c" font-size="10" text-anchor="middle">Image Registry</text>
+
+                        <line x1="120" y1="140" x2="150" y2="100" stroke="#667eea" stroke-width="2" marker-end="url(#arrow)" />
+                    </svg>
+                    <div class="diagram-caption">Architettura: immagini, runtime e container</div>
+                </div>
+
+                <div>
+                    <svg viewBox="0 0 320 160" role="img" aria-label="Orchestrazione Kubernetes">
+                        <rect x="20" y="10" width="280" height="46" rx="6" fill="#f0f9ff" stroke="#bae6fd" />
+                        <text x="180" y="38" fill="#1a202c" font-size="12">Control Plane (API Server · Scheduler · Controller)</text>
+
+                        <rect x="30" y="70" width="80" height="60" rx="6" fill="#fff7ed" stroke="#ffd8a8" />
+                        <text x="70" y="100" fill="#1a202c" font-size="11" text-anchor="middle">Node 1</text>
+                        <rect x="120" y="70" width="80" height="60" rx="6" fill="#ecfdf5" stroke="#bbf7d0" />
+                        <text x="160" y="100" fill="#1a202c" font-size="11" text-anchor="middle">Node 2</text>
+                        <rect x="210" y="70" width="80" height="60" rx="6" fill="#eef2ff" stroke="#c7d2fe" />
+                        <text x="250" y="100" fill="#1a202c" font-size="11" text-anchor="middle">Node 3</text>
+
+                        <line x1="80" y1="56" x2="80" y2="70" stroke="#667eea" stroke-width="2" marker-end="url(#arrow)" />
+                        <line x1="160" y1="56" x2="160" y2="70" stroke="#667eea" stroke-width="2" marker-end="url(#arrow)" />
+                        <line x1="240" y1="56" x2="240" y2="70" stroke="#667eea" stroke-width="2" marker-end="url(#arrow)" />
+
+                        <circle cx="160" cy="120" r="8" fill="#fff" stroke="#94a3b8" />
+                        <text x="160" y="125" fill="#475569" font-size="9" text-anchor="middle">Pod</text>
+                    </svg>
+                    <div class="diagram-caption">Orchestrazione: control plane e nodi del cluster</div>
+                </div>
+
+                <div>
+                    <svg viewBox="0 0 320 160" role="img" aria-label="Flusso di deployment">
+                        <rect x="10" y="20" width="70" height="30" rx="6" fill="#fff7ed" stroke="#ffd8a8" />
+                        <text x="45" y="40" fill="#1a202c" font-size="11" text-anchor="middle">Source</text>
+
+                        <line x1="80" y1="35" x2="130" y2="35" stroke="#667eea" stroke-width="2" marker-end="url(#arrow)" />
+
+                        <rect x="130" y="15" width="80" height="40" rx="6" fill="#eef2ff" stroke="#c7d2fe" />
+                        <text x="170" y="40" fill="#1a202c" font-size="11" text-anchor="middle">Build / Image</text>
+
+                        <line x1="210" y1="35" x2="250" y2="35" stroke="#667eea" stroke-width="2" marker-end="url(#arrow)" />
+
+                        <rect x="250" y="15" width="60" height="40" rx="6" fill="#f0f9ff" stroke="#bae6fd" />
+                        <text x="280" y="40" fill="#1a202c" font-size="10" text-anchor="middle">Registry</text>
+
+                        <line x1="280" y1="55" x2="280" y2="95" stroke="#475569" stroke-dasharray="4" />
+                        <rect x="210" y="100" width="120" height="40" rx="6" fill="#ecfdf5" stroke="#bbf7d0" />
+                        <text x="270" y="125" fill="#1a202c" font-size="11" text-anchor="middle">Deploy / Run</text>
+                    </svg>
+                    <div class="diagram-caption">Flusso: sorgente → build → registry → deploy</div>
+                </div>
+
+                <div>
+                    <svg viewBox="0 0 340 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Docker networking modes">
+                        <defs>
+                            <marker id="arrowNet" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+                                <path d="M0 0 L10 5 L0 10 z" fill="#6366f1"/>
+                            </marker>
+                        </defs>
+                        <style> .net-box{fill:#eef2ff;stroke:#6366f1;stroke-width:1.5} .net-text{fill:#111827;font-family:Arial,sans-serif;font-size:11px;font-weight:600} .net-label{fill:#475569;font-family:Arial,sans-serif;font-size:9px}</style>
+                        <rect x="20" y="15" width="300" height="150" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+                        <text x="170" y="32" text-anchor="middle" class="net-text">Host OS</text>
+                        <rect x="30" y="45" width="80" height="40" rx="4" class="net-box"/>
+                        <text x="70" y="65" text-anchor="middle" class="net-label">Bridge Network</text>
+                        <text x="70" y="78" text-anchor="middle" class="net-label" style="font-size:8px">docker0 (default)</text>
+                        <rect x="130" y="45" width="80" height="40" rx="4" class="net-box"/>
+                        <text x="170" y="65" text-anchor="middle" class="net-label">Host Network</text>
+                        <text x="170" y="78" text-anchor="middle" class="net-label" style="font-size:8px">shares host stack</text>
+                        <rect x="230" y="45" width="80" height="40" rx="4" class="net-box"/>
+                        <text x="270" y="65" text-anchor="middle" class="net-label">None</text>
+                        <text x="270" y="78" text-anchor="middle" class="net-label" style="font-size:8px">isolated</text>
+                        <circle cx="70" cy="115" r="15" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+                        <text x="70" y="120" text-anchor="middle" class="net-label" style="font-size:8px">C1</text>
+                        <circle cx="170" cy="115" r="15" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+                        <text x="170" y="120" text-anchor="middle" class="net-label" style="font-size:8px">C2</text>
+                        <circle cx="270" cy="115" r="15" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5"/>
+                        <text x="270" y="120" text-anchor="middle" class="net-label" style="font-size:8px">C3</text>
+                        <line x1="70" y1="100" x2="70" y2="85" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arrowNet)"/>
+                        <line x1="170" y1="100" x2="170" y2="85" stroke="#f59e0b" stroke-width="1.5" marker-end="url(#arrowNet)"/>
+                        <line x1="270" y1="100" x2="270" y2="85" stroke="#ef4444" stroke-width="1.5" marker-end="url(#arrowNet)"/>
+                        <text x="170" y="155" text-anchor="middle" class="net-label" style="font-size:8px">Overlay/Macvlan per multi-host</text>
+                    </svg>
+                    <div class="diagram-caption">Docker networking: bridge (NAT, default), host (condivide stack di rete dell'host), none (isolamento completo), overlay per multi-host.</div>
+                </div>
+
+                <div>
+                    <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Container image layers">
+                        <defs>
+                            <marker id="arrowLayer" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+                                <path d="M0 0 L10 5 L0 10 z" fill="#8b5cf6"/>
+                            </marker>
+                        </defs>
+                        <style> .layer{fill:#faf5ff;stroke:#8b5cf6;stroke-width:1.5} .layer-text{fill:#111827;font-family:Arial,sans-serif;font-size:10px;font-weight:600} .layer-label{fill:#6b21a8;font-family:Arial,sans-serif;font-size:9px}</style>
+                        <rect x="60" y="130" width="200" height="30" rx="4" class="layer" style="fill:#ede9fe"/>
+                        <text x="160" y="148" text-anchor="middle" class="layer-text">Base Image (ubuntu:20.04)</text>
+                        <rect x="60" y="95" width="200" height="30" rx="4" class="layer" style="fill:#e9d5ff"/>
+                        <text x="160" y="113" text-anchor="middle" class="layer-label">Layer: apt-get install python3</text>
+                        <rect x="60" y="60" width="200" height="30" rx="4" class="layer" style="fill:#ddd6fe"/>
+                        <text x="160" y="78" text-anchor="middle" class="layer-label">Layer: COPY app files</text>
+                        <rect x="60" y="25" width="200" height="30" rx="4" class="layer" style="fill:#c4b5fd"/>
+                        <text x="160" y="43" text-anchor="middle" class="layer-label">Layer: CMD ["python", "app.py"]</text>
+                        <rect x="60" y="0" width="200" height="20" rx="4" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+                        <text x="160" y="13" text-anchor="middle" class="layer-label" style="fill:#92400e">Writable Container Layer</text>
+                        <line x1="270" y1="145" x2="285" y2="145" stroke="#8b5cf6" stroke-width="1.5" marker-end="url(#arrowLayer)"/>
+                        <text x="292" y="115" class="layer-label" style="font-size:8px">Read-only</text>
+                        <text x="292" y="128" class="layer-label" style="font-size:8px">layers</text>
+                        <text x="292" y="141" class="layer-label" style="font-size:8px">(shared &amp;</text>
+                        <text x="292" y="154" class="layer-label" style="font-size:8px">cached)</text>
+                        <line x1="270" y1="10" x2="285" y2="10" stroke="#f59e0b" stroke-width="1.5" marker-end="url(#arrowLayer)"/>
+                        <text x="292" y="13" class="layer-label" style="font-size:8px;fill:#92400e">Writable</text>
+                    </svg>
+                    <div class="diagram-caption">Container image layers: ogni istruzione Dockerfile crea un layer read-only. Il container aggiunge un thin writable layer sopra l'immagine.</div>
+                </div>
+            </div>
+
+            <p>Risorse utili: <a href="https://docs.docker.com/get-started/">Docker Docs</a>, <a href="https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/">Kubernetes</a>, <a href="https://www.cncf.io/">CNCF</a>, <a href="https://undraw.co/">unDraw (illustrazioni)</a>.</p>
+            <p>Vuoi che scarichi illustrazioni permissive (unDraw) in <strong>assets/images/</strong> e le inserisca localmente?</p>
+        </section>
+
         <!-- Footer -->
         <footer class="footer" style="margin-top: 60px;">
             <p>📚 SOI25-01-containers.pdf - Riassunto generato automaticamente</p>
@@ -576,5 +745,128 @@ CMD ["node", "dist/server.js"]
             </p>
         </footer>
     </div>
+
+    <!-- Glossary Pop-up -->
+    <div id="glossary-popup" class="glossary-popup" style="display: none;">
+        <div class="glossary-content">
+            <button class="glossary-close" onclick="closeGlossary()">&times;</button>
+            <h3 id="glossary-term"></h3>
+            <p id="glossary-definition"></p>
+        </div>
+    </div>
+
+    <style>
+        .glossary-term {
+            color: var(--accent-color);
+            text-decoration: underline;
+            text-decoration-style: dotted;
+            cursor: help;
+            transition: all 0.2s ease;
+        }
+        
+        .glossary-term:hover {
+            background-color: rgba(74, 158, 255, 0.1);
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        
+        .glossary-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.2s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .glossary-content {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: slideUp 0.3s ease;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .glossary-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+        
+        .glossary-close:hover {
+            background-color: var(--secondary-bg);
+            color: var(--text-primary);
+        }
+        
+        .glossary-content h3 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .glossary-content p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+    </style>
+
+    <script>
+        function showGlossary(term, definition) {
+            document.getElementById('glossary-term').textContent = term;
+            document.getElementById('glossary-definition').textContent = definition;
+            document.getElementById('glossary-popup').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeGlossary() {
+            document.getElementById('glossary-popup').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Close on click outside
+        document.addEventListener('click', function(e) {
+            const popup = document.getElementById('glossary-popup');
+            if (e.target === popup) {
+                closeGlossary();
+            }
+        });
+        
+        // Close on ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeGlossary();
+            }
+        });
+    </script>
 </body>
 </html>

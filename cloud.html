@@ -195,6 +195,27 @@
         .comparison-table td {
             color: var(--text-secondary);
         }
+        /* Diagrams */
+        .diagram {
+            background-color: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 18px;
+            margin: 18px 0;
+            box-shadow: var(--shadow);
+        }
+
+        .diagram svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .diagram-caption {
+            color: var(--text-secondary);
+            margin-top: 10px;
+            font-size: 0.95rem;
+        }
         
         .provider-card {
             background-color: var(--secondary-bg);
@@ -242,9 +263,9 @@
         <section id="introduzione" class="summary-section">
             <h2>🎯 1. Introduzione al Cloud Computing</h2>
             
-            <h3>Cos'è il Cloud Computing?</h3>
+            <h3>Cos'è il <span class="glossary-term" onclick="showGlossary('Cloud Computing', 'Modello di erogazione di servizi informatici (server, storage, database, rete, software) tramite Internet con pagamento basato sul consumo effettivo, eliminando la necessità di possedere e gestire infrastrutture fisiche.')">Cloud Computing</span>?</h3>
             <p>
-                Il cloud computing è la fornitura on-demand di risorse IT tramite Internet con prezzi pay-as-you-go. 
+                Il <span class="glossary-term" onclick="showGlossary('Cloud Computing', 'Modello di erogazione di servizi informatici (server, storage, database, rete, software) tramite Internet con pagamento basato sul consumo effettivo.')">cloud computing</span> è la fornitura on-demand di risorse IT tramite Internet con prezzi <span class="glossary-term" onclick="showGlossary('Pay-as-you-go', 'Modello di pricing in cui si paga solo per le risorse effettivamente utilizzate, senza costi fissi o impegni a lungo termine.')">pay-as-you-go</span>. 
                 Invece di acquistare, possedere e mantenere data center e server fisici, è possibile accedere 
                 a servizi tecnologici come potenza di calcolo, storage e database su base necessaria.
             </p>
@@ -254,8 +275,8 @@
                 <ul>
                     <li><strong>On-demand self-service</strong>: Provisioning automatico senza intervento umano</li>
                     <li><strong>Broad network access</strong>: Accesso da qualsiasi dispositivo connesso</li>
-                    <li><strong>Resource pooling</strong>: Risorse condivise tra più clienti</li>
-                    <li><strong>Rapid elasticity</strong>: Scalabilità automatica in base alla domanda</li>
+                    <li><strong><span class="glossary-term" onclick="showGlossary('Resource Pooling', 'Multi-tenancy - Le risorse di computing del provider sono condivise (pooled) per servire più clienti simultaneamente, con assegnazione dinamica e riassegnazione basata sulla domanda.')">Resource pooling</span></strong>: Risorse condivise tra più clienti</li>
+                    <li><strong><span class="glossary-term" onclick="showGlossary('Elasticity', 'Capacità del sistema di aumentare o diminuire automaticamente le risorse allocate in base alla domanda in tempo reale, garantendo performance ottimali e costi contenuti.')">Rapid elasticity</span></strong>: Scalabilità automatica in base alla domanda</li>
                     <li><strong>Measured service</strong>: Pagamento basato sull'utilizzo effettivo</li>
                 </ul>
             </div>
@@ -287,7 +308,7 @@
             <p><strong>📈 Scalabilità</strong></p>
             <ul>
                 <li>Scale up/down in base alla domanda</li>
-                <li>Auto-scaling automatico</li>
+                <li><span class="glossary-term" onclick="showGlossary('Auto-scaling', 'Capacità di aumentare o diminuire automaticamente le risorse di computing (istanze, container) in base a metriche definite (CPU, memoria, richieste). Garantisce performance durante i picchi e riduce costi nei periodi di bassa domanda.')">Auto-scaling</span> automatico</li>
                 <li>Gestione dei picchi di traffico</li>
             </ul>
             
@@ -303,7 +324,7 @@
         <section id="modelli-servizio" class="summary-section">
             <h2>🏗️ 2. Modelli di Servizio Cloud</h2>
             
-            <h3>IaaS - Infrastructure as a Service</h3>
+            <h3><span class="glossary-term" onclick="showGlossary('IaaS', 'Infrastructure as a Service - Fornisce risorse di infrastruttura virtualizzate (server, storage, networking) come servizio. L\'utente ha controllo completo su sistema operativo e applicazioni.')">IaaS</span> - Infrastructure as a Service</h3>
             <p>
                 Fornisce infrastruttura IT virtualizzata: server, storage, networking. 
                 Massimo controllo e flessibilità.
@@ -314,12 +335,12 @@
                 <ul>
                     <li><strong>Controllo completo</strong> del sistema operativo e applicazioni</li>
                     <li><strong>Responsabilità</strong>: Gestione OS, runtime, applicazioni</li>
-                    <li><strong>Esempi</strong>: AWS EC2, Azure Virtual Machines, Google Compute Engine</li>
+                    <li><strong>Esempi</strong>: <span class="glossary-term" onclick="showGlossary('AWS EC2', 'Amazon Elastic Compute Cloud - Servizio che fornisce capacità di computing scalabile nel cloud. Offre varie tipologie di istanze ottimizzate per diversi workload: general purpose, compute, memory, storage, GPU.')">AWS EC2</span>, Azure Virtual Machines, Google Compute Engine</li>
                     <li><strong>Use cases</strong>: Hosting siti web, ambienti dev/test, big data</li>
                 </ul>
             </div>
             
-            <h3>PaaS - Platform as a Service</h3>
+            <h3><span class="glossary-term" onclick="showGlossary('PaaS', 'Platform as a Service - Fornisce una piattaforma completa per sviluppo, test e deployment di applicazioni senza dover gestire l\'infrastruttura sottostante. Include runtime, middleware e strumenti di sviluppo.')">PaaS</span> - Platform as a Service</h3>
             <p>
                 Fornisce una piattaforma per sviluppare, testare e deployare applicazioni 
                 senza gestire l'infrastruttura sottostante.
@@ -335,7 +356,7 @@
                 </ul>
             </div>
             
-            <h3>SaaS - Software as a Service</h3>
+            <h3><span class="glossary-term" onclick="showGlossary('SaaS', 'Software as a Service - Applicazioni software complete erogate via Internet e accessibili tramite browser. L\'utente non gestisce infrastruttura, piattaforma o manutenzione del software.')">SaaS</span> - Software as a Service</h3>
             <p>
                 Applicazioni complete accessibili via browser, gestite interamente dal provider.
             </p>
@@ -352,12 +373,12 @@
             
             <h3>Modelli Aggiuntivi</h3>
             
-            <p><strong>FaaS - Function as a Service (Serverless)</strong></p>
+            <p><strong><span class="glossary-term" onclick="showGlossary('FaaS', 'Function as a Service - Modello di esecuzione serverless dove si carica solo il codice delle funzioni e il provider gestisce automaticamente l\'infrastruttura, scalabilità e disponibilità. Si paga solo per il tempo di esecuzione.')">FaaS</span> - Function as a Service (<span class="glossary-term" onclick="showGlossary('Serverless', 'Modello di computing cloud in cui il provider gestisce automaticamente l\'allocazione delle risorse server. Gli sviluppatori si concentrano solo sul codice senza preoccuparsi di provisioning, scalabilità o manutenzione dei server.')">Serverless</span>)</strong></p>
             <ul>
                 <li>Esecuzione di codice event-driven</li>
                 <li>Nessun server da gestire</li>
                 <li>Pagamento per esecuzione</li>
-                <li>Esempi: AWS Lambda, Azure Functions, Google Cloud Functions</li>
+                <li>Esempi: <span class="glossary-term" onclick="showGlossary('AWS Lambda', 'Servizio di compute serverless che esegue codice in risposta a eventi senza provisioning di server. Supporta vari linguaggi, scaling automatico e pagamento per 100ms di esecuzione. Ideale per API, data processing, automation.')">AWS Lambda</span>, Azure Functions, Google Cloud Functions</li>
             </ul>
             
             <p><strong>CaaS - Container as a Service</strong></p>
@@ -408,7 +429,7 @@
         <section id="modelli-deployment" class="summary-section">
             <h2>🌐 3. Modelli di Deployment</h2>
             
-            <h3>Public Cloud</h3>
+            <h3><span class="glossary-term" onclick="showGlossary('Public Cloud', 'Infrastruttura cloud posseduta e gestita da un provider terzo, con risorse condivise tra più organizzazioni tramite Internet. Offre scalabilità massima e costi operativi ridotti.')">Public Cloud</span></h3>
             <p>
                 Risorse possedute e operate da un provider cloud, condivise tra più organizzazioni.
             </p>
@@ -419,7 +440,7 @@
                 <li><strong>Ideale per</strong>: Startup, applicazioni web, carichi variabili</li>
             </ul>
             
-            <h3>Private Cloud</h3>
+            <h3><span class="glossary-term" onclick="showGlossary('Private Cloud', 'Infrastruttura cloud dedicata esclusivamente a una singola organizzazione, ospitata on-premise o presso un provider. Offre maggior controllo, sicurezza e conformità rispetto al public cloud.')">Private Cloud</span></h3>
             <p>
                 Infrastruttura cloud dedicata a una singola organizzazione, può essere on-premise o hosted.
             </p>
@@ -430,7 +451,7 @@
                 <li><strong>Ideale per</strong>: Settore finanziario, sanitario, governativo</li>
             </ul>
             
-            <h3>Hybrid Cloud</h3>
+            <h3><span class="glossary-term" onclick="showGlossary('Hybrid Cloud', 'Architettura che combina cloud pubblici e privati, permettendo di condividere dati e applicazioni tra di essi. Offre maggiore flessibilità e ottimizzazione dei costi mantenendo la sicurezza per dati sensibili.')">Hybrid Cloud</span></h3>
             <p>
                 Combinazione di cloud pubblico e privato, con orchestrazione tra i due ambienti.
             </p>
@@ -446,7 +467,7 @@
                 </li>
             </ul>
             
-            <h3>Multi-Cloud</h3>
+            <h3><span class="glossary-term" onclick="showGlossary('Multi-Cloud', 'Strategia che utilizza servizi cloud da due o più provider (es. AWS + Azure + GCP) per evitare vendor lock-in, massimizzare resilienza e sfruttare i servizi migliori di ciascun provider.')">Multi-Cloud</span></h3>
             <p>
                 Utilizzo di servizi da più provider cloud pubblici.
             </p>
@@ -531,7 +552,7 @@
                 <li>Storage scalabile per dati non strutturati</li>
                 <li>Accesso via HTTP/API</li>
                 <li>Metadati associati agli oggetti</li>
-                <li><strong>Servizi</strong>: AWS S3, Azure Blob Storage, Google Cloud Storage</li>
+                <li><strong>Servizi</strong>: <span class="glossary-term" onclick="showGlossary('AWS S3', 'Amazon Simple Storage Service - Servizio di object storage scalabile, durevole (99.999999999% durability) e sicuro. Supporta storage classes per diversi use case, lifecycle policies, versioning e encryption.')">AWS S3</span>, Azure Blob Storage, Google Cloud Storage</li>
                 <li><strong>Use cases</strong>: Backup, media files, data lakes, static websites</li>
             </ul>
             
@@ -696,7 +717,7 @@ exports.handler = async (event) => {<br>
             
             <h3>Container Services</h3>
             <ul>
-                <li><strong>Managed Kubernetes</strong>: EKS, AKS, GKE</li>
+                <li><strong>Managed <span class="glossary-term" onclick="showGlossary('Kubernetes', 'Sistema open-source per orchestrazione automatizzata di container. Gestisce deployment, scaling, networking e self-healing di applicazioni containerizzate su cluster. I provider cloud offrono versioni managed (EKS, AKS, GKE).')">Kubernetes</span></strong>: EKS, AKS, GKE</li>
                 <li><strong>Container Orchestration</strong>: AWS ECS, Azure Container Instances</li>
                 <li><strong>Serverless Containers</strong>: AWS Fargate, Cloud Run, Azure Container Apps</li>
             </ul>
@@ -711,7 +732,7 @@ exports.handler = async (event) => {<br>
         <section id="networking" class="summary-section">
             <h2>🌐 7. Cloud Networking</h2>
             
-            <h3>Virtual Private Cloud (VPC)</h3>
+            <h3><span class="glossary-term" onclick="showGlossary('VPC', 'Virtual Private Cloud - Rete virtuale isolata logicamente nel cloud. Permette di definire spazi di indirizzi IP privati, subnet, route table, network gateway e security group per controllare il traffico di rete.')">Virtual Private Cloud (VPC)</span></h3>
             <p>
                 Rete virtuale isolata nel cloud, controllata completamente dall'utente.
             </p>
@@ -728,7 +749,7 @@ exports.handler = async (event) => {<br>
                 </ul>
             </div>
             
-            <h3>Load Balancing</h3>
+            <h3><span class="glossary-term" onclick="showGlossary('Load Balancer', 'Dispositivo o servizio che distribuisce il traffico di rete in entrata tra più server backend per garantire alta disponibilità, fault tolerance e performance ottimali. Tipi: Layer 4 (TCP/UDP), Layer 7 (HTTP/HTTPS).')">Load Balancing</span></h3>
             <p>
                 Distribuzione del traffico tra più risorse per alta disponibilità e scalabilità.
             </p>
@@ -739,7 +760,7 @@ exports.handler = async (event) => {<br>
                 <li><strong>Global Load Balancer</strong>: Distribuzione geografica del traffico</li>
             </ul>
             
-            <h3>Content Delivery Network (CDN)</h3>
+            <h3><span class="glossary-term" onclick="showGlossary('CDN', 'Content Delivery Network - Rete geograficamente distribuita di server che cache e servono contenuti statici (immagini, CSS, JS) agli utenti dalla posizione più vicina, riducendo latenza e carico sul server origin.')">Content Delivery Network (CDN)</span></h3>
             <p>
                 Rete distribuita di server per delivery veloce di contenuti statici.
             </p>
@@ -1087,6 +1108,122 @@ resource "aws_instance" "web" {<br>
                 sulle novità dei provider.</p>
             </div>
         </section>
+        <!-- Nuova Sezione: Schemi e Diagrammi -->
+        <section id="schemi" class="summary-section">
+            <h2>📈 Schemi e Diagrammi</h2>
+
+            <div class="diagram" role="img" aria-label="Cloud service models: IaaS PaaS SaaS">
+                <svg viewBox="0 0 800 180" xmlns="http://www.w3.org/2000/svg">
+                    <style> .layer{fill:#eef2ff;stroke:#00c6ff;stroke-width:1} .lab{fill:#0072ff;font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:700} .desc{fill:#111827;font-family:Arial,Helvetica,sans-serif;font-size:12px}</style>
+                    <rect x="70" y="30" width="660" height="120" rx="10" fill="#fff" stroke="#cbd5e1"/>
+                    <rect x="90" y="40" width="620" height="30" rx="6" class="layer"/>
+                    <text x="400" y="61" text-anchor="middle" class="lab">SaaS (Application)</text>
+                    <rect x="120" y="80" width="560" height="30" rx="6" class="layer"/>
+                    <text x="400" y="101" text-anchor="middle" class="lab">PaaS (Platform)</text>
+                    <rect x="150" y="120" width="500" height="30" rx="6" class="layer"/>
+                    <text x="400" y="141" text-anchor="middle" class="lab">IaaS (Infrastructure)</text>
+                </svg>
+                <p class="diagram-caption">Servizio cloud come stack: IaaS → PaaS → SaaS. Vedi definizione NIST e spiegazioni su Wikipedia e provider ufficiali.</p>
+            </div>
+
+            <div class="diagram" role="img" aria-label="Deployment models: public private hybrid multi-cloud">
+                <svg viewBox="0 0 800 160" xmlns="http://www.w3.org/2000/svg">
+                    <style> .card{fill:#f8fafc;stroke:#00c6ff;stroke-width:1} .t{fill:#0072ff;font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:700} .s{fill:#111827;font-family:Arial,Helvetica,sans-serif;font-size:12px}</style>
+                    <rect x="40" y="20" width="220" height="110" rx="8" class="card"/>
+                    <text x="150" y="70" text-anchor="middle" class="t">Public Cloud</text>
+                    <rect x="290" y="20" width="220" height="110" rx="8" class="card"/>
+                    <text x="400" y="70" text-anchor="middle" class="t">Private Cloud</text>
+                    <rect x="540" y="20" width="220" height="110" rx="8" class="card"/>
+                    <text x="650" y="70" text-anchor="middle" class="t">Hybrid / Multi-Cloud</text>
+                </svg>
+                <p class="diagram-caption">Tipici modelli di deployment: pubblico, privato e ibrido/multi-cloud. Fonti: Azure, AWS, Wikipedia.</p>
+            </div>
+
+            <div class="diagram" role="img" aria-label="Shared responsibility model">
+                <svg viewBox="0 0 800 140" xmlns="http://www.w3.org/2000/svg">
+                    <style> .p{fill:#fff;stroke:#00c6ff;stroke-width:1} .h{fill:#0072ff;font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:700} .n{fill:#111827;font-family:Arial,Helvetica,sans-serif;font-size:12px}</style>
+                    <rect x="60" y="30" width="320" height="70" rx="8" class="p"/>
+                    <text x="220" y="68" text-anchor="middle" class="h">Provider: Infrastructure, Physical Security</text>
+                    <rect x="420" y="30" width="320" height="70" rx="8" class="p"/>
+                    <text x="580" y="68" text-anchor="middle" class="h">Customer: Data, IAM, App Security</text>
+                </svg>
+                <p class="diagram-caption">Shared Responsibility Model: i compiti variano a seconda di IaaS/PaaS/SaaS. Ulteriori dettagli su provider docs (AWS, Azure) e NIST.</p>
+            </div>
+
+            <h3>Architetture Cloud Avanzate</h3>
+            
+            <div class="diagram" role="img" aria-label="Architettura VPC con subnet pubbliche e private">
+                <svg viewBox="0 0 340 180" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <marker id="arrowVPC" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+                            <path d="M0 0 L10 5 L0 10 z" fill="#0072ff"/>
+                        </marker>
+                    </defs>
+                    <style> .vpc-border{fill:#e0f2fe;stroke:#0284c7;stroke-width:2;stroke-dasharray:5,5} .subnet{fill:#bfdbfe;stroke:#0369a1;stroke-width:1.5} .instance{fill:#fff;stroke:#0ea5e9;stroke-width:1.5} .vpc-text{fill:#111827;font-family:Arial,sans-serif;font-size:11px;font-weight:600} .vpc-label{fill:#334155;font-family:Arial,sans-serif;font-size:9px}</style>
+                    <rect x="10" y="10" width="320" height="160" rx="8" class="vpc-border"/>
+                    <text x="20" y="28" class="vpc-text">VPC (10.0.0.0/16)</text>
+                    <rect x="20" y="40" width="140" height="60" rx="4" class="subnet"/>
+                    <text x="90" y="55" text-anchor="middle" class="vpc-label">Public Subnet</text>
+                    <rect x="30" y="65" width="50" height="25" rx="3" class="instance"/>
+                    <text x="55" y="80" text-anchor="middle" class="vpc-label" style="font-size:8px">EC2 Web</text>
+                    <rect x="100" y="65" width="50" height="25" rx="3" class="instance"/>
+                    <text x="125" y="80" text-anchor="middle" class="vpc-label" style="font-size:8px">IGW</text>
+                    <rect x="170" y="40" width="150" height="60" rx="4" class="subnet" style="fill:#dbeafe"/>
+                    <text x="245" y="55" text-anchor="middle" class="vpc-label">Private Subnet</text>
+                    <rect x="185" y="65" width="50" height="25" rx="3" class="instance"/>
+                    <text x="210" y="80" text-anchor="middle" class="vpc-label" style="font-size:8px">APP</text>
+                    <rect x="255" y="65" width="50" height="25" rx="3" class="instance"/>
+                    <text x="280" y="80" text-anchor="middle" class="vpc-label" style="font-size:8px">DB</text>
+                    <line x1="55" y1="110" x2="210" y2="110" stroke="#0072ff" stroke-width="1.5" marker-end="url(#arrowVPC)"/>
+                    <text x="130" y="125" text-anchor="middle" class="vpc-label" style="font-size:8px">Internal traffic</text>
+                    <text x="20" y="155" class="vpc-label" style="fill:#0284c7">Internet → IGW → Public</text>
+                    <text x="20" y="168" class="vpc-label" style="fill:#0284c7">Public → NAT → Private</text>
+                </svg>
+                <p class="diagram-caption">Architettura VPC tipica con subnet pubbliche (esposta a internet tramite IGW) e private (accesso solo interno o tramite NAT Gateway).</p>
+            </div>
+
+            <div class="diagram" role="img" aria-label="Auto-scaling con Load Balancer">
+                <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <marker id="arrowAS" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+                            <path d="M0 0 L10 5 L0 10 z" fill="#059669"/>
+                        </marker>
+                    </defs>
+                    <style> .as-user{fill:#fef3c7;stroke:#f59e0b;stroke-width:1.5} .as-lb{fill:#bbf7d0;stroke:#059669;stroke-width:2} .as-instance{fill:#e0e7ff;stroke:#6366f1;stroke-width:1.5} .as-text{fill:#111827;font-family:Arial,sans-serif;font-size:11px;font-weight:600} .as-label{fill:#334155;font-family:Arial,sans-serif;font-size:9px}</style>
+                    <ellipse cx="30" cy="40" rx="15" ry="15" class="as-user"/>
+                    <text x="30" y="45" text-anchor="middle" class="as-label" style="font-size:10px">👥</text>
+                    <text x="30" y="70" text-anchor="middle" class="as-label">Users</text>
+                    <rect x="100" y="25" width="80" height="35" rx="6" class="as-lb"/>
+                    <text x="140" y="47" text-anchor="middle" class="as-text" style="font-size:10px">Load Balancer</text>
+                    <line x1="45" y1="40" x2="100" y2="42" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrowAS)"/>
+                    <rect x="210" y="15" width="90" height="30" rx="4" class="as-instance"/>
+                    <text x="255" y="33" text-anchor="middle" class="as-label">Instance 1</text>
+                    <rect x="210" y="55" width="90" height="30" rx="4" class="as-instance"/>
+                    <text x="255" y="73" text-anchor="middle" class="as-label">Instance 2</text>
+                    <rect x="210" y="95" width="90" height="30" rx="4" class="as-instance"/>
+                    <text x="255" y="113" text-anchor="middle" class="as-label">Instance 3</text>
+                    <line x1="180" y1="35" x2="210" y2="30" stroke="#059669" stroke-width="1.5" marker-end="url(#arrowAS)"/>
+                    <line x1="180" y1="42" x2="210" y2="70" stroke="#059669" stroke-width="1.5" marker-end="url(#arrowAS)"/>
+                    <line x1="180" y1="48" x2="210" y2="110" stroke="#059669" stroke-width="1.5" marker-end="url(#arrowAS)"/>
+                    <text x="160" y="150" text-anchor="middle" class="as-label" style="fill:#059669;font-weight:600">⚡ Auto-scaling basato su CPU/memoria</text>
+                    <text x="160" y="165" text-anchor="middle" class="as-label">Aggiunge/rimuove istanze dinamicamente</text>
+                </svg>
+                <p class="diagram-caption">Auto-scaling: il Load Balancer distribuisce il traffico tra le istanze. L'auto-scaler monitora le metriche e aggiunge/rimuove istanze automaticamente.</p>
+            </div>
+
+            <h3>Risorse esterne consigliate</h3>
+            <ul>
+                <li><a href="https://en.wikipedia.org/wiki/Cloud_computing" target="_blank" rel="noopener">Wikipedia — Cloud computing (panoramica, modelli)</a></li>
+                <li><a href="https://www.nist.gov/publications/definition-cloud-computing" target="_blank" rel="noopener">NIST — The NIST Definition of Cloud Computing</a> (definizioni e caratteristiche)</li>
+                <li><a href="https://aws.amazon.com/architecture/well-architected/" target="_blank" rel="noopener">AWS Well-Architected Framework</a> (best practices e 6 pillars)</li>
+                <li><a href="https://azure.microsoft.com/en-us/overview/what-is-cloud-computing/" target="_blank" rel="noopener">Microsoft Azure — What is cloud computing?</a></li>
+                <li><a href="https://undraw.co/illustrations" target="_blank" rel="noopener">unDraw — Illustrazioni gratuite (licenza permissiva)</a></li>
+            </ul>
+
+            <div class="highlight-box">
+                <p><strong>Nota:</strong> Ho inserito SVG inline per mantenere il file autonomo. Posso invece scaricare illustrazioni da unDraw o immagini dai provider e salvarle in `assets/images/` se preferisci — vuoi che proceda?</p>
+            </div>
+        </section>
         
         <!-- Footer -->
         <footer class="footer" style="margin-top: 60px;">
@@ -1096,5 +1233,128 @@ resource "aws_instance" "web" {<br>
             </p>
         </footer>
     </div>
+
+    <!-- Glossary Pop-up -->
+    <div id="glossary-popup" class="glossary-popup" style="display: none;">
+        <div class="glossary-content">
+            <button class="glossary-close" onclick="closeGlossary()">&times;</button>
+            <h3 id="glossary-term"></h3>
+            <p id="glossary-definition"></p>
+        </div>
+    </div>
+
+    <style>
+        .glossary-term {
+            color: var(--accent-color);
+            text-decoration: underline;
+            text-decoration-style: dotted;
+            cursor: help;
+            transition: all 0.2s ease;
+        }
+        
+        .glossary-term:hover {
+            background-color: rgba(74, 158, 255, 0.1);
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        
+        .glossary-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.2s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .glossary-content {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: slideUp 0.3s ease;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .glossary-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+        
+        .glossary-close:hover {
+            background-color: var(--secondary-bg);
+            color: var(--text-primary);
+        }
+        
+        .glossary-content h3 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .glossary-content p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+    </style>
+
+    <script>
+        function showGlossary(term, definition) {
+            document.getElementById('glossary-term').textContent = term;
+            document.getElementById('glossary-definition').textContent = definition;
+            document.getElementById('glossary-popup').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeGlossary() {
+            document.getElementById('glossary-popup').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Close on click outside
+        document.addEventListener('click', function(e) {
+            const popup = document.getElementById('glossary-popup');
+            if (e.target === popup) {
+                closeGlossary();
+            }
+        });
+        
+        // Close on ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeGlossary();
+            }
+        });
+    </script>
 </body>
 </html>

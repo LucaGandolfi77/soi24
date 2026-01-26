@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Genera Icone</title>
+</head>
+<body>
+    <canvas id="canvas192" width="192" height="192"></canvas>
+    <canvas id="canvas512" width="512" height="512"></canvas>
+    <div>
+        <a id="download192" download="icon-192.png">Scarica 192x192</a><br>
+        <a id="download512" download="icon-512.png">Scarica 512x512</a>
+    </div>
+    <script>
+        function drawIcon(canvas, size) {
+            const ctx = canvas.getContext('2d');
+            
+            // Gradient background
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#4a9eff');
+            gradient.addColorStop(1, '#667eea');
+            
+            // Background con angoli arrotondati
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.roundRect(0, 0, size, size, size * 0.15);
+            ctx.fill();
+            
+            // Documento
+            const docWidth = size * 0.4;
+            const docHeight = size * 0.5;
+            const docX = (size - docWidth) / 2;
+            const docY = (size - docHeight) / 2 - size * 0.05;
+            
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
+            ctx.beginPath();
+            ctx.roundRect(docX, docY, docWidth, docHeight, size * 0.02);
+            ctx.fill();
+            
+            // Linee del documento
+            const lineHeight = size * 0.02;
+            const lineMargin = size * 0.04;
+            const lineSpacing = size * 0.05;
+            
+            ctx.fillStyle = 'rgba(26, 26, 26, 0.6)';
+            for (let i = 0; i < 5; i++) {
+                const y = docY + lineMargin + (i * lineSpacing);
+                const width = docWidth - (lineMargin * 2) - (i % 2 === 0 ? 0 : size * 0.08);
+                ctx.beginPath();
+                ctx.roundRect(docX + lineMargin, y, width, lineHeight, lineHeight / 2);
+                ctx.fill();
+            }
+            
+            // Etichetta PDF
+            const labelWidth = size * 0.14;
+            const labelHeight = size * 0.06;
+            const labelX = (size - labelWidth) / 2;
+            const labelY = docY + docHeight - labelHeight / 2;
+            
+            ctx.fillStyle = '#4a9eff';
+            ctx.beginPath();
+            ctx.roundRect(labelX, labelY, labelWidth, labelHeight, size * 0.015);
+            ctx.fill();
+            
+            ctx.fillStyle = 'white';
+            ctx.font = `bold ${size * 0.04}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('PDF', size / 2, labelY + labelHeight / 2);
+        }
+        
+        // Aggiungi metodo roundRect se non esiste
+        if (!CanvasRenderingContext2D.prototype.roundRect) {
+            CanvasRenderingContext2D.prototype.roundRect = function(x, y, w, h, r) {
+                if (w < 2 * r) r = w / 2;
+                if (h < 2 * r) r = h / 2;
+                this.moveTo(x + r, y);
+                this.arcTo(x + w, y, x + w, y + h, r);
+                this.arcTo(x + w, y + h, x, y + h, r);
+                this.arcTo(x, y + h, x, y, r);
+                this.arcTo(x, y, x + w, y, r);
+            };
+        }
+        
+        // Genera le icone
+        const canvas192 = document.getElementById('canvas192');
+        const canvas512 = document.getElementById('canvas512');
+        
+        drawIcon(canvas192, 192);
+        drawIcon(canvas512, 512);
+        
+        // Link per download
+        document.getElementById('download192').href = canvas192.toDataURL('image/png');
+        document.getElementById('download512').href = canvas512.toDataURL('image/png');
+        
+        console.log('Icone generate! Usa i link per scaricarle.');
+    </script>
+</body>
+</html>

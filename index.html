@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1a1a1a">
+    <meta name="description" content="App per gestire documenti PDF con sezioni personalizzate">
+    <title>Gestore PDF - PWA</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="icon-192.png">
+    <link rel="apple-touch-icon" href="icon-192.png">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>📚 Gestore PDF</h1>
+            <button id="installBtn" class="install-btn" style="display: none;">
+                Installa App
+            </button>
+        </header>
+
+        <!-- Sezione Upload PDF -->
+        <section class="upload-section">
+            <div class="upload-card">
+                <h2>📄 Carica PDF</h2>
+                <div class="upload-area" id="uploadArea">
+                    <input type="file" id="pdfInput" accept=".pdf" multiple style="display: none;">
+                    <label for="pdfInput" class="upload-label">
+                        <span class="upload-icon">⬆️</span>
+                        <span>Clicca per caricare PDF</span>
+                        <span class="upload-hint">oppure trascina i file qui</span>
+                    </label>
+                </div>
+                <div id="uploadedFiles" class="uploaded-files"></div>
+            </div>
+        </section>
+
+        <!-- Sezioni Dinamiche -->
+        <section class="sections-container">
+            <div class="sections-header">
+                <h2>📑 Sezioni</h2>
+                <button id="addSectionBtn" class="btn-primary">
+                    ➕ Aggiungi Sezione
+                </button>
+            </div>
+            <div id="sectionsContent" class="sections-content">
+                <!-- Le sezioni verranno aggiunte dinamicamente qui -->
+            </div>
+        </section>
+
+        <!-- Modal per aggiungere contenuto dalla selezione PDF -->
+        <div id="contentModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Aggiungi Contenuto alla Sezione</h3>
+                    <button class="close-modal" id="closeModal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="contentType">Tipo di Contenuto:</label>
+                        <select id="contentType" class="form-control">
+                            <option value="text">Testo</option>
+                            <option value="image">Immagine</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="pdfSource">Scegli PDF Sorgente:</label>
+                        <select id="pdfSource" class="form-control">
+                            <!-- Popolato dinamicamente -->
+                        </select>
+                    </div>
+                    <div class="form-group" id="textGroup">
+                        <label for="contentText">Testo da Aggiungere:</label>
+                        <textarea id="contentText" class="form-control" rows="5" placeholder="Inserisci o incolla il testo estratto dal PDF"></textarea>
+                    </div>
+                    <div class="form-group" id="imageGroup" style="display: none;">
+                        <label for="imageInput">Carica Immagine dal PDF:</label>
+                        <input type="file" id="imageInput" accept="image/*" class="form-control">
+                        <div id="imagePreview" class="image-preview"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="addContentBtn" class="btn-primary">Aggiungi</button>
+                        <button id="cancelContentBtn" class="btn-secondary">Annulla</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal per creare nuova sezione -->
+        <div id="sectionModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Crea Nuova Sezione</h3>
+                    <button class="close-modal" id="closeSectionModal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="sectionTitle">Titolo Sezione:</label>
+                        <input type="text" id="sectionTitle" class="form-control" placeholder="Es: Capitolo 1, Appunti, Riassunto...">
+                    </div>
+                    <div class="form-group">
+                        <label for="sectionDescription">Descrizione (opzionale):</label>
+                        <textarea id="sectionDescription" class="form-control" rows="3" placeholder="Breve descrizione della sezione"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="createSectionBtn" class="btn-primary">Crea Sezione</button>
+                        <button id="cancelSectionBtn" class="btn-secondary">Annulla</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>💾 I dati sono salvati localmente nel tuo browser</p>
+        </footer>
+    </div>
+
+    <!-- Script PDF.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    </script>
+    <script src="app.js"></script>
+</body>
+</html>

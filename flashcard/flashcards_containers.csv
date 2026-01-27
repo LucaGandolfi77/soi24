@@ -1,0 +1,48 @@
+Che cos'è la containerizzazione secondo il materiale didattico?,È una forma di virtualizzazione e isolamento leggero delle risorse.
+"A differenza delle macchine virtuali, cosa condividono i container con il sistema operativo host?",Condividono lo stesso hardware e lo stesso kernel del sistema operativo.
+Quale progetto è citato come l'origine della moderna tecnologia di containerizzazione?,Il progetto Docker.
+"Nell'architettura Docker, il server REST funge da _____.",Engine as a service daemon (motore come demone di servizio).
+Qual è il compito principale del demone del server Docker?,Eseguire le richieste inviate dal client.
+Quale tipo di interfaccia utilizza il client Docker?,Una Command Line Interface (CLI).
+Quale caratteristica dei comandi del client CLI di Docker li rende facili da ricordare?,Sono un insieme di sottocomandi simili a Unix con mnemoniche facili.
+Quale funzionalità del kernel Linux viene usata da Docker per limitare l'uso di risorse come CPU e memoria?,cgroups (control groups).
+Quale funzionalità del kernel Linux permette di partizionare le risorse e controllarne la visibilità per un container?,namespaces.
+Quale funzionalità del filesystem imposta una directory radice apparente per un processo in esecuzione in un container?,chroot.
+Docker utilizza gli _____ come OverlayFS per gestire i layer del filesystem delle immagini.,union filesystems.
+Come gestisce Docker la connettività di rete per i container?,"Creando subnet per i container, che possono essere locali o estendersi su un cluster."
+Quale meccanismo di rete usa Docker per mappare le porte esterne dell'host a quelle interne di un container?,NAT (Network Address Translation).
+Concetto: Registry (nel contesto Docker),"Definizione: Una collezione di immagini pubblicate, che può essere pubblica o privata."
+Concetto: Immagine (nel contesto Docker),"Definizione: Un filesystem pacchettizzato in formato OCI, immutabile e firmato con SHA, che è eseguibile come container."
+Da cosa è composta la struttura di un'immagine Docker?,Da strati (layers) di immagini di base.
+Come vengono distribuite le immagini Docker?,Attraverso i registry.
+Che cos'è un container Docker in relazione a un'immagine?,È un'istanza in esecuzione di un'immagine.
+Cosa viene creato da un container sopra l'immagine quando viene avviato?,Un nuovo layer di filesystem volatile.
+Come sono gestiti i processi all'interno di un container?,"Sono un gruppo di risorse isolate, con una mappatura dei PID (Process ID) dell'host."
+Qual è la caratteristica principale del filesystem di un container?,È volatile; le modifiche vengono perse se il container viene rimosso.
+"Per rendere persistenti i dati di un container, si devono usare i _____.",volumi.
+Cosa succede al layer di filesystem volatile quando un container viene fermato (stopped)?,"Viene conservato, permettendo al container di essere riavviato mantenendo lo stato."
+Cosa viene conservato di un container dopo che è stato rimosso (removed)?,Vengono conservati solo i volumi ad esso associati.
+Qual è lo scopo dei volumi in Docker?,Fornire punti di montaggio per i container in esecuzione per la persistenza dei dati.
+Quale tipo di volume mappa un percorso del file system dell'host in un percorso all'interno del container?,Bind mount.
+Quale tipo di volume utilizza driver per gestire filesystem persistenti?,Volume mount.
+In quale circostanza il contenuto di un volume mount viene inizializzato a partire dall'immagine?,Al primo montaggio (on first mount).
+A cosa serve lo strumento Docker Compose?,È una CLI per definire e gestire gruppi di servizi (applicazioni multi-container).
+"Oltre a gestire i servizi come un tutt'uno, quale flessibilità offre Docker Compose?",Permette di gestire anche un sottoinsieme di servizi o un singolo servizio.
+"In Docker Compose, i _____ sono le entità che vengono eseguite come container.",servizi.
+"Oltre ai servizi, quali altre due componenti principali possono essere definite in un file Docker Compose?",Reti (Networks) e Volumi (Volumes).
+Cosa si intende per 'service replica' nel contesto dello scaling?,Avere più di un container in esecuzione per lo stesso servizio.
+Qual è una conseguenza della scalabilità dinamica delle repliche di un servizio?,Ogni istanza ha un IP e una porta dinamici.
+"Quando si scalano le repliche di un servizio, quale meccanismo di bilanciamento del carico viene applicato implicitamente?",Un bilanciatore round-robin che distribuisce le richieste in arrivo.
+A cosa serve un Load Balancer esplicito in un'architettura a container?,A fornire un punto di ingresso (entry-point) statico per un servizio.
+"Un esempio di Load Balancer esplicito può essere implementato tramite un container _____, come Envoy Proxy.",sidecar.
+Un Load Balancer che opera a livello di Network/Transport (OSI L4) è orientato alla _____.,connessione (e lavora con host:port).
+Un Load Balancer che opera a livello Applicativo (OSI L7) è orientato al _____.,"messaggio (e può ispezionare URL HTTP, headers, ecc.)."
+Quale funzionalità di un Load Balancer L7 permette di instradare tutte le richieste di una sessione utente alla stessa istanza del servizio?,"La sticky session, tipicamente basata su un header HTTP come un cookie."
+Cos'è un 'Health Check' per un container?,È un comando eseguito periodicamente per auto-verificare lo stato di funzionamento del servizio.
+"Quale dei seguenti non è un esempio di controllo effettuato da un Health Check: raggiungibilità socket, disponibilità file, consumo risorse, versione del kernel?",Versione del kernel.
+Cosa accade a un container dopo che il suo Health Check fallisce per più volte consecutive?,Il container viene riavviato.
+Perché si attende che un Health Check fallisca più volte di seguito prima di riavviare un container?,Per evitare di reagire a falsi negativi (false negative).
+Cosa si intende per 'DevOps'?,Un insieme di pratiche e strumenti per migliorare il ciclo di vita dello sviluppo dei sistemi (SDLC).
+Cosa significa l'acronimo CI nel contesto DevOps?,Continuous Integration (Integrazione Continua).
+Cosa significa l'acronimo CD nel contesto DevOps?,Continuous Delivery (Consegna Continua).
+Quali sono i due strumenti di orchestrazione di cluster menzionati nel materiale?,Docker Swarm e Kubernetes.

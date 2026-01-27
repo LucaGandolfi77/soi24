@@ -1,0 +1,86 @@
+Quale caratteristica principale definisce il protocollo TCP/IP menzionata nel materiale?,È un protocollo 'connection oriented' (orientato alla connessione).
+"In TCP/IP, da cosa è identificata univocamente ogni connessione?",Da due coppie: server-host:port e client-host:port.
+Quale caratteristica fondamentale definisce il protocollo HTTP/HTTPS?,"È un protocollo 'stateless' (senza stato), dove ogni richiesta è indipendente dalle precedenti."
+"In HTTP, come è possibile identificare la sessione di un client se non tramite la connessione stessa?","Attraverso gli header, utilizzando Cookies o Bearer token."
+Quali sono le quattro componenti principali di una richiesta HTTP?,"URL, Metodo, Headers e Body."
+Quali sono le tre componenti principali di una risposta HTTP?,"Stato (Status), Headers e Body."
+"Nel protocollo HTTP, cosa indicano i codici di stato del gruppo '2xx'?",Indicano il successo dell'operazione (Success).
+"Nel protocollo HTTP, cosa indicano i codici di stato del gruppo '4xx'?",Indicano un errore da parte del client (Client Error).
+"Nel protocollo HTTP, cosa indicano i codici di stato del gruppo '5xx'?",Indicano un errore da parte del server (Server Error).
+Quale metodo HTTP viene tipicamente utilizzato per richiedere una risorsa da un server?,Il metodo GET.
+Quale metodo HTTP viene comunemente usato per inviare dati a un server per creare una nuova risorsa?,Il metodo POST.
+Quale metodo HTTP è utilizzato per aggiornare completamente una risorsa esistente sul server?,Il metodo PUT.
+Quale metodo HTTP viene utilizzato per eliminare una risorsa specificata?,Il metodo DELETE.
+"Nell'esempio di messaggio HTTP, quale codice di stato indica una redirezione dopo una richiesta POST andata a buon fine?",Il codice di stato '303 See Other'.
+"Nel contesto di TLS, come fa il mittente a cifrare un messaggio?",Il mittente cifra il messaggio utilizzando la chiave pubblica del destinatario.
+"In TLS, come fa il destinatario a decifrare un messaggio cifrato con la sua chiave pubblica?",Il destinatario decifra il messaggio usando la propria chiave privata corrispondente.
+Chi genera e firma le chiavi utilizzate nel protocollo TLS?,Una Certificate Authority (CA).
+Cos'è la 'Certificate Chain' in TLS?,È una catena gerarchica di certificati che permette di validare un certificato fino a una Root CA fidata.
+Qual è lo scopo principale di un 'Client Certificate' in TLS?,"Identifica l'account del client, fornendo un meccanismo di autenticazione."
+Cosa fornisce Let's Encrypt?,È una Certificate Authority no-profit che fornisce certificati TLS gratuiti.
+Cos'è acme.sh?,È un client del protocollo ACME scritto in linguaggio Shell (Unix shell) per ottenere certificati TLS.
+Quali sono le tre principali modalità di comunicazione tra microservizi menzionate?,"SOAP, REST/Websocket, e gRPC."
+Cos'è SOAP (Simple Object Access Protocol)?,"È uno standard W3C per inviare messaggi a oggetti remoti, tipicamente usando XML."
+"Nel contesto dei web service SOAP, a cosa serve il WSDL?",Il WSDL (Web Services Description Language) serve per la definizione del servizio.
+"In un'architettura Java per SOAP, a cosa serve JAX-WS?",Serve per il mapping tra oggetti Java e il web service (Java Object <-> Web service).
+"In un'architettura Java per SOAP, a cosa serve JAXB?",Serve per il mapping tra oggetti Java e il contenuto XML (Java Object <-> XML content).
+Quale standard sfrutta un servizio web RESTful?,Sfrutta lo standard HTTP.
+"Nel Richardson Maturity Model, cosa rappresenta il 'Level 3'?","Rappresenta HATEOAS (Hypermedia as the Engine of Application State), ovvero il linking tra risorse."
+Quale formato di messaggio è più comunemente usato nei servizi web RESTful?,Il formato JSON (JavaScript Object Notation).
+Quale strumento è menzionato per testare i servizi web RESTful?,Postman.
+Da chi è stato sviluppato GraphQL?,È stato sviluppato da Facebook.
+"In GraphQL, quale parte del sistema definisce le 'queries' e le 'mutations'?",Il client definisce le 'queries' (interrogazioni) e le 'mutations' (modifiche).
+Cosa enuncia il 'Principio del privilegio minimo' (Principle of least privilege) in sicurezza informatica?,"Enuncia che a un'entità (utente, processo) devono essere concessi solo i permessi strettamente necessari per svolgere le sue funzioni."
+Cosa si deve sempre fare con l'input proveniente dal client secondo le buone pratiche di sicurezza?,Si deve sempre validare e sanificare l'input del client (Validate / sanitize client input).
+"Secondo la lista OWASP Top 10, 'Broken Object Level Authorization' è la vulnerabilità numero _____.",1
+"Secondo la lista OWASP Top 10, 'Broken Authentication' è la vulnerabilità numero _____.",2
+"Secondo la lista OWASP Top 10, 'Server Side Request Forgery' è la vulnerabilità numero _____.",7
+Quale tecnologia viene utilizzata per la descrizione semantica dei documenti web?,HTML (HyperText Markup Language).
+Quale tecnologia è un linguaggio di fogli di stile usato per descrivere l'aspetto di un documento HTML?,CSS (Cascading Style Sheets).
+Quale tecnologia permette di effettuare richieste asincrone al server e aggiornare la pagina in modo incrementale?,AJAX (Asynchronous JavaScript and XML).
+Quale tecnologia stabilisce una connessione HTTP persistente per una comunicazione bidirezionale veloce?,WebSocket.
+Come viene avviata una connessione WebSocket?,Attraverso un header HTTP specifico che richiede di 'aggiornare' il protocollo (Upgrade).
+Cos'è un Web Server?,È un software che può ricevere e rispondere a messaggi HTTP.
+Cos'è un Proxy in una rete?,"È un intermediario tra un client e un web server che gestisce cache, sicurezza e privacy."
+Qual è la differenza tra un Forward Proxy e un Reverse Proxy?,"Un Forward Proxy agisce per conto dei client (da rete interna a esterna), mentre un Reverse Proxy agisce per conto dei server (da rete esterna a interna)."
+Cos'è SNI (Server Name Indication)?,È un'estensione del protocollo TLS che permette a un server di presentare certificati multipli sullo stesso indirizzo IP e porta.
+A cosa serve un JWT (JSON Web Token)?,Serve per autorizzare un client in un server stateless.
+Qual è lo scopo di WebRTC?,Permettere la comunicazione in tempo reale (Real-time communication) tra browser.
+Cos'è WebAssembly?,"È un formato binario eseguibile nel browser o sul server, interoperabile con Javascript."
+A cosa serve CORS (Cross-Origin Resource Sharing)?,"Serve ad abilitare richieste a domini di backend multipli, una politica di sicurezza applicata dai browser."
+Qual è la funzione di un API Gateway?,"Agisce come punto di ingresso unico per più servizi di backend, applicando policy di sicurezza e monitoraggio."
+Qual è lo scopo di un Load Balancer?,Distribuisce il traffico di rete tra più istanze di un servizio per migliorare l'affidabilità e la scalabilità.
+"In quale ambiente, oltre ai browser, può essere eseguito Javascript?","Può essere eseguito in sistemi operativi, ad esempio tramite NodeJS."
+Che tipo di linguaggio è Javascript?,È un linguaggio interpretato con 'Duck Typing'.
+"Nell'ambiente browser, a quali elementi ha accesso l'API Javascript?","Ha accesso agli elementi del DOM (Document Object Model), ovvero i tag HTML."
+Quali capacità ha l'API di NodeJS che mancano nell'ambiente browser?,"Può usare processi, accedere al filesystem e all'I/O del sistema operativo."
+"In Javascript, quale valore speciale di tipo 'number' indica un risultato non numerico?",NaN (Not a Number).
+"In Javascript, qual è la differenza tra 'undefined' e 'null'?","'undefined' indica un valore non inizializzato, mentre 'null' indica un'assenza intenzionale di un oggetto."
+Cosa significa che le funzioni in Javascript sono 'first-class objects'?,Significa che possono essere passate come argomenti ad altre funzioni e restituite da altre funzioni.
+Quale parola chiave in Javascript dichiara una costante read-only con scope di blocco?,const.
+Quale parola chiave in Javascript dichiara una variabile locale con scope di blocco?,let.
+Quale sintassi Javascript permette di estrarre valori da array o proprietà da oggetti in variabili distinte?,La sintassi di 'Destructuring Assignment'.
+"In Javascript, cos'è una 'Promise'?",Rappresenta il completamento (o il fallimento) eventuale di un'operazione asincrona.
+Quali parole chiave sono state introdotte in Javascript per lavorare con le Promise in modo più leggibile?,Le parole chiave `async` e `await`.
+Cos'è JsDoc?,È un linguaggio di markup per inserire documentazione inline nel codice sorgente Javascript.
+Qual è uno dei principi chiave della programmazione funzionale riguardo ai dati?,L'immutabilità dei dati (Data Immutability).
+Cosa caratterizza una 'Pure Function' (Funzione Pura) nella programmazione funzionale?,Il suo risultato dipende solo dagli input e non ha effetti collaterali (side-effects).
+Quale paradigma di programmazione si occupa di gestire flussi di eventi asincroni in modo dichiarativo?,La programmazione reattiva (Reactive Programming).
+"Nello state management con Redux, cos'è lo 'Store'?",È un singolo oggetto di stato immutabile che contiene lo stato dell'intera applicazione.
+Cos'è il Server-Side Rendering (SSR)?,"È una tecnica in cui le pagine HTML dinamiche vengono create dal server, unendo template e dati."
+Qual è un vantaggio del Server-Side Rendering (SSR)?,"È 'SEO friendly', ovvero facilmente indicizzabile dai motori di ricerca."
+Cos'è una Single Page Application (SPA)?,È un'applicazione web che carica una singola pagina HTML e la aggiorna dinamicamente con Javascript.
+Qual è uno svantaggio delle Single Page Application (SPA)?,Non sono nativamente 'SEO friendly'.
+Cos'è una Progressive Web App (PWA)?,"È un'applicazione web che offre un'esperienza utente simile a un'app nativa, con funzionalità come l'uso offline."
+Quale meccanismo usa React per aggiornare in modo efficiente gli elementi della pagina?,Utilizza un 'virtual DOM' per calcolare le differenze ('diffs') e aggiornare solo gli elementi del DOM reale che sono cambiati.
+"Nella libreria React Redux, qual è il ruolo della funzione 'Reducer'?",Gestisce le azioni ('actions') e restituisce il nuovo stato ('next state') dell'applicazione.
+"Nella libreria React Router, qual è il suo scopo principale?",Gestire la navigazione tra 'pagine' virtuali all'interno di una Single Page Application.
+"Nel ciclo di vita di un componente React con Hooks, quale hook viene usato per eseguire effetti collaterali (es. chiamate API) dopo il render?",L'hook `useEffect`.
+"Nel contesto del routing web, cos'è la 'Location'?",È l'indirizzo corrente del browser.
+Quale strumento è il runtime per eseguire Javascript lato server menzionato nella lista?,NodeJS.
+Qual è il Package Manager standard per l'ecosistema NodeJS?,NPM (Node Package Manager).
+Cosa fa un 'Transpiler' come Babel o TSC?,"Converte codice da una versione di un linguaggio (es. ES6, Typescript) a un'altra (es. ES5) compatibile con più browser."
+Qual è il ruolo di un 'Bundler' come Webpack o Rollup?,Aggrega e ottimizza i file Javascript e le loro dipendenze in un unico file (o pochi file) per il browser.
+Quale strumento viene utilizzato per l'analisi statica del codice per trovare problemi e applicare stili di codifica?,Un 'Linter' come ESLint.
+Quali strumenti sono menzionati per il testing di applicazioni Javascript?,Jest e Cypress.
+Quale sistema di controllo di versione del codice sorgente è menzionato?,Git.

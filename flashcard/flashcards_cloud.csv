@@ -1,0 +1,44 @@
+"Nella panoramica degli argomenti 'Cloud', quale concetto riguarda la gestione di utenti e permessi?",Identity Access Management.
+"Quale argomento, relativo all'isolamento di rete nel cloud, è elencato nella sezione 'Cloud'?",Virtual Private Network.
+Quale servizio è menzionato per la gestione dei nomi di dominio nella sezione 'Cloud'?,DNS Server.
+"Quale concetto fondamentale di calcolo, che rappresenta un server nel cloud, è elencato tra gli argomenti?",Virtual Machine.
+Cosa viene utilizzato per archiviare le immagini dei container secondo la lista degli argomenti 'Cloud'?,Container Images Registry.
+Qual è il termine usato per descrivere un gruppo gestito di container in esecuzione?,Container Cluster.
+Quale argomento riguarda la raccolta di dati operativi e metriche delle performance?,Logs & Monitoring.
+Come si chiama la piattaforma per l'acquisto di software e servizi di terze parti nel cloud?,Marketplace.
+Qual è l'argomento che tratta i modelli di costo e gli strumenti di gestione economica del cloud?,Economy Business Model.
+Qual è il servizio AWS specifico per l'Identity Access Management?,AWS IAM.
+"In AWS IAM, quali sono le entità fondamentali che possono essere gestite?","Users, Groups, Permissions, Policies, Roles."
+Cosa definisce una 'Policy' in AWS IAM?,"Un documento che definisce formalmente i permessi associati a un utente, gruppo o ruolo."
+"In AWS IAM, un _____ è un'identità che può essere assunta da un'entità affidabile per ottenere permessi temporanei.",Role (Ruolo).
+Qual è il servizio AWS per creare una rete isolata nel cloud?,AWS VPC (Virtual Private Cloud).
+"In AWS, una VPC è situata in una _____ e può estendersi su più _____.","Region, Availability Zones."
+Quali componenti di una AWS VPC sono essenziali per instradare il traffico e segmentare la rete?,Subnets e Route tables.
+A cosa serve un 'Internet Gateway' in una AWS VPC?,A consentire la comunicazione tra le istanze nella VPC e Internet.
+Quale componente permette alle istanze in una subnet privata di accedere a Internet senza essere esposte a connessioni in entrata?,NAT Gateway.
+Quale strumento agisce come firewall a livello di istanza in AWS?,Security groups.
+Quale strumento agisce come firewall a livello di subnet in AWS?,Network ACLs.
+Qual è il servizio DNS di AWS?,AWS Route 53.
+"In AWS Route 53, cosa contiene una 'Hosted zone'?",I record DNS per un dominio specifico e i suoi sottodomini.
+Un record DNS di tipo 'A' serve a mappare un nome a un _____.,indirizzo IP (o alias di un servizio AWS).
+Qual è lo scopo di un record DNS di tipo 'CNAME'?,Creare un alias da un nome di dominio a un altro.
+"In DNS, a cosa serve un record 'NS'?",A delegare un sottodominio a un altro set di server DNS.
+Come si chiama il servizio AWS che fornisce macchine virtuali?,AWS EC2 (Elastic Compute Cloud).
+"In AWS EC2, cos'è una 'AMI' (Amazon Machine Image)?",Un'immagine di macchina pre-configurata usata per creare una o più istanze.
+Che cos'è l'EBS (Elastic Block Store) nel contesto di AWS?,Un servizio di storage a blocchi (block storage) utilizzato con le istanze EC2.
+Cosa definiscono gli 'Instance Types' di EC2?,"Le diverse configurazioni di hardware (CPU, RAM, storage) per un'istanza."
+Qual è il servizio AWS che funge da registro per le immagini Docker?,AWS ECR (Elastic Container Registry).
+"In AWS ECR, le immagini sono organizzate in _____ e versionate tramite _____.","Repositories, Image Tags."
+Quale servizio AWS è utilizzato per l'orchestrazione di container?,AWS ECS (Elastic Container Service).
+"In AWS ECS, cos'è una 'Task Definition'?",Un modello che descrive come lanciare uno o più container come una singola unità.
+Qual è la differenza principale tra un 'EC2 Cluster' e un 'Fargate Cluster' in ECS?,"In un EC2 Cluster gestisci le istanze sottostanti, mentre in un Fargate Cluster le istanze sono gestite da AWS (serverless)."
+Con quale modello di pagamento opera AWS Fargate?,Si paga solo per le risorse effettivamente utilizzate dai task ('Pay only actual resources used').
+"In AWS ECS, i 'Services' e i 'Tasks' rappresentano rispettivamente la definizione del servizio a lungo termine e le _____ in esecuzione.",istanze dei container.
+Quale servizio AWS è primariamente usato per 'Logs & Monitoring'?,AWS CloudWatch.
+Quali sono le due funzioni principali di AWS CloudWatch menzionate nelle slide?,"Raccogliere e analizzare log, e fornire metriche per il monitoraggio e il bilanciamento."
+Cosa permette di fare l'AWS Marketplace?,Acquistare servizi di terze parti e rivendere risorse inutilizzate.
+Quale strumento AWS aiuta a stimare i costi futuri del cloud?,Pricing Calculator.
+Il modello di business fondamentale di AWS si basa sul principio del _____.,Pay per use (paga per l'uso).
+Cosa offrono i 'Saving Plans' di AWS?,Sconti sui costi in cambio di un impegno di spesa a lungo termine (1 o 3 anni).
+Quale strumento AWS permette di visualizzare e analizzare i costi e l'utilizzo passati?,Cost Explorer.
+Quale funzionalità di AWS consente di impostare allarmi quando i costi superano una certa soglia?,Budgets / Alerts.

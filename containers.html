@@ -195,6 +195,131 @@
             font-size: 0.9rem;
             margin-top:8px;
         }
+
+        /* Flashcards */
+        .flashcards-wrap {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 18px;
+        }
+
+        .flashcard-stage {
+            background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .flashcard {
+            width: 100%;
+            min-height: 240px;
+            perspective: 1200px;
+        }
+
+        .flashcard-inner {
+            position: relative;
+            width: 100%;
+            min-height: 240px;
+            transition: transform 0.6s ease;
+            transform-style: preserve-3d;
+        }
+
+        .flashcard.is-flipped .flashcard-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-face {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 28px;
+            border-radius: 14px;
+            backface-visibility: hidden;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+        }
+
+        .flashcard-face.back {
+            transform: rotateY(180deg);
+            background: linear-gradient(135deg, rgba(74, 158, 255, 0.08), rgba(102, 126, 234, 0.12));
+        }
+
+        .flashcard-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .flashcard-text {
+            color: var(--text-primary);
+            font-size: 1.15rem;
+            line-height: 1.6;
+        }
+
+        .flashcard-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 18px;
+        }
+
+        .flashcard-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .flashcard-button {
+            padding: 10px 16px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            background: var(--secondary-bg);
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 600;
+        }
+
+        .flashcard-button:hover {
+            background: var(--hover-bg);
+            transform: translateY(-1px);
+        }
+
+        .flashcard-button.primary {
+            background: linear-gradient(135deg, var(--accent-color), #667eea);
+            color: white;
+            border: none;
+        }
+
+        .flashcard-meta {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .flashcard-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .flashcard-loading {
+            background: var(--secondary-bg);
+            border-radius: 10px;
+            padding: 14px 16px;
+            border: 1px dashed var(--border-color);
+        }
     </style>
 </head>
 <body>
@@ -219,6 +344,7 @@
                 <li><a href="#volumi">5. Volumi e Persistenza</a></li>
                 <li><a href="#orchestrazione">6. Orchestrazione</a></li>
                 <li><a href="#best-practices">7. Best Practices</a></li>
+                <li><a href="#flashcards">8. Flashcards di Studio</a></li>
             </ul>
         </nav>
         
@@ -590,6 +716,45 @@ CMD ["node", "dist/server.js"]
                 <p><strong>💡 Risultato:</strong> Immagine finale molto più piccola, contenente solo i file necessari per l'esecuzione.</p>
             </div>
         </section>
+
+        <!-- Sezione 8: Flashcards -->
+        <section id="flashcards" class="summary-section">
+            <h2>🧠 8. Flashcards di Studio</h2>
+            <p>Ripassa rapidamente i concetti chiave: la domanda è sul fronte, la risposta sul retro.</p>
+
+            <div class="flashcards-wrap">
+                <div class="flashcard-stage">
+                    <div class="flashcard" id="flashcard">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-face front">
+                                <div class="flashcard-label">Domanda</div>
+                                <div class="flashcard-text" id="flashcard-front">Caricamento…</div>
+                            </div>
+                            <div class="flashcard-face back">
+                                <div class="flashcard-label">Risposta</div>
+                                <div class="flashcard-text" id="flashcard-back"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flashcard-controls">
+                        <div class="flashcard-actions">
+                            <button class="flashcard-button" id="flashcard-prev" type="button">← Precedente</button>
+                            <button class="flashcard-button primary" id="flashcard-flip" type="button">Gira</button>
+                            <button class="flashcard-button" id="flashcard-next" type="button">Successiva →</button>
+                            <button class="flashcard-button" id="flashcard-shuffle" type="button">Mescola</button>
+                        </div>
+                        <div class="flashcard-status">
+                            <span id="flashcard-counter" class="flashcard-meta">0 / 0</span>
+                            <span id="flashcard-streak" class="flashcard-meta">Streak: 0</span>
+                            <span id="flashcard-hint" class="flashcard-meta">Suggerimento: clicca sulla card per girarla</span>
+                        </div>
+                    </div>
+
+                    <div class="flashcard-loading" id="flashcard-message" style="display:none;"></div>
+                </div>
+            </div>
+        </section>
         
         <!-- Sezione Schemi e Diagrammi -->
         <section id="schemi" class="summary-section">
@@ -867,6 +1032,196 @@ CMD ["node", "dist/server.js"]
                 closeGlossary();
             }
         });
+
+        // Flashcards
+        const flashcardState = {
+            items: [],
+            index: 0,
+            flipped: false,
+            streak: 0,
+            flippedCurrent: false
+        };
+
+        const flashcardEls = {
+            card: document.getElementById('flashcard'),
+            front: document.getElementById('flashcard-front'),
+            back: document.getElementById('flashcard-back'),
+            prev: document.getElementById('flashcard-prev'),
+            next: document.getElementById('flashcard-next'),
+            flip: document.getElementById('flashcard-flip'),
+            shuffle: document.getElementById('flashcard-shuffle'),
+            counter: document.getElementById('flashcard-counter'),
+            streak: document.getElementById('flashcard-streak'),
+            message: document.getElementById('flashcard-message')
+        };
+
+        function parseCSV(text) {
+            const rows = [];
+            let current = '';
+            let row = [];
+            let inQuotes = false;
+
+            for (let i = 0; i < text.length; i++) {
+                const char = text[i];
+                const next = text[i + 1];
+
+                if (char === '"') {
+                    if (inQuotes && next === '"') {
+                        current += '"';
+                        i++;
+                    } else {
+                        inQuotes = !inQuotes;
+                    }
+                    continue;
+                }
+
+                if (!inQuotes && (char === ',' || char === '\n' || char === '\r')) {
+                    if (char === ',' ) {
+                        row.push(current.trim());
+                        current = '';
+                        continue;
+                    }
+
+                    if (char === '\r' && next === '\n') {
+                        i++;
+                    }
+
+                    row.push(current.trim());
+                    if (row.length > 1 || row.some(cell => cell.length > 0)) {
+                        rows.push(row);
+                    }
+                    row = [];
+                    current = '';
+                    continue;
+                }
+
+                current += char;
+            }
+
+            if (current.length > 0 || row.length > 0) {
+                row.push(current.trim());
+                if (row.length > 1 || row.some(cell => cell.length > 0)) {
+                    rows.push(row);
+                }
+            }
+
+            return rows;
+        }
+
+        function setFlashcardMessage(text) {
+            if (!flashcardEls.message) return;
+            if (!text) {
+                flashcardEls.message.style.display = 'none';
+                flashcardEls.message.textContent = '';
+                return;
+            }
+            flashcardEls.message.style.display = 'block';
+            flashcardEls.message.textContent = text;
+        }
+
+        function updateFlashcard() {
+            const total = flashcardState.items.length;
+            if (total === 0) {
+                flashcardEls.front.textContent = 'Nessuna flashcard disponibile.';
+                flashcardEls.back.textContent = '';
+                flashcardEls.counter.textContent = '0 / 0';
+                flashcardEls.card.classList.remove('is-flipped');
+                flashcardState.flipped = false;
+                flashcardState.flippedCurrent = false;
+                flashcardState.streak = 0;
+                if (flashcardEls.streak) {
+                    flashcardEls.streak.textContent = 'Streak: 0';
+                }
+                return;
+            }
+
+            const item = flashcardState.items[flashcardState.index];
+            flashcardEls.front.textContent = item.front;
+            flashcardEls.back.textContent = item.back;
+            flashcardEls.counter.textContent = `${flashcardState.index + 1} / ${total}`;
+            flashcardEls.card.classList.remove('is-flipped');
+            flashcardState.flipped = false;
+            flashcardState.flippedCurrent = false;
+            if (flashcardEls.streak) {
+                flashcardEls.streak.textContent = `Streak: ${flashcardState.streak}`;
+            }
+        }
+
+        function flipFlashcard() {
+            flashcardState.flipped = !flashcardState.flipped;
+            flashcardEls.card.classList.toggle('is-flipped', flashcardState.flipped);
+            if (flashcardState.flipped) {
+                flashcardState.flippedCurrent = true;
+            }
+        }
+
+        function goToFlashcard(step) {
+            const total = flashcardState.items.length;
+            if (total === 0) return;
+            if (flashcardState.flippedCurrent) {
+                flashcardState.streak += 1;
+            } else {
+                flashcardState.streak = 0;
+            }
+            flashcardState.index = (flashcardState.index + step + total) % total;
+            updateFlashcard();
+        }
+
+        function shuffleFlashcards() {
+            for (let i = flashcardState.items.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [flashcardState.items[i], flashcardState.items[j]] = [flashcardState.items[j], flashcardState.items[i]];
+            }
+            flashcardState.index = 0;
+            flashcardState.streak = 0;
+            updateFlashcard();
+            setFlashcardMessage('Flashcards mescolate.');
+            setTimeout(() => setFlashcardMessage(''), 1500);
+        }
+
+        if (flashcardEls.card) {
+            flashcardEls.card.addEventListener('click', flipFlashcard);
+            flashcardEls.flip.addEventListener('click', flipFlashcard);
+            flashcardEls.prev.addEventListener('click', () => goToFlashcard(-1));
+            flashcardEls.next.addEventListener('click', () => goToFlashcard(1));
+            flashcardEls.shuffle.addEventListener('click', shuffleFlashcards);
+
+            document.addEventListener('keydown', (e) => {
+                if (['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName)) {
+                    return;
+                }
+                if (e.key === 'ArrowLeft') {
+                    goToFlashcard(-1);
+                } else if (e.key === 'ArrowRight') {
+                    goToFlashcard(1);
+                } else if (e.key === ' ' || e.key === 'Enter') {
+                    flipFlashcard();
+                }
+            });
+
+            fetch('flashcard/flashcards_containers.csv')
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error('Impossibile caricare le flashcards.');
+                    }
+                    return response.text();
+                })
+                .then((text) => {
+                    const rows = parseCSV(text);
+                    flashcardState.items = rows
+                        .filter(row => row.length >= 2)
+                        .map(row => ({
+                            front: row[0] || '—',
+                            back: row[1] || '—'
+                        }));
+                    updateFlashcard();
+                })
+                .catch(() => {
+                    setFlashcardMessage('Non riesco a caricare le flashcards. Verifica il file CSV.');
+                    flashcardState.items = [];
+                    updateFlashcard();
+                });
+        }
     </script>
 </body>
 </html>

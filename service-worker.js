@@ -1,4 +1,7 @@
 const CACHE_NAME = 'gestore-pdf-v1';
+// Setta a true per disabilitare temporaneamente la logica di caching
+// (utile in fase di sviluppo per vedere sempre gli HTML aggiornati)
+const DISABLE_CACHING = true;
 const urlsToCache = [
   '/',
   '/index.html',
@@ -13,6 +16,12 @@ const urlsToCache = [
 
 // Installazione del Service Worker
 self.addEventListener('install', (event) => {
+  if (DISABLE_CACHING) {
+    console.log('Service Worker: caching DISABLED for development. Skipping install caching.');
+    event.waitUntil(self.skipWaiting());
+    return;
+  }
+
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
@@ -37,6 +46,12 @@ self.addEventListener('install', (event) => {
 
 // Attivazione del Service Worker
 self.addEventListener('activate', (event) => {
+  if (DISABLE_CACHING) {
+    console.log('Service Worker: caching DISABLED for development. Activating without cache cleanup.');
+    event.waitUntil(self.clients.claim());
+    return;
+  }
+
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
@@ -54,6 +69,14 @@ self.addEventListener('activate', (event) => {
 
 // Gestione delle richieste
 self.addEventListener('fetch', (event) => {
+  if (DISABLE_CACHING) {
+    // Bypass della cache: rispondi direttamente dalla rete (fallback su index.html se fallisce)
+    event.respondWith(
+      fetch(event.request).catch(() => caches.match('/index.html'))
+    );
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request)
       .then((response) => {

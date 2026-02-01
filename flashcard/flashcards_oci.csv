@@ -1,0 +1,45 @@
+"Qual è il modello che fornisce risorse di sistema on-demand, come storage e potenza di calcolo, senza richiedere una gestione diretta dell'infrastruttura?",Il Cloud Computing.
+Perché i grandi provider cloud distribuiscono i servizi su più data center geograficamente separati?,Per garantire affidabilità e scalabilità.
+"Quale modello di pagamento, tipico del cloud computing, riduce i costi d'investimento iniziali ma può generare spese operative impreviste?",Il modello pay-as-you-go.
+"Qual è l'obiettivo di Oracle Cloud Infrastructure riguardo all'energia entro il 2025, come mostrato sulla mappa del global footprint?",Raggiungere il 100% di energia rinnovabile.
+"Secondo la documentazione, quanti public regions e altri tipi di regioni comprende l'infrastruttura globale di Oracle Cloud a Maggio 2024?","Comprende 48 public regions più altre regioni dedicate, per un totale di 72 regioni."
+Quale fattore si considera nella scelta di una regione per ottenere la latenza più bassa e le prestazioni più elevate?,"La Localizzazione (Location), scegliendo una regione vicina agli utenti."
+Quale fattore di scelta di una regione riguarda i requisiti legali di molti paesi sulla conservazione dei dati?,La Residenza dei Dati e Conformità (Data Residency & Compliance).
+Secondo quale criterio vengono resi disponibili i nuovi servizi cloud in OCI?,"In base a fattori come la domanda regionale, la conformità normativa e la disponibilità delle risorse (Service Availability)."
+"Nell'architettura OCI, cosa rappresenta una _____?","Regione (Region), un'area geografica localizzata composta da uno o più domini di disponibilità."
+Cosa sono i Domini di Disponibilità (Availability Domains - AD) in OCI?,Sono uno o più data center isolati e tolleranti ai guasti situati all'interno di una regione.
+Qual è una caratteristica chiave dei Domini di Disponibilità (AD) che garantisce la tolleranza ai guasti?,"Sono isolati l'uno dall'altro e hanno infrastrutture fisiche non condivise, rendendo improbabile un fallimento simultaneo."
+Cosa sono i Domini di Errore (Fault Domains - FD) all'interno dell'architettura OCI?,"Sono raggruppamenti di hardware e infrastrutture, considerati come data center logici, all'interno di un Dominio di Disponibilità."
+Quanti Domini di Errore (Fault Domains) contiene ogni Dominio di Disponibilità (Availability Domain)?,Ogni Availability Domain contiene tre Fault Domains.
+Come si progetta un'architettura per evitare singoli punti di fallimento in una regione OCI con un solo AD?,Distribuendo le istanze che eseguono gli stessi compiti in diversi Domini di Errore (Fault Domains).
+Come si progetta un'architettura per evitare singoli punti di fallimento in una regione OCI con più AD?,Distribuendo le istanze che eseguono gli stessi compiti in diversi Domini di Disponibilità (Availability Domains).
+Quali sono i tre servizi principali (Core Services) di Oracle Cloud Infrastructure (OCI)?,"Compute, Storage e Networking."
+Cosa consentono di fare i servizi di Compute di OCI?,Permettono di effettuare il provisioning e la gestione di risorse di calcolo tramite un'unica API.
+Quali sono i tre tipi di istanze di calcolo (Types of Compute) offerti da OCI?,"Virtual Machine, Bare Metal e Dedicated VM Host."
+Che cos'è un'istanza di tipo Virtual Machine (VM) in OCI?,È un ambiente di calcolo indipendente che non richiede le risorse di un'intera macchina fisica ed è altamente sicuro.
+Per quali tipi di workload è ideale un'istanza Bare Metal in OCI?,"Workload ad alte prestazioni (performance-intensive), workload che non eseguono una VM e workload con requisiti di licenza di terze parti."
+Cosa fornisce un'istanza Bare Metal in OCI?,"Fornisce un accesso dedicato e diretto al server fisico (""physical-server-access"")."
+Cos'è un'istanza di tipo Dedicated VM Host in OCI?,È un server dedicato su cui è possibile eseguire macchine virtuali (VM).
+"In OCI, cos'è una 'Shape'?","È un template che determina le risorse (CPU, memoria, storage) allocate a un'istanza di calcolo."
+Qual è la differenza tra 'Fixed shapes' e 'Flexible Shapes' in OCI?,"Le 'Fixed shapes' non possono essere personalizzate, mentre le 'Flexible Shapes' consentono di personalizzare il numero di OCPU e la quantità di memoria."
+Il processo di modifica della dimensione di un'istanza per supportare cambiamenti nel carico di lavoro è chiamato _____.,Vertical Scaling (scale up e scale down).
+Quale azione è necessaria prima di poter ridimensionare (resizing) un'istanza in OCI?,È necessario arrestare (stop) l'istanza.
+Cos'è l'Autoscaling in OCI?,"È una funzionalità che abilita il deployment su larga scala di VM, scalando orizzontalmente (scale out o scale in) in base a metriche o a una pianificazione."
+Quali sono i due tipi di Autoscaling menzionati per OCI?,Metric-based Autoscaling e Schedule-based Autoscaling.
+Quali sono i tre principali tipi di servizi di storage in OCI?,"Block Volume, File Storage e Object Storage."
+Quale servizio di storage di OCI è specificamente progettato come 'Storage for Compute' e opera a livello di Availability Domain?,Block Volume.
+Qual è la caratteristica principale dei dischi Block Volume che garantisce la durabilità dei dati?,Sono dischi persistenti che mantengono i dati anche dopo aver eliminato l'istanza a cui erano collegati.
+Quale funzionalità avanzata dei Block Volumes scala dinamicamente le prestazioni in base alla domanda?,La funzionalità di performance auto-tuning.
+Quale servizio di storage OCI è ideale per lo 'Shared Storage for Compute' ed è adatto a container e workload di big data?,File Storage.
+Quale servizio di storage di OCI è progettato come 'Storage for Web' e opera a livello di Regione?,Object Storage.
+Per quale tipo di dati è ideale l'OCI Object Storage?,"È ideale per dati non strutturati come log, immagini e video."
+Cos'è una Virtual Cloud Network (VCN) in OCI?,"È una rete software-defined personalizzabile e privata, equivalente virtuale di una rete on-premises tradizionale."
+"All'interno di una VCN, cosa è possibile definire per gestire il traffico?","È possibile definire subnet, route table, gateway e regole firewall."
+"Quale servizio di OCI permette connessioni private dedicate da 1, 10 o 100 Gb/sec tra l'infrastruttura del cliente e Oracle Cloud?",FastConnect.
+Qual è un elemento distintivo della rete OCI che facilita scenari multicloud avanzati?,La possibilità di connessione diretta con Microsoft Azure in diverse regioni globali con bassissima latenza.
+"In OCI, le subnet permettono di dividere i prefissi _____ in prefissi più piccoli.",CIDR.
+"Nella notazione CIDR 192.168.1.0/24, cosa rappresentano i primi 24 bit?",Rappresentano l'indirizzo di rete (network address).
+"Nella notazione CIDR 192.168.1.0/24, cosa rappresentano gli ultimi 8 bit?",Rappresentano l'indirizzo dell'host (host address).
+"Dato il Network ID 192.168.1.0/24, quale sarebbe il primo indirizzo host utilizzabile?",192.168.1.1.
+"Dato il Network ID 192.168.1.0/24, quale sarebbe l'ultimo indirizzo host utilizzabile?",192.168.1.254.
+"Dato il Network ID 192.168.1.0/24, quale indirizzo è riservato per il broadcast?",192.168.1.255.

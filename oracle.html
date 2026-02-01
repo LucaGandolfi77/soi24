@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oracle Cloud Infrastructure - Corso Università di Parma</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Map slide-style to cloud theme cards */
+        body { background-color: var(--primary-bg); color: var(--text-primary); padding: 24px; }
+        .slide { width: auto; height: auto; margin: 20px auto; border-radius: 12px; background-color: var(--card-bg); box-shadow: var(--shadow); padding: 28px; }
+        .p-16 { padding: 2rem; }
+        .text-6xl{font-size:2.5rem}
+        .text-5xl{font-size:2rem}
+        h1,h2,h3,h4{font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif}
+        ul,ol{margin-left:1.5rem}
+
+        /* Keep glossary styles (compatible with cloud theme) */
+        .glossary-term{color:var(--accent-color);text-decoration:underline dotted;cursor:help}
+        .glossary-popup{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);z-index:9999}
+        .glossary-content{background:var(--card-bg);color:var(--text-primary);padding:18px;border-radius:8px;max-width:520px;width:92%;box-shadow:var(--shadow-lg);position:relative}
+        .glossary-close{position:absolute;right:12px;top:8px;border:0;background:transparent;font-size:22px;color:var(--text-secondary);cursor:pointer}
+        .glossary-content h3{margin-bottom:8px}
+        .diagram { background-color: var(--secondary-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 18px; margin: 18px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button" style="display:inline-block;margin-bottom:18px;text-decoration:none;">
+            ← Torna alla Home
+        </a>
+    <!-- SLIDE 1: Titolo principale -->
+    <section class="slide p-16 col center">
+        <h1 class="text-6xl mb-4" style="color: var(--accent-color);">Oracle Cloud Infrastructure</h1>
+        <p class="text-2xl mb-6" style="color: var(--text-secondary);">Panorama completo e architetture cloud</p>
+        <p class="text-lg" style="color: var(--text-secondary);">Università di Parma - Sistemi Orientati ad Internet A.A. 2025-2026</p>
+        <p class="text-sm mt-4" style="color: var(--text-secondary);">Docenti: Paolo Cocconi | Annarosa Ferri</p>
+    </section>
+
+    <!-- SLIDE 2: Cosa è il Cloud Computing -->
+    <section class="slide p-16 col">
+        <h2 class="mb-6" style="color: var(--accent-color);">Cosa è il Cloud Computing?</h2>
+        <div class="fill-height">
+            <ul class="text-lg" style="color: var(--text-secondary);">
+                <li>Disponibilità on-demand di risorse computazionali</li>
+                <li>Stoccaggio dati e potenza di elaborazione senza gestione attiva</li>
+                <li>Distribuito su più data center geografici</li>
+                <li>Modello pay-as-you-go per ridurre costi capitali</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SLIDE 3: Infrastruttura globale OCI (esempio) -->
+    <section class="slide p-16 col">
+        <h2 class="mb-6" style="color: var(--accent-color);">Infrastruttura Globale OCI</h2>
+        <p class="text-lg mb-4" style="color: var(--text-secondary);">72 regioni disponibili (Maggio 2024)</p>
+        <ul class="text-lg" style="color: var(--text-secondary);">
+            <li><strong>38 regioni commerciali</strong> + 5 in pianificazione</li>
+            <li><strong>8 regioni governative</strong></li>
+            <li><strong>2 regioni sovrane</strong></li>
+            <li><strong>100% energia rinnovabile</strong> entro il 2025</li>
+        </ul>
+    </section>
+
+    <!-- SLIDE 4: Servizi Principali -->
+    <section class="slide p-16 col">
+        <h2 class="mb-6" style="color: var(--accent-color);">Servizi Principali di OCI</h2>
+        <ul class="text-lg" style="color: var(--text-secondary);">
+            <li><strong>Compute:</strong> VMs, Bare Metal, Dedicated Hosts</li>
+            <li><strong>Storage:</strong> Block, File, Object Storage</li>
+            <li><strong>Networking:</strong> VCN, Load Balancers, DNS</li>
+            <li><strong>Database:</strong> Autonomous DB, MySQL, PostgreSQL</li>
+        </ul>
+    </section>
+
+    <!-- SLIDE 5: VCN e Subnetting -->
+    <!-- INSERTED: Compute & Storage slides -->
+    <section class="slide p-16 col">
+        <h2 class="mb-6" style="color: var(--accent-color);">Compute / VM / Bare Metal / Dedicated Host</h2>
+        <p class="text-base" style="color: var(--text-secondary);">
+            Il servizio <span class="glossary-term" onclick="showGlossary('Compute (OCI)', 'Il servizio Compute di Oracle Cloud Infrastructure fornisce capacità di calcolo on‑demand per eseguire server virtuali o fisici. Le istanze usano "shape" che combinano OCPU, memoria, storage e rete; sono disponibili shape fisse e flessibili e supporto per AMD, Intel, Arm e GPU NVIDIA. Automazione tramite console, CLI, SDK e Terraform.')">Compute (OCI)</span> fornisce capacità di calcolo on‑demand per applicazioni web, database, batch e AI/ML. Le istanze si basano su <span class="glossary-term" onclick="showGlossary('Shape', 'Una shape in OCI specifica numero di OCPU, memoria, storage locale/di rete e banda. Esistono shape fisse e shape flessibili configurabili.')">shape</span> che definiscono OCPU, memoria, storage e banda di rete.
+        </p>
+        <ul class="text-lg" style="color: var(--text-secondary);">
+            <li><strong>Virtual Machine (VM):</strong> ambiente isolato che gira su hypervisor; flessibile e adatto a workload generici.</li>
+            <li><strong>Bare Metal:</strong> server fisico dedicato a un solo tenant, ideale per HPC, database e carichi I/O intensivi.</li>
+            <li><strong>Dedicated VM Host:</strong> hardware riservato dove eseguire solo le tue VM per isolamento a livello host e compliance.</li>
+        </ul>
+    </section>
+
+    <section class="slide p-16 col">
+        <h2 class="mb-6" style="color: var(--accent-color);">Shapes, Vertical Scaling e Autoscaling</h2>
+        <p class="text-base" style="color: var(--text-secondary);">
+            <strong>Shape</strong>: modello che definisce risorse (OCPU, memoria, storage, rete). Le shape influenzano prestazioni e costi.
+        </p>
+            <p class="text-base" style="color: var(--text-secondary);">
+            <strong>Vertical Scaling</strong>: cambiare la shape di una VM per aumentare o ridurre OCPU e memoria (in OCI richiede l'arresto dell'istanza).
+        </p>
+        <p class="text-base" style="color: var(--text-secondary);">
+            <strong>Autoscaling</strong>: scale‑out/scale‑in automatico di istanze in un pool basato su metriche o schedule, utile per applicazioni stateless.
+        </p>
+    </section>
+
+    <section class="slide p-16 col">
+        <h2 class="mb-6" style="color: var(--accent-color);">Storage: Block, File, Object</h2>
+        <ul class="text-lg" style="color: var(--text-secondary);">
+            <li><strong>Block Volume:</strong> dischi persistenti di rete (snapshot, replica, backup), adatti a database e workload I/O intensivi.</li>
+            <li><strong>File Storage:</strong> filesystem condiviso (NFS) con semantica POSIX, accessibile da più istanze.</li>
+            <li><strong>Object Storage:</strong> storage a scala Internet per dati non strutturati (bucket/oggetti), accessibile via API HTTP(S).</li>
+        </ul>
+    </section>
+
+    <!-- END INSERTED -->
+
+    <section class="slide p-16 col">
+        <h2 class="mb-6" style="color: var(--accent-color);">Virtual Cloud Network (VCN)</h2>
+        <ul class="text-lg" style="color: var(--text-secondary);">
+            <li>Rete privata virtuale in OCI</li>
+            <li>Configurazione RFC 1918 (10.0.0.0/16 consigliato)</li>
+            <li>Subnets pubbliche e private</li>
+            <li>Gateway per Internet, NAT e Service Gateway</li>
+        </ul>
+        </section>
+
+        <!-- VCN Diagram -->
+        <section class="slide p-16 col">
+            <h3 class="mb-4" style="color: var(--accent-color);">Schema VCN: Public / Private Subnet</h3>
+            <div style="width:100%;display:flex;justify-content:center;">
+                <svg viewBox="0 0 720 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="VCN architecture with public and private subnet">
+                    <style>.vpc{fill:#071337;stroke:#0ea5e9;stroke-width:1}.sub{fill:#0f172a;stroke:#334155;stroke-width:1}.box{fill:#07203a;stroke:#38bdf8;stroke-width:1}.lab{fill:#cbd5e1;font-family:Arial,sans-serif;font-size:12px}</style>
+                    <rect x="10" y="10" width="700" height="200" rx="8" class="vpc"/>
+                    <text x="60" y="32" class="lab">VCN (10.0.0.0/16)</text>
+                    <rect x="40" y="50" width="300" height="120" rx="6" class="sub"/>
+                    <text x="190" y="70" class="lab" text-anchor="middle">Public Subnet (10.0.1.0/24)</text>
+                    <rect x="380" y="50" width="300" height="120" rx="6" class="sub"/>
+                    <text x="530" y="70" class="lab" text-anchor="middle">Private Subnet (10.0.2.0/24)</text>
+
+                    <rect x="80" y="90" width="80" height="30" rx="4" class="box"/>
+                    <text x="120" y="110" class="lab" text-anchor="middle">Load Balancer</text>
+                    <rect x="180" y="90" width="80" height="30" rx="4" class="box"/>
+                    <text x="220" y="110" class="lab" text-anchor="middle">Web VM</text>
+                    <rect x="420" y="110" width="80" height="30" rx="4" class="box"/>
+                    <text x="460" y="130" class="lab" text-anchor="middle">App VM</text>
+                    <rect x="520" y="110" width="80" height="30" rx="4" class="box"/>
+                    <text x="560" y="130" class="lab" text-anchor="middle">DB (Private)</text>
+
+                    <rect x="40" y="12" width="60" height="24" rx="4" fill="#0f172a" stroke="#10b981"/>
+                    <text x="70" y="28" class="lab" text-anchor="middle" style="fill:#10b981">Internet Gateway</text>
+
+                    <line x1="100" y1="74" x2="200" y2="94" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+                    <line x1="260" y1="104" x2="420" y2="124" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+                    <defs>
+                        <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                            <path d="M0 0 L8 4 L0 8 z" fill="#94a3b8"/>
+                        </marker>
+                    </defs>
+                </svg>
+            </div>
+            <p class="text-base" style="color: var(--text-secondary); margin-top:8px;">Schema semplificato del VCN: subnet pubbliche espongono risorse tramite Internet Gateway; subnet private contengono backend protetti, accessibili tramite NAT o LB.</p>
+        </section>
+
+    <!-- SLIDE 6: Sicurezza e IAM -->
+    <section class="slide p-16 col">
+        <h2 class="mb-6" style="color: var(--accent-color);">Identity and Access Management (IAM)</h2>
+        <p class="text-lg mb-4" style="color: var(--text-secondary);"><strong>Flusso: Utenti → Gruppi → Policy → Compartimenti → Risorse</strong></p>
+        <ul class="text-lg" style="color: var(--text-secondary);">
+            <li><strong>Identity Domains:</strong> Container per utenti e configurazioni</li>
+            <li><strong><span class="glossary-term" onclick="showGlossary('Compartment', 'Un compartment è un contenitore logico per risorse OCI (VCN, istanze, volumi, database) utilizzato per isolare carichi di lavoro, organizzare ambienti e delegare l amministrazione.')">Compartimenti</span>:</strong> Isolamento e controllo accesso</li>
+            <li><strong><span class="glossary-term" onclick="showGlossary('Policy', 'Le policy IAM sono regole testuali che definiscono permessi per gruppi su risorse in specifici compartimenti o nell intera tenancy usando un linguaggio dichiarativo.')">Policy</span>:</strong> Definiscono permessi granulari</li>
+        </ul>
+        <p class="text-base" style="color: var(--text-secondary);">Best practice: principio del minimo privilegio, uso di MFA e separazione tra account amministrativi e operativi.</p>
+    </section>
+
+    <!-- SLIDE 7: Networking - Region, AD, FD -->
+    <section class="slide p-16 col">
+        <h2 class="mb-6" style="color: var(--accent-color);">Region, Availability Domain, Fault Domain</h2>
+        <p class="text-base" style="color: var(--text-secondary);"><strong>Regione (Region):</strong> area geografica che contiene uno o più data center logici con servizi cloud completi. Scegli la regione per latenza, compliance e sovranità dei dati.</p>
+        <p class="text-base" style="color: var(--text-secondary);"><strong>Availability Domain (AD):</strong> data center logico isolato all'interno di una regione per ridurre il rischio di guasti simultanei.</p>
+        <p class="text-base" style="color: var(--text-secondary);"><strong>Fault Domain (FD):</strong> raggruppamento logico di hardware all'interno di un AD per confinare impatti di manutenzione e failure.</p>
+    </section>
+
+    <!-- SLIDE 8: Networking - VCN, Subnet, CIDR -->
+    <section class="slide p-16 col">
+        <h2 class="mb-6" style="color: var(--accent-color);">Virtual Cloud Network (VCN), Subnet e CIDR</h2>
+        <p class="text-base" style="color: var(--text-secondary);"><span class="glossary-term" onclick="showGlossary('VCN', 'Virtual Cloud Network - Rete virtuale definita via software in OCI che include subnet, route table, gateway e regole firewall per connettere risorse in modo sicuro.')">VCN</span> è la rete virtuale di base; una <span class="glossary-term" onclick="showGlossary('Subnet', 'Una subnet è una suddivisione di un VCN che copre un blocco CIDR contiguo, può essere pubblica o privata e ha route table e security list proprie.')">subnet</span> copre un blocco CIDR e può essere pubblica o privata.</p>
+        <p class="text-base" style="color: var(--text-secondary);"><strong>CIDR</strong>: notazione A.B.C.D/x che definisce la dimensione del blocco IP; OCI raccomanda l'uso di intervalli RFC1918 per reti private.</p>
+    </section>
+
+    <!-- SLIDE 9: Networking - IP Pubblico vs Privato -->
+    <section class="slide p-16 col">
+        <h2 class="mb-6" style="color: var(--accent-color);">Indirizzi IP: Pubblico vs Privato</h2>
+        <ul class="text-lg" style="color: var(--text-secondary);">
+            <li><strong>IP Privato:</strong> comunicazione all'interno del VCN o verso reti collegate (VPN, FastConnect); non raggiungibile da Internet.</li>
+            <li><strong>IP Pubblico:</strong> raggiungibile da Internet, tipicamente assegnato a VNIC in subnet pubbliche o a risorse esposte esternamente.</li>
+        </ul>
+    </section>
+
+    <!-- SLIDE 7: Monitoring e Costi (conciso) -->
+    <section class="slide p-16 col">
+        <h2 class="mb-6" style="color: var(--accent-color);">Monitoring e Costi</h2>
+        <ul class="text-lg" style="color: var(--text-secondary);">
+            <li><strong>Metrics & Alarms:</strong> monitoraggio e alert</li>
+            <li><strong>Logging Analytics:</strong> analisi log avanzata</li>
+            <li><strong>Cost Management:</strong> budgets, cost analysis, estimator</li>
+        </ul>
+    </section>
+
+    <!-- SLIDE 8: Conclusione -->
+    <section class="slide p-16 col center">
+        <h2 class="text-5xl mb-6" style="color: var(--accent-color);">Conclusioni</h2>
+        <!-- SLIDE 8.5: Glossario OCI (esteso con esempi) -->
+        <section class="slide p-16 col">
+            <h2 class="text-5xl mb-6" style="color: var(--accent-color);">Glossario OCI</h2>
+            <ul class="text-lg" style="color: var(--text-secondary);">
+                <li><span class="glossary-term" onclick="showGlossary('OCID','OCID: Oracle Cloud Identifier — identificatore univoco per risorse OCI. Esempio di formato: ocid1.instance.oc1..aaaaaaaexample')">OCID</span></li>
+                <li><span class="glossary-term" onclick="showGlossary('Tenancy','Tenancy: contenitore principale che ospita risorse e identita in OCI. Esempio: ocid1.tenancy.oc1..aaaaaaaexample')">Tenancy</span></li>
+                <li><span class="glossary-term" onclick="showGlossary('Compartment','Compartment: contenitore logico per organizzare e isolare risorse e policy. Utile per billing e delega amministrativa.')">Compartment</span></li>
+                <li><span class="glossary-term" onclick="showGlossary('Policy','Policy: regole IAM scritte in linguaggio semplice per consentire o negare azioni su risorse in specifici compartimenti o sull intera tenancy. Esempio: allow group Admins to manage instance-family in compartment Prod')">Policy</span></li>
+                <li><span class="glossary-term" onclick="showGlossary('Identity Domains','Identity Domains: gestione delle identita per utenti e gruppi in OCI (SSO/SCIM). Utile per integrazione enterprise SSO.')">Identity Domains</span></li>
+                <li><span class="glossary-term" onclick="showGlossary('MFA','MFA: autenticazione a piu fattori per aumentare la sicurezza degli accessi; consigliata per account amministrativi.')">MFA</span></li>
+                <li><span class="glossary-term" onclick="showGlossary('Compute','Compute: istanze virtuali (VM), Bare Metal o Dedicated Hosts per eseguire carichi di lavoro. Esempio ID istanza: ocid1.instance.oc1..aaaaaaaexample')">Compute</span></li>
+                <li><span class="glossary-term" onclick="showGlossary('Shape','Shape: configurazione di CPU/RAM/Network di un\u2019istanza; determina risorse e prezzo. Esempio: VM.Standard2.1')">Shape</span></li>
+                <li><span class="glossary-term" onclick="showGlossary('Block Volume','Block Volume: storage a blocchi utilizzabile come disco attachabile alle VM. Supporta snapshot e resizing online.')">Block Volume</span></li>
+                <li><span class="glossary-term" onclick="showGlossary('Object Storage','Object Storage: storage scalabile per oggetti (file) accessibile via API. Esempio: namespace + bucket + oggetto (my-namespace/my-bucket/log.txt)')">Object Storage</span></li>
+                <li><span class="glossary-term" onclick="showGlossary('File Storage','File Storage: filesystem condiviso POSIX, ideale per applicazioni che richiedono locking e semantica file.')">File Storage</span></li>
+                <li><span class="glossary-term" onclick="showGlossary('VCN','VCN: Virtual Cloud Network — rete virtuale che isola e connette risorse OCI. Esempio CIDR: 10.0.0.0/16')">VCN</span></li>
+                <li><span class="glossary-term" onclick="showGlossary('Subnet','Subnet: suddivisione della VCN con CIDR range separati; puo essere pubblica o privata.')">Subnet</span></li>
+                <li><span class="glossary-term" onclick="showGlossary('Internet Gateway','Internet Gateway: dispositivo che permette il traffico tra VCN e Internet. Usato per risorse esposte pubblicamente.')">Internet Gateway</span></li>
+                <li><span class="glossary-term" onclick="showGlossary('NAT Gateway','NAT Gateway: consente alle istanze private di accedere a Internet senza esporre IP pubblici.')">NAT Gateway</span></li>
+                <li><span class="glossary-term" onclick="showGlossary('Service Gateway','Service Gateway: consente accesso privato a servizi Oracle (es. Object Storage) senza uscire su Internet.')">Service Gateway</span></li>
+                <li><span class="glossary-term" onclick="showGlossary('DRG','DRG: Dynamic Routing Gateway — collega la VCN a reti on-premise tramite VPN o FastConnect. Esempio ID DRG: ocid1.drg.oc1..aaaaaaaexample')">DRG</span></li>
+                <li><span class="glossary-term" onclick="showGlossary('FastConnect','FastConnect: connessione privata dedicata tra on-premises e OCI per bassa latenza e banda garantita.')">FastConnect</span></li>
+                <li><span class="glossary-term" onclick="showGlossary('Route Table','Route Table: definisce le rotte per instradare il traffico dalla VCN verso gateway o DRG; una route punta a un target (IGW, NAT, DRG).')">Route Table</span></li>
+                <li><span class="glossary-term" onclick="showGlossary('Security List','Security List: firewall stateless per subnet che controlla traffico in ingresso e uscita via regole CIDR/porta.')">Security List</span></li>
+                <li><span class="glossary-term" onclick="showGlossary('Network Security Group','Network Security Group (NSG): firewall stateful a livello di risorsa per controllare traffico su VNIC specifici.')">Network Security Group</span></li>
+                <li><span class="glossary-term" onclick="showGlossary('Load Balancer','Load Balancer: distribuisce traffico tra backend, puo terminare TLS e eseguire health checks.')">Load Balancer</span></li>
+                <li><span class="glossary-term" onclick="showGlossary('Autoscaling','Autoscaling: scala automaticamente istanze in base a policy e metriche per gestire variazioni di carico.')">Autoscaling</span></li>
+                <li><span class="glossary-term" onclick="showGlossary('Cloud Guard','Cloud Guard: servizio per rilevamento e risposta a minacce su risorse OCI, include policy e automation recipes.')">Cloud Guard</span></li>
+                <li><span class="glossary-term" onclick="showGlossary('Vault','Vault: gestione chiavi e segreti (KMS) per cifrare dati e gestire lifecycle delle chiavi. Esempio ID chiave: ocid1.key.oc1..aaaaaaaexample')">Vault</span></li>
+                <li><span class="glossary-term" onclick="showGlossary('WAF','WAF: Web Application Firewall — protezione per applicazioni web contro attacchi comuni come SQLi e XSS; puo includere bot management.')">WAF</span></li>
+                <li><span class="glossary-term" onclick="showGlossary('Audit','Audit: servizio che registra azioni amministrative e API calls per compliance e forensics.')">Audit</span></li>
+                <li><span class="glossary-term" onclick="showGlossary('Resource Manager','Resource Manager: servizio per gestire infrastruttura come codice (Terraform managed). Supporta stack, drift detection e variabili.')">Resource Manager</span></li>
+            </ul>
+        </section>
+        <p class="text-xl" style="color: var(--text-secondary);">Oracle Cloud Infrastructure offre una piattaforma cloud completa, sicura e scalabile per enterprise</p>
+        <p class="text-sm mt-4" style="color: var(--text-secondary);">Per maggiori informazioni: https://cloud.oracle.com</p>
+    </section>
+
+    <!-- Flashcards: study cards imported from CSV -->
+    <section class="slide p-16 col">
+        <h2 class="mb-6" style="color: var(--accent-color);">🃏 Flashcards di Studio (OCI)</h2>
+        <p class="text-base" style="color: var(--text-secondary);">Esercitati con le principali definizioni e concetti OCI.</p>
+        <div id="oracleFlashcards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:12px;">
+            <div style="grid-column:1/-1;color:var(--text-secondary);">Caricamento flashcard...</div>
+        </div>
+    </section>
+
+    </div>
+    <!-- Glossary Pop-up (kept) -->
+    <div id="glossary-popup" class="glossary-popup" style="display:none;">
+        <div class="glossary-content">
+            <button class="glossary-close" onclick="closeGlossary()">&times;</button>
+            <h3 id="glossary-term"></h3>
+            <p id="glossary-definition"></p>
+        </div>
+    </div>
+
+        <script>
+        (function(){
+            // Simple CSV loader for flashcards (compatible with flashcards_oci.csv)
+            async function fetchCSV(path){
+                const r = await fetch(path);
+                if(!r.ok) throw new Error(r.status+' '+r.statusText);
+                return r.text();
+            }
+
+            function parseCSV(text){
+                const lines = text.split(/\r?\n/).filter(l => l.trim() !== '');
+                const rows = [];
+                for(const line of lines){
+                    const fields = [];
+                    let cur = '';
+                    let inQuotes = false;
+                    for(let i=0;i<line.length;i++){
+                        const ch = line[i];
+                        if(ch === '"'){
+                            if(inQuotes && line[i+1] === '"') { cur += '"'; i++; }
+                            else inQuotes = !inQuotes;
+                        } else if(ch === ',' && !inQuotes){
+                            fields.push(cur);
+                            cur = '';
+                        } else cur += ch;
+                    }
+                    fields.push(cur);
+                    rows.push(fields.map(f => f.replace(/^\s+|\s+$/g, '')));
+                }
+                return rows;
+            }
+
+            function escapeHtml(s){ return (s+'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'\"'); }
+
+            function render(cards){
+                const container = document.getElementById('oracleFlashcards');
+                container.innerHTML = '';
+                cards.forEach((row, idx) => {
+                    const q = row[0] || '';
+                    const a = row[1] || '';
+                    const card = document.createElement('div');
+                    card.style.background = 'var(--card-bg)';
+                    card.style.border = '1px solid rgba(15,23,42,0.06)';
+                    card.style.borderRadius = '10px';
+                    card.style.padding = '12px';
+                    card.style.boxShadow = '0 4px 12px rgba(2,6,23,0.04)';
+                    card.innerHTML = `
+                        <div style="font-weight:600;margin-bottom:8px;color:var(--text-primary);">${escapeHtml(q)}</div>
+                        <div class="fc-answer" style="display:none;color:var(--text-secondary);margin-bottom:10px;">${escapeHtml(a)}</div>
+                        <div style="display:flex;gap:8px;justify-content:flex-end;">
+                            <button class="fc-toggle" style="background:#0369a1;color:#fff;border:0;padding:8px 10px;border-radius:8px;cursor:pointer">Mostra risposta</button>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                    const btn = card.querySelector('.fc-toggle');
+                    const ans = card.querySelector('.fc-answer');
+                    btn.addEventListener('click', ()=>{
+                        if(ans.style.display === 'none'){ ans.style.display = 'block'; btn.textContent = 'Nascondi risposta'; }
+                        else { ans.style.display = 'none'; btn.textContent = 'Mostra risposta'; }
+                    });
+                });
+            }
+
+            (async function(){
+                try{
+                    const txt = await fetchCSV('flashcard/flashcards_oci.csv');
+                    const rows = parseCSV(txt);
+                    render(rows);
+                }catch(err){
+                    const c = document.getElementById('oracleFlashcards');
+                    c.innerHTML = '<div style="grid-column:1/-1;color:var(--text-secondary)">Errore caricamento flashcard: '+(err.message||err)+'</div>';
+                    console.error(err);
+                }
+            })();
+        })();
+        </script>
+
+    <script>
+        function showGlossary(term, definition){
+            document.getElementById('glossary-term').textContent = term;
+            document.getElementById('glossary-definition').textContent = definition;
+            document.getElementById('glossary-popup').style.display = 'flex';
+        }
+        function closeGlossary(){ document.getElementById('glossary-popup').style.display = 'none'; }
+        document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeGlossary(); });
+        document.addEventListener('click', function(e){ if(e.target.id === 'glossary-popup') closeGlossary(); });
+    </script>
+</body>
+</html>
+

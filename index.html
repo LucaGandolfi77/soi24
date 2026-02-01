@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#1a1a1a">
     <meta name="description" content="App per gestire documenti PDF con sezioni personalizzate">
-    <title>Gestore PDF - PWA</title>
+    <title>SOAI 2025 - PWA</title>
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" href="icon-192.png">
@@ -15,7 +15,7 @@
     <div class="container">
         <!-- Header -->
         <header class="header">
-            <h1>📚 Gestore PDF</h1>
+            <h1>📚 SOAI 2025</h1>
             <button id="installBtn" class="install-btn" style="display: none;">
                 Installa App
             </button>
@@ -24,8 +24,8 @@
         <!-- Sezioni dai PDF -->
         <section class="sections-container">
             <div class="sections-header">
-                <h2>📑 Documenti PDF</h2>
-                <p style="color: var(--text-secondary); margin-top: 10px;">Sezioni create automaticamente dai PDF disponibili</p>
+                <h2>📑 Sezioni</h2>
+                <p style="color: var(--text-secondary); margin-top: 10px;"></p>
             </div>
             <div id="sectionsContent" class="sections-content">
                 <!-- Le sezioni verranno aggiunte automaticamente per ogni PDF -->
@@ -58,13 +58,23 @@
                         <div id="imagePreview" class="image-preview"></div>
                     </div>
                     <div class="modal-footer">
-                        <button id="addContentBtn" class="btn-primary">Aggiungi</button>
-                        <button id="cancelContentBtn" class="btn-secondary">Annulla</button>
+                        <button id="cancelContentBtn" class="btn-secondary">Chiudi</button>
                     </div>
                 </div>
             </div>
         </div>
 
+
+        <!-- Flashcards -->
+        <section id="flashcardsSection" class="sections-container" style="margin-top:28px;">
+            <div class="sections-header">
+                <h2>🃏 Flashcard OCI</h2>
+                <p style="color: var(--text-secondary); margin-top: 8px;">Esercitati con le flashcard importate da <strong>/flashcard/flashcards_oci.csv</strong></p>
+            </div>
+            <div id="flashcardsContainer" class="sections-content" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;padding:12px 0;">
+                <div style="grid-column:1/-1;color:var(--text-secondary);">Caricamento flashcard...</div>
+            </div>
+        </section>
 
 
         <!-- Footer -->
@@ -79,6 +89,91 @@
     <script>
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
     </script>
+        <script>
+        (function(){
+            // Carica e renderizza CSV delle flashcard (semplice parser che gestisce virgolette doppie)
+            async function fetchCSV(path){
+                const r = await fetch(path);
+                if(!r.ok) throw new Error(r.status+' '+r.statusText);
+                return r.text();
+            }
+
+            function parseCSV(text){
+                const lines = text.split(/\r?\n/).filter(l => l.trim() !== '');
+                const rows = [];
+                for(const line of lines){
+                    const fields = [];
+                    let cur = '';
+                    let inQuotes = false;
+                    for(let i=0;i<line.length;i++){
+                        const ch = line[i];
+                        if(ch === '"'){
+                            if(inQuotes && line[i+1] === '"'){
+                                cur += '"'; i++; // escaped quote
+                            } else {
+                                inQuotes = !inQuotes;
+                            }
+                        } else if(ch === ',' && !inQuotes){
+                            fields.push(cur);
+                            cur = '';
+                        } else {
+                            cur += ch;
+                        }
+                    }
+                    fields.push(cur);
+                    rows.push(fields.map(f => f.replace(/^\s+|\s+$/g, '')));
+                }
+                return rows;
+            }
+
+            function render(cards){
+                const container = document.getElementById('flashcardsContainer');
+                container.innerHTML = '';
+                cards.forEach((row, idx) => {
+                    const q = row[0] || '';
+                    const a = row[1] || '';
+                    const card = document.createElement('div');
+                    card.className = 'fc-card';
+                    card.style.background = 'var(--card-bg, #fff)';
+                    card.style.border = '1px solid rgba(15,23,42,0.06)';
+                    card.style.borderRadius = '10px';
+                    card.style.padding = '12px';
+                    card.style.boxShadow = '0 4px 12px rgba(2,6,23,0.04)';
+                    card.innerHTML = `
+                        <div style="font-weight:600;margin-bottom:8px;color:var(--text-primary);">${escapeHtml(q)}</div>
+                        <div class="fc-answer" style="display:none;color:var(--text-secondary);margin-bottom:10px;">${escapeHtml(a)}</div>
+                        <div style="display:flex;gap:8px;justify-content:flex-end;">
+                            <button class="fc-toggle" style="background:#0369a1;color:#fff;border:0;padding:8px 10px;border-radius:8px;cursor:pointer">Mostra risposta</button>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                    const btn = card.querySelector('.fc-toggle');
+                    const ans = card.querySelector('.fc-answer');
+                    btn.addEventListener('click', ()=>{
+                        if(ans.style.display === 'none') { ans.style.display = 'block'; btn.textContent = 'Nascondi risposta'; }
+                        else { ans.style.display = 'none'; btn.textContent = 'Mostra risposta'; }
+                    });
+                });
+            }
+
+            function escapeHtml(s){
+                return (s+'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'\"');
+            }
+
+            // init
+            (async function(){
+                try{
+                    const txt = await fetchCSV('flashcard/flashcards_oci.csv');
+                    const rows = parseCSV(txt);
+                    render(rows);
+                }catch(err){
+                    const c = document.getElementById('flashcardsContainer');
+                    c.innerHTML = '<div style="grid-column:1/-1;color:var(--text-secondary)">Errore caricamento flashcard: '+(err.message||err)+'</div>';
+                    console.error(err);
+                }
+            })();
+        })();
+        </script>
     <script src="app.js"></script>
 </body>
 </html>

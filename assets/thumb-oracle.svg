@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" aria-hidden="true">
+  <rect width="120" height="80" rx="8" fill="#081127"/>
+  <g>
+    <rect x="18" y="18" width="84" height="44" rx="6" fill="#111827" stroke="#f59e0b" stroke-width="2"/>
+    <text x="60" y="46" fill="#fef3c7" font-size="14" font-family="Arial" text-anchor="middle">OCI</text>
+  </g>
+</svg>

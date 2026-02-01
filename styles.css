@@ -376,6 +376,26 @@ body {
     margin-bottom: 10px;
 }
 
+/* Preview thumbnail in empty state */
+.empty-state .preview-thumb {
+    width: 120px;
+    height: 80px;
+    margin: 0 auto 12px;
+}
+.empty-state .preview-thumb svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+/* support image thumbnails */
+.empty-state .preview-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 6px;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .container {

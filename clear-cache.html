@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Clear Local Cache — SOI24</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;display:flex;align-items:center;justify-content:center;height:100vh;background:#f6f8fa;margin:0}
+    .card{background:white;padding:24px;border-radius:10px;box-shadow:0 6px 22px rgba(16,24,40,.08);max-width:700px}
+    h1{margin:0 0 8px;font-size:18px}
+    p{margin:8px 0 16px;color:#334155}
+    button{background:#0369a1;color:white;border:0;padding:10px 14px;border-radius:8px;font-weight:600;cursor:pointer}
+    pre{background:#0f172a;color:#e2e8f0;padding:12px;border-radius:6px;overflow:auto}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Pulisci cache locale</h1>
+    <p>Questo script prova a: 1) cancellare tutte le <strong>Cache Storage</strong>, 2) deregistrare i <strong>service worker</strong> registrati in questo scope e 3) svuotare <strong>localStorage</strong> e <strong>sessionStorage</strong>. Apri questa pagina dal progetto e conferma per ricaricare le pagine aggiornate.</p>
+
+    <button id="run">Esegui pulizia cache e ricarica</button>
+    <p style="margin-top:12px">Comando rapido (macOS) per aprire questa pagina:</p>
+    <pre>open ./clear-cache.html</pre>
+    <p style="margin-top:8px;color:#475569;font-size:13px">In alternativa avvia un server statico e visita <strong>http://localhost:8000/clear-cache.html</strong></p>
+  </div>
+
+  <script>
+    async function clearAll() {
+      try {
+        // unregister service workers
+        if ('serviceWorker' in navigator) {
+          const regs = await navigator.serviceWorker.getRegistrations();
+          for (const r of regs) {
+            try { await r.unregister(); } catch(e) { console.warn('sw unregister', e); }
+          }
+        }
+
+        // delete all caches
+        if ('caches' in window) {
+          const keys = await caches.keys();
+          for (const k of keys) {
+            try { await caches.delete(k); } catch(e) { console.warn('cache delete', e); }
+          }
+        }
+
+        // clear storages
+        try { localStorage.clear(); } catch(e){ console.warn('localStorage', e); }
+        try { sessionStorage.clear(); } catch(e){ console.warn('sessionStorage', e); }
+
+        alert('Cache locale rimossa. La pagina verrà ricaricata.');
+        // force a soft reload
+        location.reload();
+      } catch (err) {
+        console.error(err);
+        alert('Si è verificato un errore: vedi console.');
+      }
+    }
+
+    document.getElementById('run').addEventListener('click', clearAll);
+
+    // run automatically if opened directly
+    if (location.search.indexOf('auto') !== -1) {
+      clearAll();
+    }
+  </script>
+</body>
+</html>

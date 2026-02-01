@@ -2,7 +2,8 @@
 const availablePDFs = [
     { id: 1, name: 'SOI25-01-containers.pdf', path: '/pdf/SOI25-01-containers.pdf', title: 'Containers' },
     { id: 2, name: 'SOI25-02-webapps.pdf', path: '/pdf/SOI25-02-webapps.pdf', title: 'Web Apps' },
-    { id: 3, name: 'SOI25-03-cloud.pdf', path: '/pdf/SOI25-03-cloud.pdf', title: 'Cloud' }
+    { id: 3, name: 'SOI25-03-cloud.pdf', path: '/pdf/SOI25-03-cloud.pdf', title: 'Cloud' },
+    { id: 4, name: 'SOI25-04-oracle.pdf', path: '/pdf/SOI25-04-oracle.pdf', title: 'Oracle' }
 ];
 
 // Stato dell'applicazione
@@ -99,9 +100,7 @@ function setupEventListeners() {
         previewImage(e.target.files[0]);
     });
 
-    document.getElementById('addContentBtn').addEventListener('click', () => {
-        addContentToSection();
-    });
+    // 'Aggiungi' button removed — content is now read-only previews and summaries
 }
 
 // Gestione sezioni
@@ -125,9 +124,13 @@ function renderSections() {
         if (section.id === 1) {
             summaryLink = `<a href="containers.html" class="btn-icon" style="text-decoration: none;">📖 Vedi Riassunto</a>`;
         } else if (section.id === 2) {
-            summaryLink = `<a href="webapps.html" class="btn-icon" style="text-decoration: none;">📖 Vedi Riassunto</a>`;        } else if (section.id === 3) {
-            summaryLink = `<a href="cloud.html" class="btn-icon" style="text-decoration: none;">📖 Vedi Riassunto</a>`;        }
-        
+            summaryLink = `<a href="webapps.html" class="btn-icon" style="text-decoration: none;">📖 Vedi Riassunto</a>`;
+        } else if (section.id === 3) {
+            summaryLink = `<a href="cloud.html" class="btn-icon" style="text-decoration: none;">📖 Vedi Riassunto</a>`;
+        } else if (section.id === 4) {
+            summaryLink = `<a href="oracle.html" class="btn-icon" style="text-decoration: none;">📖 Vedi Riassunto</a>`;
+        }
+
         return `
         <div class="section-card" data-section-id="${section.id}">
             <div class="section-header">
@@ -137,9 +140,6 @@ function renderSections() {
                 </div>
                 <div class="section-actions">
                     ${summaryLink}
-                    <button class="btn-icon" onclick="showAddContentModal(${section.id})">
-                        ➕ Aggiungi Contenuto
-                    </button>
                 </div>
             </div>
             <div class="section-content">
@@ -151,13 +151,30 @@ function renderSections() {
 }
 
 function renderSectionContent(section) {
+    const previewSnippets = {
+        1: 'Containers — Cos\u2019\u00e8 un container: un pacchetto leggero che contiene applicazione + dipendenze. Le immagini sono costruite a livelli (layer) per riuso e caching; gli orchestratori (es. Kubernetes) gestiscono distribuzione, scalabilità e tolleranza ai guasti. Use case: microservizi, CI/CD, ambienti di test isolati.',
+        2: 'Web Apps — Concetti chiave: separazione front-end/back-end; SPA (React/Vue) spostano rendering al client; le API REST/GraphQL forniscono dati; autenticazione sicura (JWT, sessioni) e caching migliorano performance. Best practice: validazione lato server, gestione degli errori e progressive enhancement.',
+        3: 'Cloud — Modelli di servizio: IaaS (VM, controllo completo del SO), PaaS (piattaforma gestita per deployment rapido), SaaS (software pronto). Vantaggi: provisioning rapido, scalabilit\u00e0, resilienza e pagamento on-demand. Quando scegliere: IaaS per controllo, PaaS per sviluppo veloce, SaaS per soluzioni pronte.',
+        4: 'Oracle OCI — Componenti principali: Compute (VM/BareMetal, shapes), Storage (Block/File/Object), Networking (VCN, Subnet, IGW/DRG), IAM (Compartments, Policies) e servizi di sicurezza (Vault, Cloud Guard, WAF). Raccomandazioni: principio del minimo privilegio, monitoraggio, backup e cifratura dei dati.'
+    };
+
     if (section.content.length === 0) {
+        const snippet = previewSnippets[section.id] || 'Breve preview non disponibile.';
+        const link = section.id === 1 ? 'containers.html' : section.id === 2 ? 'webapps.html' : section.id === 3 ? 'cloud.html' : 'oracle.html';
+        // use section-specific thumbnail SVGs (assets/). fallback to icon-192.png
+        const thumbMap = {
+            1: 'assets/thumb-containers.svg',
+            2: 'assets/thumb-webapps.svg',
+            3: 'assets/thumb-cloud.svg',
+            4: 'assets/thumb-oracle.svg'
+        };
+        const thumbSrc = thumbMap[section.id] || 'icon-192.png';
+        const thumb = `<img src="${thumbSrc}" alt="preview"/>`;
         return `
             <div class="empty-state">
-                <div>Nessun contenuto ancora</div>
-                <div style="font-size: 0.9rem; margin-top: 10px;">
-                    Aggiungi testo o immagini dai tuoi PDF
-                </div>
+                <div class="preview-thumb">${thumb}</div>
+                <div class="empty-state-text">${snippet}</div>
+                <div style="font-size: 0.9rem; margin-top: 10px;">Clicca <a href="${link}">qui</a> per il riassunto completo.</div>
             </div>
         `;
     }

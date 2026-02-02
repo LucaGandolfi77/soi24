@@ -69,10 +69,22 @@ self.addEventListener('activate', (event) => {
 
 // Gestione delle richieste
 self.addEventListener('fetch', (event) => {
+  // Non intercettare richieste cross-origin (evita redirect verso login e problemi CORS)
+  try {
+    const reqUrl = new URL(event.request.url);
+    if (reqUrl.origin !== self.location.origin) {
+      return; // lascia che il browser gestisca la richiesta
+    }
+  } catch (e) {
+    // In rari casi URL può fallire; continuiamo con il comportamento standard
+  }
+
   if (DISABLE_CACHING) {
-    // Bypass della cache: rispondi direttamente dalla rete (fallback su index.html se fallisce)
+    // Bypass della cache: rispondi direttamente dalla rete (fallback su index.html o risposta offline)
     event.respondWith(
-      fetch(event.request).catch(() => caches.match('/index.html'))
+      fetch(event.request).catch(() =>
+        caches.match('/index.html').then((r) => r || new Response('<h1>Offline</h1>', { status: 503, headers: { 'Content-Type': 'text/html' } }))
+      )
     );
     return;
   }
@@ -88,7 +100,7 @@ self.addEventListener('fetch', (event) => {
         // Altrimenti, fai la richiesta di rete
         return fetch(event.request).then((response) => {
           // Verifica se la risposta è valida
-          if (!response || response.status !== 200 || response.type === 'error') {
+          if (!response || !response.ok) {
             return response;
           }
 
@@ -103,8 +115,8 @@ self.addEventListener('fetch', (event) => {
 
           return response;
         }).catch(() => {
-          // Se la richiesta fallisce, prova a restituire una pagina offline
-          return caches.match('/index.html');
+          // Se la richiesta fallisce, prova a restituire una pagina offline o una Response fallback
+          return caches.match('/index.html').then((r) => r || new Response('<h1>Offline</h1>', { status: 503, headers: { 'Content-Type': 'text/html' } }));
         });
       })
   );

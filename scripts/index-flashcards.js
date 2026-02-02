@@ -112,10 +112,12 @@
             cardEl.style.position = 'relative';
             cardEl.style.maxWidth = '640px';
             cardEl.style.width = '100%';
+            cardEl.style.height = '100%';
+            cardEl.style.display = 'flex';
+            cardEl.style.flexDirection = 'column';
             cardEl.style.background = 'var(--card-bg, #fff)';
             cardEl.style.border = '1px solid rgba(15,23,42,0.06)';
             cardEl.style.borderRadius = '12px';
-            cardEl.style.padding = '18px 16px';
             cardEl.style.boxShadow = '0 8px 20px rgba(2,6,23,0.06)';
             cardEl.style.cursor = 'pointer';
 
@@ -168,7 +170,7 @@
 
             centerZone.addEventListener('click', (e) => {
                 e.stopPropagation();
-                if (ans.style.display === 'none') ans.style.display = 'block';
+                if (ans.style.display === 'none') ans.style.display = 'flex';
                 else ans.style.display = 'none';
             });
 

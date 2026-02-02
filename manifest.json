@@ -2,7 +2,7 @@
   "name": "Gestore PDF - Progressive Web App",
   "short_name": "Gestore PDF",
   "description": "Applicazione per gestire documenti PDF con sezioni personalizzate",
-  "start_url": "/",
+  "start_url": "/soi24/index.html",
   "display": "standalone",
   "background_color": "#1a1a1a",
   "theme_color": "#1a1a1a",

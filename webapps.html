@@ -17,10 +17,346 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            </style>
+            padding: 10px 20px;
+            background-color: var(--secondary-bg);
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+        
+        .back-button:hover {
+            background-color: var(--hover-bg);
+            transform: translateX(-5px);
+        }
+        
+        .page-header {
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .page-header h1 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .page-header .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+        }
+        
+        .summary-section {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border-left: 4px solid #0072ff;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .summary-section:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateX(5px);
+        }
+        
+        .summary-section h2 {
+            color: #00c6ff;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .summary-section h3 {
+            color: var(--text-primary);
+            margin-top: 20px;
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+        }
+        
+        .summary-section p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .summary-section ul, .summary-section ol {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .summary-section li {
+            margin-bottom: 8px;
+        }
+        
+        .code-block {
+            background-color: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        
+        .code-block code {
+            color: #00c6ff;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+        }
+        
+        .highlight-box {
+            background-color: var(--secondary-bg);
+            border-left: 4px solid var(--warning-color);
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .highlight-box p {
+            margin: 0;
+            color: var(--text-primary);
+        }
+        
+        .key-points {
+            background-color: rgba(0, 198, 255, 0.1);
+            border: 2px solid #00c6ff;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .key-points h4 {
+            color: #00c6ff;
+            margin-bottom: 15px;
+        }
+        
+        .toc {
+            background-color: var(--secondary-bg);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .toc h3 {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+        }
+        
+        .toc ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .toc li {
+            margin-bottom: 10px;
+        }
+        
+        .toc a {
+            color: #00c6ff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .toc a:hover {
+            color: #0072ff;
+            transform: translateX(5px);
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid var(--border-color);
+        }
+        
+        .comparison-table th {
+            background-color: var(--secondary-bg);
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        
+        .comparison-table td {
+            color: var(--text-secondary);
+        }
+        /* Diagrams */
+        .diagram {
+            background-color: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 18px;
+            margin: 18px 0;
+            box-shadow: var(--shadow);
+        }
 
-            <script src="scripts/webapps-flashcards.js"></script>
-            <script src="scripts/webapps-glossary.js"></script>
+        .diagram svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .diagram-caption {
+            color: var(--text-secondary);
+            margin-top: 10px;
+            font-size: 0.95rem;
+        }
+        
+        .provider-card {
+            background-color: var(--secondary-bg);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 2px solid var(--border-color);
+        }
+        
+        .provider-card h4 {
+            color: #00c6ff;
+            margin-bottom: 10px;
+        }
+
+        /* Flashcards */
+        .flashcards-wrap {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 18px;
+        }
+
+        .flashcard-stage {
+            background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .flashcard {
+            width: 100%;
+            min-height: 240px;
+            perspective: 1200px;
+        }
+
+        .flashcard-inner {
+            position: relative;
+            width: 100%;
+            min-height: 240px;
+            transition: transform 0.6s ease;
+            transform-style: preserve-3d;
+        }
+
+        .flashcard.is-flipped .flashcard-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-face {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 28px;
+            border-radius: 14px;
+            backface-visibility: hidden;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+        }
+
+        .flashcard-face.back {
+            transform: rotateY(180deg);
+            background: linear-gradient(135deg, rgba(0, 198, 255, 0.12), rgba(0, 114, 255, 0.12));
+        }
+
+        .flashcard-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .flashcard-text {
+            color: var(--text-primary);
+            font-size: 1.15rem;
+            line-height: 1.6;
+        }
+
+        .flashcard-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 18px;
+        }
+
+        .flashcard-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .flashcard-button {
+            padding: 10px 16px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            background: var(--secondary-bg);
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 600;
+        }
+
+        .flashcard-button:hover {
+            background: var(--hover-bg);
+            transform: translateY(-1px);
+        }
+
+        .flashcard-button.primary {
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            color: white;
+            border: none;
+        }
+
+        .flashcard-meta {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .flashcard-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .flashcard-loading {
+            background: var(--secondary-bg);
+            border-radius: 10px;
+            padding: 14px 16px;
+            border: 1px dashed var(--border-color);
+        }
+    </style>
+
+            
         
         <!-- Indice -->
         <nav class="toc">
@@ -939,7 +1275,24 @@ jobs:<br>
             <h2>🧠 9. Flashcards di Studio</h2>
             <p>Ripassa i concetti chiave: la domanda è sul fronte, la risposta sul retro.</p>
 
-            <div class="flashcards-wrap">
+            <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:10px;">
+                <div style="flex:1 1 280px;min-width:220px;">
+                    <input id="flashcardSearch" type="text" class="form-control" placeholder="Cerca nelle domande o risposte..." style="width:100%;">
+                </div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                    <button class="fc-filter" data-filter="all" style="background:#0f172a;color:#fff;border:0;padding:8px 10px;border-radius:8px;cursor:pointer">Tutte</button>
+                    <button class="fc-filter" data-filter="cloud" style="background:#e2e8f0;color:#0f172a;border:0;padding:8px 10px;border-radius:8px;cursor:pointer">Cloud</button>
+                    <button class="fc-filter" data-filter="containers" style="background:#e2e8f0;color:#0f172a;border:0;padding:8px 10px;border-radius:8px;cursor:pointer">Containers</button>
+                    <button class="fc-filter" data-filter="oci" style="background:#e2e8f0;color:#0f172a;border:0;padding:8px 10px;border-radius:8px;cursor:pointer">OCI</button>
+                    <button class="fc-filter" data-filter="webapps" style="background:#e2e8f0;color:#0f172a;border:0;padding:8px 10px;border-radius:8px;cursor:pointer">Webapps</button>
+                </div>
+            </div>
+
+            <div id="flashcardsContainer" class="sections-content" style="display:flex;flex-direction:column;gap:18px;padding:12px 0;">
+                <div style="grid-column:1/-1;color:var(--text-secondary);">Caricamento flashcard...</div>
+            </div>
+
+            <div class="flashcards-wrap" style="margin-top:18px;">
                 <div class="flashcard-stage">
                     <div class="flashcard" id="flashcard">
                         <div class="flashcard-inner">
@@ -1208,27 +1561,33 @@ jobs:<br>
             }
 
             function showCard(card) {
-                wrap.innerHTML = '';
-                const cardEl = document.createElement('div');
-                cardEl.style.position = 'relative';
-                cardEl.style.maxWidth = '640px';
-                cardEl.style.width = '100%';
-                cardEl.style.background = 'var(--card-bg, #fff)';
-                cardEl.style.border = '1px solid rgba(15,23,42,0.06)';
-                cardEl.style.borderRadius = '12px';
-                cardEl.style.padding = '18px 16px';
-                cardEl.style.boxShadow = '0 8px 20px rgba(2,6,23,0.06)';
-                cardEl.style.cursor = 'pointer';
+                    wrap.innerHTML = '';
+                    const cardEl = document.createElement('div');
+                    cardEl.style.position = 'relative';
+                    cardEl.style.width = '480px';
+                    cardEl.style.height = '480px';
+                    cardEl.style.boxSizing = 'border-box';
+                    cardEl.style.background = 'var(--card-bg, #fff)';
+                    cardEl.style.border = '1px solid rgba(15,23,42,0.06)';
+                    cardEl.style.borderRadius = '12px';
+                    cardEl.style.padding = '18px 16px';
+                    cardEl.style.boxShadow = '0 8px 20px rgba(2,6,23,0.06)';
+                    cardEl.style.cursor = 'pointer';
+                    cardEl.style.display = 'flex';
+                    cardEl.style.flexDirection = 'column';
+                    cardEl.style.justifyContent = 'center';
+                    cardEl.style.alignItems = 'center';
+                    cardEl.style.overflow = 'auto';
 
-                cardEl.innerHTML = `
-                    <div style="font-weight:700;margin-bottom:10px;color:var(--text-primary);">${escapeHtml(card.q)}</div>
-                    <div class="rf-answer" style="display:none;color:var(--text-secondary);margin-bottom:12px;">${escapeHtml(card.a)}</div>
-                    <div style="display:flex;justify-content:space-between;font-size:0.85rem;color:var(--text-secondary);">
-                        <span>◀ Precedente</span>
-                        <span>Random</span>
-                        <span>Successiva ▶</span>
-                    </div>
-                `;
+                    cardEl.innerHTML = `
+                        <div class="rf-question" style="font-weight:700;color:var(--text-primary);margin:0 0 12px 0;max-height:60%;overflow:auto;">${escapeHtml(card.q)}</div>
+                        <div class="rf-answer" style="display:none;color:var(--text-secondary);margin-top:12px;max-height:40%;overflow:auto;">${escapeHtml(card.a)}</div>
+                        <div style="display:flex;justify-content:space-between;font-size:0.85rem;color:var(--text-secondary);width:100%;position:absolute;left:0;bottom:8px;padding:0 12px;box-sizing:border-box;">
+                            <span>◀ Precedente</span>
+                            <span>Random</span>
+                            <span>Successiva ▶</span>
+                        </div>
+                    `;
 
                 const leftZone = document.createElement('div');
                 const centerZone = document.createElement('div');
@@ -1404,6 +1763,7 @@ jobs:<br>
                     initRandomFlashcard([]);
                 });
         }
-    </script>
+</script>
+    <script src="scripts/index-flashcards.js"></script>
 </body>
 </html>

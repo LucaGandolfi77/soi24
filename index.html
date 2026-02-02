@@ -10,6 +10,18 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" href="icon-192.png">
     <link rel="apple-touch-icon" href="icon-192.png">
+    <style>
+        /* Fixed-size random flashcard box (question top half, answer bottom half) */
+        #randomFlashcardWrap { display:flex; justify-content:center; padding:12px 0; }
+        #randomFlashcardWrap > div { width:480px; height:480px; max-width:480px; box-sizing:border-box; display:flex; flex-direction:column; overflow:hidden; border-radius:12px; background:var(--card-bg,#fff); border:1px solid rgba(15,23,42,0.06); }
+        /* Question area: top half, centered */
+        #randomFlashcardWrap > div > div:first-child,
+        #randomFlashcardWrap > div > .rf-answer { flex:1 1 50%; display:flex; align-items:center; justify-content:center; padding:18px 16px; overflow:auto; text-align:center; }
+        /* Answer area hidden by default */
+        #randomFlashcardWrap > div > .rf-answer { display:none; color:var(--text-secondary); }
+        /* Footer/status row stays at bottom */
+        #randomFlashcardWrap > div > div:last-child { padding:8px 12px; font-size:0.85rem; color:var(--text-secondary); flex:0 0 auto; }
+    </style>
 </head>
 <body>
     <div class="container">

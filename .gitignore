@@ -4,6 +4,9 @@ coverage/
 # Ignore test output directories named _tests_
 _tests_/
 
+# Ignore node modules folder
+node_modules/
+
 # Optional: ignore editor/temp files
 .DS_Store
 *.log

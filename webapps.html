@@ -17,345 +17,10 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 10px 20px;
-            background-color: var(--secondary-bg);
-            color: var(--text-primary);
-            text-decoration: none;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            transition: all 0.3s ease;
-            border: 1px solid var(--border-color);
-        }
-        
-        .back-button:hover {
-            background-color: var(--hover-bg);
-            transform: translateX(-5px);
-        }
-        
-        .page-header {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            padding: 40px;
-            border-radius: 12px;
-            margin-bottom: 40px;
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .page-header h1 {
-            color: white;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        
-        .page-header .subtitle {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.1rem;
-        }
-        
-        .summary-section {
-            background-color: var(--card-bg);
-            padding: 30px;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            border-left: 4px solid #667eea;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-        }
-        
-        .summary-section:hover {
-            box-shadow: var(--shadow-lg);
-            transform: translateX(5px);
-        }
-        
-        .summary-section h2 {
-            color: #667eea;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .summary-section h3 {
-            color: var(--text-primary);
-            margin-top: 20px;
-            margin-bottom: 12px;
-            font-size: 1.3rem;
-        }
-        
-        .summary-section p {
-            color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: 15px;
-        }
-        
-        .summary-section ul, .summary-section ol {
-            color: var(--text-secondary);
-            line-height: 1.8;
-            margin-left: 25px;
-            margin-bottom: 15px;
-        }
-        
-        .summary-section li {
-            margin-bottom: 8px;
-        }
-        
-        .code-block {
-            background-color: var(--secondary-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 15px;
-            margin: 15px 0;
-            overflow-x: auto;
-        }
-        
-        .code-block code {
-            color: #667eea;
-            font-family: 'Courier New', monospace;
-            font-size: 0.95rem;
-        }
-        
-        .highlight-box {
-            background-color: var(--secondary-bg);
-            border-left: 4px solid var(--warning-color);
-            padding: 15px 20px;
-            margin: 15px 0;
-            border-radius: 4px;
-        }
-        
-        .highlight-box p {
-            margin: 0;
-            color: var(--text-primary);
-        }
-        
-        .key-points {
-            background-color: rgba(102, 126, 234, 0.1);
-            border: 2px solid #667eea;
-            border-radius: 8px;
-            padding: 20px;
-            margin: 20px 0;
-        }
-        
-        .key-points h4 {
-            color: #667eea;
-            margin-bottom: 15px;
-        }
-        
-        .toc {
-            background-color: var(--secondary-bg);
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            border: 1px solid var(--border-color);
-        }
-        
-        .toc h3 {
-            color: var(--text-primary);
-            margin-bottom: 15px;
-        }
-        
-        .toc ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .toc li {
-            margin-bottom: 10px;
-        }
-        
-        .toc a {
-            color: #667eea;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-        
-        .toc a:hover {
-            color: #764ba2;
-            transform: translateX(5px);
-        }
-        
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        
-        .comparison-table th,
-        .comparison-table td {
-            padding: 12px;
-            text-align: left;
-            border: 1px solid var(--border-color);
-        }
-        
-        .comparison-table th {
-            background-color: var(--secondary-bg);
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-        
-        .comparison-table td {
-            color: var(--text-secondary);
-        }
-        /* Diagrams */
-        .diagram {
-            background-color: var(--secondary-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 18px;
-            margin: 18px 0;
-            box-shadow: var(--shadow);
-        }
+            </style>
 
-        .diagram svg {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .diagram-caption {
-            color: var(--text-secondary);
-            margin-top: 10px;
-            font-size: 0.95rem;
-        }
-
-        /* Flashcards */
-        .flashcards-wrap {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 18px;
-        }
-
-        .flashcard-stage {
-            background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 24px;
-            box-shadow: var(--shadow);
-        }
-
-        .flashcard {
-            width: 100%;
-            min-height: 240px;
-            perspective: 1200px;
-        }
-
-        .flashcard-inner {
-            position: relative;
-            width: 100%;
-            min-height: 240px;
-            transition: transform 0.6s ease;
-            transform-style: preserve-3d;
-        }
-
-        .flashcard.is-flipped .flashcard-inner {
-            transform: rotateY(180deg);
-        }
-
-        .flashcard-face {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 28px;
-            border-radius: 14px;
-            backface-visibility: hidden;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow);
-        }
-
-        .flashcard-face.back {
-            transform: rotateY(180deg);
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.12), rgba(118, 75, 162, 0.12));
-        }
-
-        .flashcard-label {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--text-secondary);
-            margin-bottom: 10px;
-        }
-
-        .flashcard-text {
-            color: var(--text-primary);
-            font-size: 1.15rem;
-            line-height: 1.6;
-        }
-
-        .flashcard-controls {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: 18px;
-        }
-
-        .flashcard-actions {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .flashcard-button {
-            padding: 10px 16px;
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
-            background: var(--secondary-bg);
-            color: var(--text-primary);
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-weight: 600;
-        }
-
-        .flashcard-button:hover {
-            background: var(--hover-bg);
-            transform: translateY(-1px);
-        }
-
-        .flashcard-button.primary {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            border: none;
-        }
-
-        .flashcard-meta {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        .flashcard-status {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-
-        .flashcard-loading {
-            background: var(--secondary-bg);
-            border-radius: 10px;
-            padding: 14px 16px;
-            border: 1px dashed var(--border-color);
-        }
-    </style>
-</head>
-<body>
-    <div class="container summary-page">
-        <a href="index.html" class="back-button" style="display:inline-block;margin-top:12px;">
-            ← Torna alla Home
-        </a>
-        <a href="index.html" class="back-button">
-            ← Torna alla Home
-        </a>
-        
-        <div class="page-header">
-            <h1>🌐 Web Applications</h1>
-            <p class="subtitle">SOI25-02-webapps.pdf - Riassunto Completo</p>
-        </div>
+            <script src="scripts/webapps-flashcards.js"></script>
+            <script src="scripts/webapps-glossary.js"></script>
         
         <!-- Indice -->
         <nav class="toc">
@@ -1259,6 +924,16 @@ jobs:<br>
             </div>
         </section>
 
+        <!-- Sezione Random Flashcard -->
+        <section id="random-flashcard" class="summary-section">
+            <h2>🎲 Random Flashcard</h2>
+            <p>Clicca al centro per mostrare la risposta, a destra per la prossima, a sinistra per tornare indietro.</p>
+
+            <div id="randomFlashcardWrap" style="display:flex;justify-content:center;padding:12px 0;">
+                <div style="color:var(--text-secondary);">Caricamento flashcard casuale...</div>
+            </div>
+        </section>
+
         <!-- Sezione 9: Flashcards -->
         <section id="flashcards" class="summary-section">
             <h2>🧠 9. Flashcards di Studio</h2>
@@ -1504,6 +1179,115 @@ jobs:<br>
             return rows;
         }
 
+        function escapeHtml(s) {
+            return (s + '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        function initRandomFlashcard(rows) {
+            const wrap = document.getElementById('randomFlashcardWrap');
+            if (!wrap) return;
+
+            const items = (rows || [])
+                .filter(row => row.length >= 2)
+                .map(row => ({
+                    q: row[0] || '—',
+                    a: row[1] || '—'
+                }));
+
+            if (items.length === 0) {
+                wrap.innerHTML = '<div style="color:var(--text-secondary);">Nessuna flashcard disponibile.</div>';
+                return;
+            }
+
+            let history = [];
+            let historyIndex = -1;
+
+            function pickRandom() {
+                const idx = Math.floor(Math.random() * items.length);
+                return items[idx];
+            }
+
+            function showCard(card) {
+                wrap.innerHTML = '';
+                const cardEl = document.createElement('div');
+                cardEl.style.position = 'relative';
+                cardEl.style.maxWidth = '640px';
+                cardEl.style.width = '100%';
+                cardEl.style.background = 'var(--card-bg, #fff)';
+                cardEl.style.border = '1px solid rgba(15,23,42,0.06)';
+                cardEl.style.borderRadius = '12px';
+                cardEl.style.padding = '18px 16px';
+                cardEl.style.boxShadow = '0 8px 20px rgba(2,6,23,0.06)';
+                cardEl.style.cursor = 'pointer';
+
+                cardEl.innerHTML = `
+                    <div style="font-weight:700;margin-bottom:10px;color:var(--text-primary);">${escapeHtml(card.q)}</div>
+                    <div class="rf-answer" style="display:none;color:var(--text-secondary);margin-bottom:12px;">${escapeHtml(card.a)}</div>
+                    <div style="display:flex;justify-content:space-between;font-size:0.85rem;color:var(--text-secondary);">
+                        <span>◀ Precedente</span>
+                        <span>Random</span>
+                        <span>Successiva ▶</span>
+                    </div>
+                `;
+
+                const leftZone = document.createElement('div');
+                const centerZone = document.createElement('div');
+                const rightZone = document.createElement('div');
+                leftZone.style.position = centerZone.style.position = rightZone.style.position = 'absolute';
+                leftZone.style.top = centerZone.style.top = rightZone.style.top = '0';
+                leftZone.style.bottom = centerZone.style.bottom = rightZone.style.bottom = '0';
+                leftZone.style.left = '0';
+                leftZone.style.width = '30%';
+                centerZone.style.left = '30%';
+                centerZone.style.width = '40%';
+                rightZone.style.right = '0';
+                rightZone.style.width = '30%';
+                leftZone.style.background = centerZone.style.background = rightZone.style.background = 'transparent';
+
+                const ans = cardEl.querySelector('.rf-answer');
+
+                leftZone.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    if (historyIndex > 0) {
+                        historyIndex--;
+                        showCard(history[historyIndex]);
+                    }
+                });
+
+                rightZone.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    if (historyIndex < history.length - 1) {
+                        historyIndex++;
+                        showCard(history[historyIndex]);
+                    } else {
+                        const next = pickRandom();
+                        history.push(next);
+                        historyIndex = history.length - 1;
+                        showCard(next);
+                    }
+                });
+
+                centerZone.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    if (ans.style.display === 'none') {
+                        ans.style.display = 'block';
+                    } else {
+                        ans.style.display = 'none';
+                    }
+                });
+
+                cardEl.appendChild(leftZone);
+                cardEl.appendChild(centerZone);
+                cardEl.appendChild(rightZone);
+                wrap.appendChild(cardEl);
+            }
+
+            const first = pickRandom();
+            history.push(first);
+            historyIndex = 0;
+            showCard(first);
+        }
+
         function setFlashcardMessage(text) {
             if (!flashcardEls.message) return;
             if (!text) {
@@ -1611,11 +1395,13 @@ jobs:<br>
                             back: row[1] || '—'
                         }));
                     updateFlashcard();
+                    initRandomFlashcard(rows);
                 })
                 .catch(() => {
                     setFlashcardMessage('Non riesco a caricare le flashcards. Verifica il file CSV.');
                     flashcardState.items = [];
                     updateFlashcard();
+                    initRandomFlashcard([]);
                 });
         }
     </script>

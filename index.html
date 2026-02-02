@@ -65,13 +65,36 @@
         </div>
 
 
+        <!-- Random Flashcard -->
+        <section id="randomFlashcardSection" class="sections-container" style="margin-top:28px;">
+            <div class="sections-header">
+                <h2>🎲 Random Flashcard</h2>
+                <p style="color: var(--text-secondary); margin-top: 8px;">Clicca al centro per mostrare la risposta, a destra per la prossima, a sinistra per tornare indietro.</p>
+            </div>
+            <div id="randomFlashcardWrap" class="sections-content" style="display:flex;justify-content:center;padding:12px 0;">
+                <div style="color:var(--text-secondary);">Caricamento flashcard casuale...</div>
+            </div>
+        </section>
+
         <!-- Flashcards -->
         <section id="flashcardsSection" class="sections-container" style="margin-top:28px;">
             <div class="sections-header">
-                <h2>🃏 Flashcard OCI</h2>
-                <p style="color: var(--text-secondary); margin-top: 8px;">Esercitati con le flashcard importate da <strong>/flashcard/flashcards_oci.csv</strong></p>
+                <h2>🃏 Flashcard</h2>
+                <p style="color: var(--text-secondary); margin-top: 8px;">Esercitati con le flashcard importate da <strong>/flashcard</strong></p>
             </div>
-            <div id="flashcardsContainer" class="sections-content" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;padding:12px 0;">
+            <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:10px;">
+                <div style="flex:1 1 280px;min-width:220px;">
+                    <input id="flashcardSearch" type="text" class="form-control" placeholder="Cerca nelle domande o risposte..." style="width:100%;">
+                </div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                    <button class="fc-filter" data-filter="all" style="background:#0f172a;color:#fff;border:0;padding:8px 10px;border-radius:8px;cursor:pointer">Tutte</button>
+                    <button class="fc-filter" data-filter="cloud" style="background:#e2e8f0;color:#0f172a;border:0;padding:8px 10px;border-radius:8px;cursor:pointer">Cloud</button>
+                    <button class="fc-filter" data-filter="containers" style="background:#e2e8f0;color:#0f172a;border:0;padding:8px 10px;border-radius:8px;cursor:pointer">Containers</button>
+                    <button class="fc-filter" data-filter="oci" style="background:#e2e8f0;color:#0f172a;border:0;padding:8px 10px;border-radius:8px;cursor:pointer">OCI</button>
+                    <button class="fc-filter" data-filter="webapps" style="background:#e2e8f0;color:#0f172a;border:0;padding:8px 10px;border-radius:8px;cursor:pointer">Webapps</button>
+                </div>
+            </div>
+            <div id="flashcardsContainer" class="sections-content" style="display:flex;flex-direction:column;gap:18px;padding:12px 0;">
                 <div style="grid-column:1/-1;color:var(--text-secondary);">Caricamento flashcard...</div>
             </div>
         </section>
@@ -89,91 +112,7 @@
     <script>
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
     </script>
-        <script>
-        (function(){
-            // Carica e renderizza CSV delle flashcard (semplice parser che gestisce virgolette doppie)
-            async function fetchCSV(path){
-                const r = await fetch(path);
-                if(!r.ok) throw new Error(r.status+' '+r.statusText);
-                return r.text();
-            }
-
-            function parseCSV(text){
-                const lines = text.split(/\r?\n/).filter(l => l.trim() !== '');
-                const rows = [];
-                for(const line of lines){
-                    const fields = [];
-                    let cur = '';
-                    let inQuotes = false;
-                    for(let i=0;i<line.length;i++){
-                        const ch = line[i];
-                        if(ch === '"'){
-                            if(inQuotes && line[i+1] === '"'){
-                                cur += '"'; i++; // escaped quote
-                            } else {
-                                inQuotes = !inQuotes;
-                            }
-                        } else if(ch === ',' && !inQuotes){
-                            fields.push(cur);
-                            cur = '';
-                        } else {
-                            cur += ch;
-                        }
-                    }
-                    fields.push(cur);
-                    rows.push(fields.map(f => f.replace(/^\s+|\s+$/g, '')));
-                }
-                return rows;
-            }
-
-            function render(cards){
-                const container = document.getElementById('flashcardsContainer');
-                container.innerHTML = '';
-                cards.forEach((row, idx) => {
-                    const q = row[0] || '';
-                    const a = row[1] || '';
-                    const card = document.createElement('div');
-                    card.className = 'fc-card';
-                    card.style.background = 'var(--card-bg, #fff)';
-                    card.style.border = '1px solid rgba(15,23,42,0.06)';
-                    card.style.borderRadius = '10px';
-                    card.style.padding = '12px';
-                    card.style.boxShadow = '0 4px 12px rgba(2,6,23,0.04)';
-                    card.innerHTML = `
-                        <div style="font-weight:600;margin-bottom:8px;color:var(--text-primary);">${escapeHtml(q)}</div>
-                        <div class="fc-answer" style="display:none;color:var(--text-secondary);margin-bottom:10px;">${escapeHtml(a)}</div>
-                        <div style="display:flex;gap:8px;justify-content:flex-end;">
-                            <button class="fc-toggle" style="background:#0369a1;color:#fff;border:0;padding:8px 10px;border-radius:8px;cursor:pointer">Mostra risposta</button>
-                        </div>
-                    `;
-                    container.appendChild(card);
-                    const btn = card.querySelector('.fc-toggle');
-                    const ans = card.querySelector('.fc-answer');
-                    btn.addEventListener('click', ()=>{
-                        if(ans.style.display === 'none') { ans.style.display = 'block'; btn.textContent = 'Nascondi risposta'; }
-                        else { ans.style.display = 'none'; btn.textContent = 'Mostra risposta'; }
-                    });
-                });
-            }
-
-            function escapeHtml(s){
-                return (s+'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'\"');
-            }
-
-            // init
-            (async function(){
-                try{
-                    const txt = await fetchCSV('flashcard/flashcards_oci.csv');
-                    const rows = parseCSV(txt);
-                    render(rows);
-                }catch(err){
-                    const c = document.getElementById('flashcardsContainer');
-                    c.innerHTML = '<div style="grid-column:1/-1;color:var(--text-secondary)">Errore caricamento flashcard: '+(err.message||err)+'</div>';
-                    console.error(err);
-                }
-            })();
-        })();
-        </script>
+    <script src="scripts/index-flashcards.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

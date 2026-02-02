@@ -1,0 +1,13 @@
+{
+  "name": "soi24-tests",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "jest --coverage",
+    "lint": "eslint tools/**/*.js"
+  },
+  "devDependencies": {
+    "eslint": "^8.50.0",
+    "jest": "^29.0.0"
+  }
+}

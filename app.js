@@ -209,6 +209,10 @@ function removeContent(sectionId, contentIndex) {
     }
 }
 
+if (typeof window !== 'undefined') {
+    window.addContentToSection = addContentToSection;
+}
+
 // Modal contenuto
 function showAddContentModal(sectionId) {
     appState.currentSectionId = sectionId;
@@ -248,6 +252,7 @@ function previewImage(file) {
     }
 }
 
+/* exported addContentToSection */
 function addContentToSection() {
     const section = appState.sections.find(s => s.id === appState.currentSectionId);
     if (!section) return;

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Il mio Titolo - Template semplice</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;margin:24px;background-color:#05223a;color:#e8f4ff;min-height:100vh}
+    a, code{color:#ffd966}
+    header img{max-width:260px;height:auto;display:block}
+    header h1{margin:0 0 6px;font-size:2rem;color:#ffffff}
+    #subtitle{color:#cfe9ff}
+    .grid{display:grid;grid-template-columns:1fr 300px;gap:20px}
+    .placeholder{border:1px dashed rgba(255,255,255,0.15);padding:12px;background:rgba(255,255,255,0.02)}
+    img.sample{max-width:100%;height:auto;border:1px solid rgba(255,255,255,0.08);background:#fff}
+    code{background:rgba(0,0,0,0.25);padding:2px 4px;border-radius:3px}
+  </style>
+</head>
+<body>
+
+<!--
+  TEMPLATE: "simple_manual.html"
+  -------------------------------
+  Istruzioni (in italiano):
+  - Per modificare il titolo principale sostituisci il testo tra i tag <h1>...</h1>
+  - Per modificare i sottotitoli sostituisci il testo dentro <h2>...</h2>
+  - Per modificare paragrafi sostituisci il contenuto tra <p>...</p>
+  - Per aggiungere o cambiare immagini:
+      * Se vuoi usare un file locale, salva l'immagine in `images/` e usa come src: "images/nomefile.jpg"
+      * Se vuoi usare un link remoto, usa l'URL completo: "https://esempio.com/immagine.png"
+      * Formati supportati: .jpg, .jpeg, .png, .webp, .svg. Consigliata larghezza tra 600-1200px per immagini orizzontali.
+  - Per aggiungere voci ai testi o alle liste, modifica solo il testo dei <li> o dei paragrafi.
+
+  Nota sui percorsi:
+  - Percorso locale relativo: images/miaimmagine.jpg
+  - URL remoto: https://example.com/miaimmagine.png
+
+  Esempi pratici sono già presenti in questo file sotto forma di testo e immagini preimpostate.
+-->
+
+<header>
+  <h1 id="main-title">Il mio Titolo (sostituisci qui)</h1>
+  <p id="subtitle">Sottotitolo breve — inserisci qui una descrizione in una riga.</p>
+  <!-- Esempio di immagine di intestazione: sostituisci src con un file in images/ o con un link completo -->
+  <img src="images/header-placeholder.jpg" alt="Immagine intestazione" id="header-image">
+</header>
+
+<main class="grid">
+  <section>
+    <h2>Sezione 1 — Sottotitolo</h2>
+    <p>Paragrafo di esempio. Sostituisci questo testo con il tuo contenuto. Mantieni il testo in formato HTML semplice (paragrafi, <strong>grassetto</strong>, <em>corsivo</em>).</p>
+
+    <h3>Esempio di elenco puntato</h3>
+    <ul>
+      <li>Voce 1: descrizione breve (sostituisci)</li>
+      <li>Voce 2: descrizione breve (sostituisci)</li>
+      <li>Voce 3: descrizione breve (sostituisci)</li>
+    </ul>
+
+    <h3>Esempio di elenco numerato</h3>
+    <ol>
+      <li>Primo punto</li>
+      <li>Secondo punto</li>
+    </ol>
+
+    <!-- Esempio di immagine inserita nel flusso del contenuto.
+         Sostituisci src con un file in images/ o un link esterno.
+         Mantieni l'attributo alt descrittivo per accessibilità. -->
+    <figure>
+      <img class="sample" src="images/content-sample.jpg" alt="Immagine di esempio">
+      <figcaption>Didascalia immagine (modifica o rimuovi)</figcaption>
+    </figure>
+
+  </section>
+
+  <aside class="placeholder">
+    <h2>Info rapida</h2>
+    <p>Questo riquadro mostra immagini preimpostate e istruzioni.</p>
+
+    <!-- Immagini preimpostate: sostituisci direttamente i link qui sotto -->
+    <h3>Immagini preimpostate</h3>
+    <p>Locale (usa file in `images/`):</p>
+    <img src="images/placeholder1.jpg" alt="Placeholder 1" style="max-width:100%;height:auto">
+
+    <p>Remoto (URL):</p>
+    <img src="https://via.placeholder.com/250x150.png?text=Esempio" alt="Immagine da URL" style="width:100%;height:auto">
+
+    <h3>Formato consigliato</h3>
+    <ul>
+      <li>JPEG/PNG/WebP per fotografie</li>
+      <li>SVG per icone e grafica vettoriale</li>
+      <li>Dimensione consigliata: max 2-3 MB per immagine (meglio ottimizzare)</li>
+    </ul>
+  </aside>
+</main>
+
+<footer>
+  <hr>
+  <p>Note: salva le immagini locali nella cartella <strong>images/</strong> e aggiorna i tag <code>&lt;img src="..."&gt;</code> con il percorso relativo.</p>
+  <!-- Esempio di percorso locale: images/miaimmagine.png
+       Esempio di percorso remoto: https://example.com/miaimmagine.jpg -->
+</footer>
+
+</body>
+</html>

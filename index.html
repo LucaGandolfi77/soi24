@@ -21,6 +21,17 @@
         #randomFlashcardWrap > div > .rf-answer { display:none; color:var(--text-secondary); }
         /* Footer/status row stays at bottom */
         #randomFlashcardWrap > div > div:last-child { padding:8px 12px; font-size:0.85rem; color:var(--text-secondary); flex:0 0 auto; }
+        /* Hamburger + Sidebar */
+        .header{position:relative}
+        .hamburger{position:absolute;right:12px;top:12px;background:transparent;border:0;color:var(--text-primary);font-size:1.6rem;cursor:pointer;padding:8px;border-radius:6px}
+        .hamburger:focus{outline:2px solid rgba(0,0,0,0.12)}
+        #sidebar{position:fixed;right:-320px;top:0;width:300px;height:100vh;background:linear-gradient(180deg,#05223a,#083047);box-shadow:-18px 0 40px rgba(0,0,0,0.45);padding:20px;color:#e8f4ff;transition:right .28s ease;z-index:1200}
+        #sidebar.open{right:0}
+        #overlay{position:fixed;inset:0;background:rgba(0,0,0,0.45);opacity:0;pointer-events:none;transition:opacity .28s ease;z-index:1100}
+        #overlay.show{opacity:1;pointer-events:auto}
+        #sidebar a{display:block;color:#dff3ff;margin:10px 0;text-decoration:none;padding:8px;border-radius:6px}
+        #sidebar .close-btn{display:block;margin-left:auto;background:transparent;border:0;color:#fff;font-size:1.2rem;cursor:pointer}
+        @media (max-width:520px){#sidebar{width:85vw}}
     </style>
 </head>
 <body>
@@ -28,10 +39,27 @@
         <!-- Header -->
         <header class="header">
             <h1>📚 SOAI 2025</h1>
+            <button id="hamburger" class="hamburger" aria-label="Apri menu">☰</button>
             <button id="installBtn" class="install-btn" style="display: none;">
                 Installa App
             </button>
         </header>
+
+        <!-- Sidebar (toggleable) -->
+        <nav id="sidebar" aria-hidden="true">
+            <button id="closeSidebar" class="close-btn" aria-label="Chiudi menu">✕</button>
+            <h3 style="margin-top:6px">Navigazione</h3>
+            <a href="index.html">Home</a>
+            <a href="simple_manual.html">Template semplice</a>
+            <a href="#flashcardsSection">Flashcard</a>
+            <a href="#randomFlashcardSection">Random Flashcard</a>
+            <a href="#sectionsContent">Sezioni PDF</a>
+            <hr style="opacity:0.12;border:none;height:1px;background:rgba(255,255,255,0.06)">
+            <p style="font-size:0.9rem;color:#cfe9ff">Strumenti</p>
+            <a href="/pdf">Cartella PDF</a>
+            <a href="/flashcard">Cartella Flashcard</a>
+        </nav>
+        <div id="overlay" aria-hidden="true"></div>
 
         <!-- Sezioni dai PDF -->
         <section class="sections-container">
@@ -111,6 +139,17 @@
             </div>
         </section>
 
+        <!-- Sezione: link al template semplice -->
+        <section class="sections-container" style="margin-top:28px;">
+            <div class="sections-header">
+                <h2>🔗 Template e Risorse</h2>
+                <p style="color: var(--text-secondary); margin-top: 8px;">Apri un template semplice per aggiungere testo e immagini manualmente.</p>
+            </div>
+            <div class="sections-content" style="display:flex;gap:12px;align-items:stretch;">
+                <a href="simple_manual.html" style="display:block;padding:14px;border-radius:10px;background:linear-gradient(180deg,#083047,#05223a);color:#e8f4ff;text-decoration:none;min-width:220px;">Apri Template Semplice</a>
+            </div>
+        </section>
+
 
         <!-- Footer -->
         <footer class="footer">
@@ -126,5 +165,25 @@
     </script>
     <script src="scripts/index-flashcards.js"></script>
     <script src="app.js"></script>
+    <script>
+        (function(){
+            const hamburger = document.getElementById('hamburger');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            const closeBtn = document.getElementById('closeSidebar');
+
+            function openSidebar(){
+                sidebar.classList.add('open'); overlay.classList.add('show'); sidebar.setAttribute('aria-hidden','false'); overlay.setAttribute('aria-hidden','false');
+            }
+            function closeSidebarFn(){
+                sidebar.classList.remove('open'); overlay.classList.remove('show'); sidebar.setAttribute('aria-hidden','true'); overlay.setAttribute('aria-hidden','true');
+            }
+
+            hamburger && hamburger.addEventListener('click', openSidebar);
+            closeBtn && closeBtn.addEventListener('click', closeSidebarFn);
+            overlay && overlay.addEventListener('click', closeSidebarFn);
+            document.addEventListener('keydown', function(e){ if(e.key=== 'Escape'){ closeSidebarFn(); } });
+        })();
+    </script>
 </body>
 </html>
